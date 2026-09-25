@@ -265,7 +265,8 @@ b { color: #fff; }
 .boss h3 { font-family: var(--serif); font-size: 1.6rem; margin: 0 0 6px; }
 .boss p { margin: 0 0 8px; }
 .boss-dark { background: linear-gradient(135deg, #1c0f2a, #120b1f 60%); border-color: #5a2f7a; }
-.boss-dark .boss-face .sprite { filter: drop-shadow(0 0 24px rgba(155, 91, 214, .6)); }
+.boss-portrait { display: block; border-radius: 8px; background: radial-gradient(circle at 40% 45%, #5a3a82, #2a1a40 75%); border: 1px solid #5a2f7a; }
+.boss-dark .boss-face .boss-portrait { box-shadow: 0 0 40px rgba(155, 91, 214, .45); }
 .boss-dark .boss-kicker { color: #b98ae0; }
 .drops { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .drop {

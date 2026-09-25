@@ -5,7 +5,7 @@
  *   VERSION … 表示する MOD のバージョン
  * ================================================================ */
 const REPO = 'Ochi1125/GrimoireFantasia';
-const VERSION = '1.0.0';
+const VERSION = '1.1.0';
 
 /* ---------- アイテムのデータ（言語ファイルとコードの値から作成） ---------- */
 const DATA = {
@@ -792,10 +792,11 @@ for (const [skin, name, where, text] of MOBS) {
   m.append(box, b);
   mobGrid.append(m);
 }
-[['mana_shard', 'マナスライム', '沼・マングローブの沼', '紫のスライム。小さいものがマナのかけらを落とし、ごくまれに跳球の魔導書を持っている。'],
- ['wizard_notes', 'ソーサラー', '村の魔法使いの家', '友好的な魔法使い。魔導書を 5 冊預けると、1 冊と取り替えてくれる。']].forEach(([icon, name, where, text]) => {
+[['mana_slime', 'マナスライム', '沼・マングローブの沼', '紫のスライム。小さいものがマナのかけらを落とし、ごくまれに跳球の魔導書を持っている。'],
+ ['sorcerer', 'ソーサラー', '村の魔法使いの家', '友好的な魔法使い。魔導書を 5 冊預けると、1 冊と取り替えてくれる。']].forEach(([icon, name, where, text]) => {
   const m = el('div', 'mob');
-  const box = el('span', 'icon-box'); box.append(sprite(icon, 36));
+  const icon2 = sprite(icon, 40); icon2.classList.add('face'); icon2.setAttribute('aria-label', name);
+  const box = el('span', 'icon-box'); box.append(icon2);
   const b = el('div');
   b.append(el('h3', null, name), el('p', 'where', where), el('p', null, text));
   m.append(box, b);
