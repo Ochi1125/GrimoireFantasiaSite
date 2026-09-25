@@ -78,19 +78,19 @@
           <p>魔法使いの装束を着る、マナのポーションを飲む、マジックソウルを取り込む。最大マナと回復の速さを伸ばして、より多くの魔法を使えるようになります。</p>
         </article>
         <article class="feature">
-          <div class="feature-icons" data-icons="durandal,cynthia_prayer,yellow_core"></div>
+          <div class="feature-icons" data-icons="durandal,gungnir,raison_detre"></div>
           <h3>ダンジョンとボス</h3>
-          <p>沼の小屋、氷の塔、空に浮かぶ島、地下 4 層の遺跡。遺跡の最深部では、聖騎士シンシアが目を覚まします。</p>
+          <p>沼の小屋、氷の塔、空に浮かぶ島、地下 4 層の聖なる遺跡、地下 6 層の魔獣の遺跡。遺跡の最深部では、聖騎士シンシアと魔獣グリムノウルが目を覚まします。</p>
         </article>
         <article class="feature">
-          <div class="feature-icons" data-icons="holy_beast_egg,blue_feather,small_hat"></div>
+          <div class="feature-icons" data-icons="blue_feather,small_hat,miasma_stone"></div>
           <h3>使い魔と冒険する</h3>
           <p>羽根や毛糸、帽子に宿る使い魔を呼び出して、一緒に戦ってもらえます。暗視や落下ダメージ無効など、主人を助ける力を持つ使い魔も。</p>
         </article>
       </div>
       <div class="notes-callout">
         <div class="sprite" data-src="img/wizard_notes.png" data-size="48"></div>
-        <p><b>困ったら「魔法使いの手記」を。</b> 村の宝箱や魔法使いの家に入っている手記には、この MOD のことがすべて書かれています（全 118 ページ）。</p>
+        <p><b>困ったら「魔法使いの手記」を。</b> 村の宝箱や魔法使いの家に入っている手記には、魔導書や杖、合成、装束、メイジ、使い魔、訪ねる場所まで、この MOD の遊び方が書かれています（全 112 ページ）。遺跡の奥のことだけは、手記の持ち主も知りません。</p>
       </div>
     </section>
 
@@ -117,6 +117,8 @@
         <span class="r-uncommon">アンコモン</span>
         <span class="r-rare">レア</span>
         <span class="r-epic">エピック</span>
+        <span class="r-unique">ユニーク</span>
+        <span class="r-legendary">レジェンダリー</span>
         ／ 杖の作り方：作業台の上段中央に魔導書、中段中央に壊れた杖
       </p>
     </section>
@@ -127,7 +129,7 @@
       <div class="split">
         <div>
           <p>合成台は、いくつかの魔導書を重ねて新しい一冊に編み直すための台です。上の 3 マスに魔導書を、その下のマスに「コア」を置くと、右のマスに新しい魔導書が現れます（並べる順番は関係ありません）。</p>
-          <p>コアは、色ごとのメイジが 5% の確率で落とします。イエローコアは聖騎士シンシアも 50% で落とします。</p>
+          <p>コアは、色ごとのメイジが 5% の確率で落とします。イエローコアは聖騎士シンシアも、パープルコアは魔獣グリムノウルも 50% で落とします。</p>
           <div class="craft-wrap" aria-label="合成台のレシピ">
             <div class="craft-grid">
               <div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div>
@@ -180,13 +182,27 @@
         <div class="boss-body">
           <p class="boss-kicker">BOSS</p>
           <h3>聖騎士シンシア</h3>
-          <p>地下遺跡の最深部、円い大広間で眠る聖騎士。はじめて足を踏み入れた者の前で、魔法陣から目を覚まします（ひとつの遺跡で一度だけ）。</p>
+          <p>聖なる遺跡の最深部、円い大広間で眠る聖騎士。はじめて足を踏み入れた者の前で、魔法陣から目を覚まします（ひとつの遺跡で一度だけ）。</p>
           <ul class="dots">
             <li>体力 <b>3000</b>。聖剣の斬撃、光の斬撃・光の槍・光の柱、聖なるウサギの召喚、張り付くと光の波で吹き飛ばしてきます。</li>
             <li>体力が半分を切ると技が速くなり、光の雨を降らせます。</li>
             <li>光の槍・柱・波・雨は魔法ダメージ。魔法防御で軽くなります。</li>
           </ul>
           <div class="drops" id="boss-drops"></div>
+        </div>
+      </div>
+      <div class="boss boss-dark">
+        <div class="boss-face"><div class="sprite" data-src="img/gungnir.png" data-size="96"></div></div>
+        <div class="boss-body">
+          <p class="boss-kicker">FINAL BOSS</p>
+          <h3>魔獣グリムノウル</h3>
+          <p>魔獣の遺跡の 6 層目、半径 20 の暗い大広間に封じられた魔獣。はじめて足を踏み入れた者の前で、闇の魔法陣から目を覚まします（ひとつの遺跡で一度だけ）。</p>
+          <ul class="dots">
+            <li>体力 <b>5000</b>。噛みつき・尻尾の薙ぎ払い・突進に、闇の槍・闇の柱・闇の炎・咆哮を使います。</li>
+            <li>体力が半分を切ると空へ舞い上がって急降下や闇の雨を、4 分の 1 を切ると闇の鎧をまとい、受けるダメージを大きく減らします。</li>
+            <li>闇の技は魔法ダメージ。魔法防御で軽くなります。</li>
+          </ul>
+          <div class="drops" id="boss-drops-2"></div>
         </div>
       </div>
     </section>

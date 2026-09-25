@@ -13,6 +13,8 @@
   --uncommon: #ffff55;
   --rare: #55ffff;
   --epic: #ff55ff;
+  --unique: #ffaa00;
+  --legendary: #ff5555;
   --radius: 12px;
   --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
@@ -196,6 +198,8 @@ b { color: #fff; }
 .r-uncommon { color: var(--uncommon); }
 .r-rare { color: var(--rare); }
 .r-epic { color: var(--epic); }
+.r-unique { color: var(--unique); }
+.r-legendary { color: var(--legendary); }
 .legend { text-align: center; font-size: .85rem; color: var(--muted); margin-top: 16px; }
 .legend span { margin-right: 10px; font-weight: 700; }
 .empty { text-align: center; color: var(--muted); grid-column: 1 / -1; }
@@ -260,6 +264,9 @@ b { color: #fff; }
 .boss-kicker { color: var(--gold); letter-spacing: .3em; margin: 0; font-size: .8rem; }
 .boss h3 { font-family: var(--serif); font-size: 1.6rem; margin: 0 0 6px; }
 .boss p { margin: 0 0 8px; }
+.boss-dark { background: linear-gradient(135deg, #1c0f2a, #120b1f 60%); border-color: #5a2f7a; }
+.boss-dark .boss-face .sprite { filter: drop-shadow(0 0 24px rgba(155, 91, 214, .6)); }
+.boss-dark .boss-kicker { color: #b98ae0; }
 .drops { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .drop {
   display: flex; align-items: center; gap: 8px; cursor: pointer; font: inherit; color: inherit;

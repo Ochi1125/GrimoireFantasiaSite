@@ -249,12 +249,23 @@ const DATA = {
    "kind": "grimoire",
    "id": "cynthia_prayer",
    "name": "シンシアの祈り",
-   "rarity": "epic",
+   "rarity": "legendary",
    "source": "drop",
    "mana": "100",
    "dur": "10",
-   "effect": "3 分間ダメージを受けない。クールタイム 30 分",
+   "effect": "1 分間ダメージを受けない。クールタイム 30 分",
    "desc": "彼女が大切な誰かに施したかった祈り。奇跡が起きない限り、この祈りは届かない。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "raison_detre",
+   "name": "レゾンデートル",
+   "rarity": "legendary",
+   "source": "drop",
+   "mana": "1 / tick",
+   "dur": "200",
+   "effect": "自分と同じ姿の影を 3 体呼ぶ ⇔ もう一度で消す。呼ぶたびに耐久 1",
+   "desc": "己の存在理由を問う禁書。頁を開けば、持ち主と同じ姿をした影が目を覚ます。"
   },
   {
    "kind": "wand",
@@ -380,9 +391,9 @@ const DATA = {
    "kind": "wand",
    "id": "chain_explosion_wand",
    "name": "爆迅の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
-   "mana": "40",
+   "mana": "80",
    "dur": "1024",
    "effect": "64m 先に威力 10 の爆発を 0.5 秒ごと。地形を壊さない",
    "desc": "爆迅の魔導書をさらに研ぎ澄ませた杖。威力の高い爆発を間髪入れずに喰らわせるが、魔力の高い者でなければ使いこなすのは難しい。",
@@ -396,7 +407,7 @@ const DATA = {
    "source": "craft",
    "mana": "60 / 100 / 150",
    "dur": "320",
-   "effect": "ためて 3 段階。25 / 40 / 100 ダメージ、半径 10 / 15 / 20m",
+   "effect": "ためて 3 段階。12 / 20 / 32 ダメージ、半径 5 / 7 / 10m、炎上 5 / 8 / 10 秒",
    "desc": "業火の魔導書を杖に宿したもの。ためるほどに火球は膨れ上がり、あたりを焼き尽くす。",
    "from": "hellfire_grimoire"
   },
@@ -404,7 +415,7 @@ const DATA = {
    "kind": "wand",
    "id": "holy_fire_wand",
    "name": "聖火の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
    "mana": "200",
    "dur": "320",
@@ -416,7 +427,7 @@ const DATA = {
    "kind": "wand",
    "id": "miasma_wand",
    "name": "瘴爆の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
    "mana": "120",
    "dur": "560",
@@ -428,7 +439,7 @@ const DATA = {
    "kind": "wand",
    "id": "rampage_wand",
    "name": "暴爆の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
    "mana": "250 / 300 / 350",
    "dur": "95",
@@ -440,7 +451,7 @@ const DATA = {
    "kind": "wand",
    "id": "black_thunder_wand",
    "name": "黒雷の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
    "mana": "300",
    "dur": "128",
@@ -452,7 +463,7 @@ const DATA = {
    "kind": "wand",
    "id": "blizzard_wand",
    "name": "吹雪の杖",
-   "rarity": "epic",
+   "rarity": "unique",
    "source": "craft",
    "mana": "80",
    "dur": "340",
@@ -514,7 +525,12 @@ const DATA = {
   "rampage_wand": "暴爆の杖",
   "black_thunder_wand": "黒雷の杖",
   "blizzard_wand": "吹雪の杖",
-  "synthesis_table_front": "合成台"
+  "synthesis_table_front": "合成台",
+  "raison_detre": "レゾンデートル",
+  "gungnir": "グングニル",
+  "miasma_stone": "瘴気の魔石",
+  "broken_black_knight_pendant": "壊れた黒騎士のペンダント",
+  "book_pouch": "ブックポーチ"
  },
  "descs": {
   "broken_wand": "メイジが持っている壊れた杖。修理しなければほとんど使い物にならない。",
@@ -533,7 +549,11 @@ const DATA = {
   "frayed_yarn": "さんざん転がされて、端がほつれた白い毛糸玉。ふわふわの毛が何本も絡まっている。",
   "small_hat": "猫の頭にちょうど乗るくらいの、とんがり帽子。ときどき、中からにやにや笑いだけが覗く。",
   "magic_soul": "淡い紫色に燃え揺れる、半透明の人魂。取り込むと肉体になじみ、扱えるマナの器そのものを押し広げる。",
-  "wizard_notes": ""
+  "wizard_notes": "",
+  "gungnir": "魔獣グリムノウルの内に眠っていた神槍。放てば闇を裂き、狙ったものを決して外さない。",
+  "miasma_stone": "瘴気が凝り固まった魔石。耳を澄ますと、遠くで大きな翼が風を打つ音がする。",
+  "broken_black_knight_pendant": "瘴気に染まり、ぼろぼろに砕けたペンダント。割れた蓋の内側には、かすれた誰かの写真の跡だけが残っている。",
+  "book_pouch": "魔導書だけをしまっておける革のポーチ。27 冊まで入り、壊しても中身はそのまま残る。"
  }
 };
 
@@ -541,7 +561,7 @@ const DATA = {
 const ANIM = {
   cynthia_prayer: [24, 2], durandal: [20, 2], magic_soul: [16, 2], mana_shard: [8, 4],
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2],
-  healing_wand: [8, 3],
+  healing_wand: [8, 3], raison_detre: [24, 2], gungnir: [24, 2], miasma_stone: [8, 3],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
@@ -590,7 +610,7 @@ function face(skin, size = 48) {
   return el;
 }
 
-const RARITY = { uncommon: 'アンコモン', rare: 'レア', epic: 'エピック' };
+const RARITY = { uncommon: 'アンコモン', rare: 'レア', epic: 'エピック', unique: 'ユニーク', legendary: 'レジェンダリー' };
 const SOURCE = { chest: '宝箱', synthesis: '合成台', drop: '生き物から', craft: '作業台' };
 const byId = Object.fromEntries(DATA.items.map(i => [i.id, i]));
 
@@ -634,6 +654,7 @@ function openDetail(id) {
 function sourceText(it) {
   if (it.id === 'bouncing_orb_grimoire') return 'マナスライム 0.2%（ドロップ増加で 3〜5%）';
   if (it.id === 'cynthia_prayer') return '聖騎士シンシア 10%';
+  if (it.id === 'raison_detre') return '魔獣グリムノウル 10%';
   if (it.source === 'chest') return `古い宝箱・ソーサラーとの交換（${RARITY[it.rarity]}）`;
   if (it.source === 'synthesis') return '合成台で作る';
   if (it.source === 'craft') return '作業台：魔導書 ＋ 壊れた杖';
@@ -664,7 +685,7 @@ function wandRow(grim, wand) {
 /* ---------- ヒーローの棚・特徴のアイコン ---------- */
 const hero = document.getElementById('hero-shelf');
 ['light_grimoire', 'ice_grimoire', 'fire_grimoire', 'lightning_grimoire', 'explosion_grimoire',
- 'fire_wand', 'blizzard_wand', 'cynthia_prayer'].forEach(id => {
+ 'fire_wand', 'blizzard_wand', 'cynthia_prayer', 'raison_detre'].forEach(id => {
   const s = el('span', 'slot'); s.append(sprite(id, 40)); hero.append(s);
 });
 document.querySelectorAll('[data-icons]').forEach(box => {
@@ -714,7 +735,7 @@ const CORES = [
   ['red_core', 'レッドコア', '炎', 'レッドメイジ 5%'],
   ['green_core', 'グリーンコア', '風', 'グリーンメイジ 5%'],
   ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 5%'],
-  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 5%'],
+  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 5% ／ 魔獣グリムノウル 50%'],
   ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 5% ／ 聖騎士シンシア 50%'],
 ];
 const coreList = document.getElementById('core-list');
@@ -741,7 +762,7 @@ const ROBES = [
   ['wizard', ['wizard_hat', 'wizard_robe_top', 'wizard_robe_bottom', 'wizard_boots'], '魔法使いの装束',
     '魔法の布（布＋マナのかけら 8 個）で作る。防御は鉄と同じくらい。', '1 部位ごとマナ回復速度 +20%、4 部位で最大マナ +20% ／ 魔法防御 計 11'],
   ['archmage', ['archmage_hat', 'archmage_robe_top', 'archmage_robe_bottom', 'archmage_boots'], '大魔導士の装束',
-    '大魔導士の布（布＋マナストーン 8 個）で作る。防御はネザライトと同じくらいで、燃えない。', '1 部位ごとマナ回復速度 +50%、4 部位で最大マナ +100% ／ 魔法防御 計 22'],
+    '大魔導士の布（布＋マナストーン 8 個）で作る。防御はネザライトより少し上で、燃えない。', '1 部位ごとマナ回復速度 +100%、4 部位で最大マナ +100% ／ 魔法防御 計 30'],
 ];
 const robeTable = document.getElementById('robe-table');
 for (const [, pieces, name, how, bonus] of ROBES) {
@@ -759,8 +780,8 @@ const MOBS = [
   ['red_mage', 'レッドメイジ', 'ネザー', '体力 34。火の弾で相手を燃やす。レッドコアを落とす。'],
   ['green_mage', 'グリーンメイジ', '空に浮かぶ島', '体力 30。風の弾で押し飛ばす。グリーンコアを落とす。'],
   ['blue_mage', 'ブルーメイジ', '氷の塔', '体力 34。氷の弾で一瞬凍りつかせる。ブルーコアを落とす。'],
-  ['yellow_mage', 'イエローメイジ', '地下の遺跡', '体力 50。重い金の弾を撃ち、弱ると自分を癒す。イエローコアを落とす。'],
-  ['purple_mage', 'パープルメイジ', '沼の小屋', '体力 30。毒の弾を撃つ。パープルコアを落とす。'],
+  ['yellow_mage', 'イエローメイジ', '聖なる遺跡', '体力 50。重い金の弾を撃ち、弱ると自分を癒す。イエローコアを落とす。'],
+  ['purple_mage', 'パープルメイジ', '沼の小屋・魔獣の遺跡', '体力 60。メイジの仲間でいちばん強い。毒の弾（毒 II 6 秒＋弱体化）を撃つ。パープルコアを落とす。'],
 ];
 const mobGrid = document.getElementById('mob-grid');
 for (const [skin, name, where, text] of MOBS) {
@@ -782,16 +803,21 @@ for (const [skin, name, where, text] of MOBS) {
 });
 const drops = document.getElementById('boss-drops');
 [['paladin_pendant', '100%'], ['yellow_core', '50%'], ['holy_beast_egg', '30%'], ['durandal', '10%'], ['cynthia_prayer', '10%']]
-  .forEach(([id, p]) => {
-    const d = el('button', 'drop'); d.type = 'button';
-    d.append(sprite(id, 24), el('span', null, DATA.names[id]), el('b', null, p));
-    d.addEventListener('click', () => openDetail(id));
-    drops.append(d);
-  });
+  .forEach(([id, p]) => drops.append(dropButton(id, p)));
+const drops2 = document.getElementById('boss-drops-2');
+[['broken_black_knight_pendant', '100%'], ['purple_core', '50%'], ['miasma_stone', '30%'], ['gungnir', '10%'], ['raison_detre', '10%']]
+  .forEach(([id, p]) => drops2.append(dropButton(id, p)));
+function dropButton(id, p) {
+  const d = el('button', 'drop'); d.type = 'button';
+  d.append(sprite(id, 24), el('span', null, DATA.names[id]), el('b', null, p));
+  d.addEventListener('click', () => openDetail(id));
+  return d;
+}
 
 /* ---------- 使い魔 ---------- */
 const FAMS = [
   ['holy_beast_egg', '聖なるウサギ', '最大 2 体・噛みつく', '出ているあいだ マナ回復速度 +50%', '聖騎士シンシア 30%'],
+  ['miasma_stone', '瘴気の鷹', '1 羽・追尾する羽と闇の槍', '', '魔獣グリムノウル 30%'],
   ['blue_feather', '幸せの青い鳥', '最大 3 羽・つつく', '', '宝箱 15%'],
   ['black_feather', '八咫烏', '最大 2 羽・鋭いくちばし', '出ているあいだ 暗視', '宝箱 5%'],
   ['frayed_yarn', 'モフ猫', '1 匹・魔法の弾（10）', '出ているあいだ 落下ダメージなし', '宝箱 5%'],
@@ -821,9 +847,12 @@ const PLACES = [
   ['氷の塔', '雪原・樹氷・雪のタイガ・林・雪の斜面', '#8fd3ff',
    '6 階建ての氷の塔。各階にブルーメイジ。粉雪の落とし穴と、糸に触れると薬や矢が飛んでくる罠の部屋がある。',
    ['最上階：マジックソウル 20%・魔法の布 50%']],
-  ['地下の遺跡', '平原・ヒマワリ平原', '#f0d060',
+  ['聖なる遺跡', '平原・ヒマワリ平原', '#f0d060',
    '崩れた石の広場から、らせん階段で地下 4 層へ。暗く、死者やクモ、イエローメイジがさまよう。仕掛け線の罠に注意。',
-   ['3〜4 層目に宝物庫（魔導書 1〜2 冊・マジックソウル 30%）', '最深部の大広間で聖騎士シンシアが目覚める']],
+   ['チェストの魔導書は、出にくいかわりにレア・エピックが中心', '3〜4 層目に宝物庫（魔導書 1〜2 冊・マジックソウル 30%）', '最深部の大広間で聖騎士シンシアが目覚める']],
+  ['魔獣の遺跡', 'ダークフォレスト', '#9b5bd6',
+   '崩れた見張り塔の下に広がる、魔獣を閉じ込めておく地下 6 層の牢獄。牢屋・実験施設・拷問部屋・看守室が並び、パープルメイジが見張る。明かりはほとんどない。',
+   ['チェストの魔導書はレア・エピックが中心で、聖なる遺跡より出やすい', '3〜6 層目に宝物庫（魔導書 1〜2 冊・マジックソウル 40%）', '最深部の半径 20 の大広間で魔獣グリムノウルが目覚める']],
 ];
 const placeGrid = document.getElementById('place-grid');
 for (const [name, biome, color, text, notes] of PLACES) {
