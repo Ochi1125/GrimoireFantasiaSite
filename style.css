@@ -32,7 +32,54 @@ body {
 }
 a { color: var(--gold); }
 code { background: var(--panel-2); padding: 1px 6px; border-radius: 6px; font-size: .92em; }
-b { color: #fff; }
+b { color: #fff; }.stars {
+                    position: absolute; inset: 0; opacity: 1; pointer-events: none;
+                    background-image:
+                            radial-gradient(1px 1px at 10% 80%, #fff, transparent),
+                            radial-gradient(1px 1px at 30% 90%, #fff, transparent),
+                            radial-gradient(1.5px 1.5px at 55% 85%, #f3e3b0, transparent),
+                            radial-gradient(1px 1px at 75% 95%, #fff, transparent),
+                            radial-gradient(1px 1px at 85% 80%, #fff, transparent),
+                            radial-gradient(1.5px 1.5px at 20% 90%, #cdb8ff, transparent),
+                            radial-gradient(1px 1px at 65% 95%, #fff, transparent),
+                            radial-gradient(1px 1px at 45% 85%, #fff, transparent);
+                    background-size: 100% 100%;
+                    animation: floatUp 15s linear infinite;
+                  }
+
+/* Optional: Add a second layer for more depth with a different speed */
+.stars::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+          radial-gradient(1px 1px at 15% 70%, #fff, transparent),
+          radial-gradient(1px 1px at 40% 60%, #cdb8ff, transparent),
+          radial-gradient(1.5px 1.5px at 60% 75%, #f3e3b0, transparent),
+          radial-gradient(1px 1px at 80% 65%, #fff, transparent),
+          radial-gradient(1px 1px at 25% 75%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 90% 70%, #cdb8ff, transparent),
+          radial-gradient(1px 1px at 50% 65%, #fff, transparent),
+          radial-gradient(1px 1px at 70% 80%, #fff, transparent);
+  background-size: 100% 100%;
+  animation: floatUp 20s linear infinite -10s; /* Different speed and negative delay */
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
 .small { color: var(--muted); font-size: .88rem; }
 
 /* ===== ドット絵 ===== */
@@ -401,4 +448,51 @@ dialog::backdrop { background: rgba(5, 3, 12, .7); backdrop-filter: blur(3px); }
 @media (prefers-reduced-motion: reduce) {
   .sprite.anim, .stars { animation: none; }
   html { scroll-behavior: auto; }
+}
+.stars {
+  position: absolute; inset: 0; opacity: 1; pointer-events: none;
+  background-image:
+          radial-gradient(1px 1px at 10% 80%, #fff, transparent),
+          radial-gradient(1px 1px at 30% 90%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 55% 85%, #f3e3b0, transparent),
+          radial-gradient(1px 1px at 75% 95%, #fff, transparent),
+          radial-gradient(1px 1px at 85% 80%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 20% 90%, #cdb8ff, transparent),
+          radial-gradient(1px 1px at 65% 95%, #fff, transparent),
+          radial-gradient(1px 1px at 45% 85%, #fff, transparent);
+  background-size: 100% 100%;
+  animation: floatUp 15s linear infinite;
+}
+
+/* Optional: Add a second layer for more depth with a different speed */
+.stars::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+          radial-gradient(1px 1px at 15% 70%, #fff, transparent),
+          radial-gradient(1px 1px at 40% 60%, #cdb8ff, transparent),
+          radial-gradient(1.5px 1.5px at 60% 75%, #f3e3b0, transparent),
+          radial-gradient(1px 1px at 80% 65%, #fff, transparent),
+          radial-gradient(1px 1px at 25% 75%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 90% 70%, #cdb8ff, transparent),
+          radial-gradient(1px 1px at 50% 65%, #fff, transparent),
+          radial-gradient(1px 1px at 70% 80%, #fff, transparent);
+  background-size: 100% 100%;
+  animation: floatUp 20s linear infinite -10s; /* Different speed and negative delay */
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
 }
