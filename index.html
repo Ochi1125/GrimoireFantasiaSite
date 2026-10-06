@@ -16,9 +16,10 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top"><span class="sprite" data-src="img/explosion_grimoire.png" data-size="24"></span>幻想の魔導書</a>
+    <a class="brand" href="#home"><span class="sprite" data-src="img/explosion_grimoire.png" data-size="24"></span>幻想の魔導書</a>
     <button class="menu-btn" aria-label="メニュー" aria-expanded="false">☰</button>
     <nav class="nav">
+      <a href="#home">ホーム</a>
       <a href="#features">特徴</a>
       <a href="#catalog">魔導書と杖</a>
       <a href="#synthesis">合成台</a>
@@ -33,9 +34,22 @@
   </header>
 
   <main id="top">
-    <!-- ===== ヒーロー ===== -->
-    <section class="hero">
+    <!-- ===== ヒーロー (ホームタブ) ===== -->
+    <section id="home" class="hero tab-content is-active">
+      <!-- 背景スライダー -->
+      <div class="hero-slider" id="hero-slider">
+        <div class="hero-slide active" style="background-image: url('./img/giant_tree.png');"></div>
+        <div class="hero-slide" style="background-image: url('./img/volcano.png');"></div>
+        <div class="hero-slide" style="background-image: url('./img/rune_dome.png');"></div>
+        <div class="hero-slider-dots" id="hero-slider-dots">
+          <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="dot" data-index="2" aria-label="Slide 3"></button>
+        </div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="stars" aria-hidden="true"></div>
+      
       <div class="hero-inner">
         <p class="hero-kicker">Minecraft Java Edition 1.21.1 ／ NeoForge MOD</p>
         <h1 class="hero-title">幻想の魔導書</h1>
@@ -55,50 +69,50 @@
     </section>
 
     <!-- ===== 特徴 ===== -->
-    <section id="features" class="section">
+    <section id="features" class="section tab-content">
       <h2 class="section-title"><span>特徴</span></h2>
       <div class="feature-grid">
         <article class="feature">
           <div class="feature-icons" data-icons="fire_grimoire,ice_grimoire,wind_grimoire"></div>
           <h3>魔導書で魔法を唱える</h3>
-          <p>魔法は一冊の魔導書に閉じ込められています。右クリックするだけで、灯・氷・風・水・火・雷・爆発…さまざまな魔法が出ます。地面を削る整地や、作物を育てる成長、鉱石を探す魔法など、暮らしに役立つ魔法もあります。使うたびにマナを消費し、紙は少しずつ擦り切れていきます。</p>
+          <p>魔法は一冊の魔導書に封じられている。右クリックするだけで、灯・氷・風・水・火・雷・爆発など、様々な魔法が発動する。地面を削る整地、作物を育てる成長、鉱石を探す魔法など、暮らしに役立つものも多い。使うたびにマナを消費し、紙は少しずつ擦り切れていく。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="broken_wand,fire_wand,explosion_wand"></div>
           <h3>杖に宿して強くする</h3>
-          <p>壊れた杖に魔導書を重ねると、魔法が杖へ移ります。杖は魔導書より遠くまで届き、強く、何倍も長く使えます。右クリックを長押しして「ためる」杖もあります。</p>
+          <p>壊れた杖に魔導書を重ねると、魔法が杖に宿る。杖は魔導書よりも射程が長く、威力も増し、耐久力も何倍も高い。右クリック長押しで魔力を「ためる」杖も存在する。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="synthesis_table_front,red_core,holy_fire_grimoire"></div>
           <h3>合成台で新しい魔法を編む</h3>
-          <p>魔導書どうしをコアでつなぐと、まったく新しい魔導書が生まれます。聖火・吹雪・黒雷・慈光・酸など、宝箱では手に入らない魔法が 9 種類。</p>
+          <p>魔導書同士をコアでつなぐと、新たな魔導書が生まれる。聖火・吹雪・黒雷・慈光・酸など、宝箱からは手に入らない9種類の魔法が存在する。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="wizard_hat,archmage_robe_top,magic_soul"></div>
           <h3>マナを育てる</h3>
-          <p>魔法使いの装束を着る、マナのポーションを飲む、マジックソウルを取り込む。最大マナと回復の速さを伸ばして、より多くの魔法を使えるようになります。</p>
+          <p>魔法使いの装束を着る、マナのポーションを飲む、マジックソウルを取り込むことで、最大マナと回復速度が上昇する。これにより、さらに多くの魔法を操れるようになる。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="nordensia,durandal,gungnir"></div>
           <h3>ダンジョンとボス</h3>
-          <p>沼地の小屋、氷の塔、空に浮かぶ島、海にそびえる大海の塔、山岳の火山、根の張りめぐらされた巨大樹の迷宮、荒野の雷獣の渓谷、地下 8 層の聖なる遺跡、地下 10 層の魔獣の遺跡。奥では 8 体のボスが待ち受けます。</p>
+          <p>沼地の小屋、氷の塔、空に浮かぶ島、海にそびえる大海の塔、山岳の火山、根の張りめぐらされた巨大樹の迷宮、荒野の雷獣の渓谷、地下8層の聖なる遺跡、地下10層の魔獣の遺跡。その奥では強力なボスたちが待ち受ける。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="blue_feather,small_hat,ice_dragon_egg"></div>
           <h3>使い魔と冒険する</h3>
-          <p>羽根や毛糸、帽子、卵や魂に宿る使い魔を呼び出して、一緒に戦ってもらえます。暗視や落下ダメージ無効など、主人を助ける力を持つ使い魔も。</p>
+          <p>羽根や毛糸、帽子、卵や魂に宿る使い魔を呼び出し、共に戦うことができる。暗視や落下ダメージ無効など、主人をサポートする能力を持つ使い魔もいる。</p>
         </article>
       </div>
       <div class="notes-callout">
         <div class="sprite" data-src="img/wizard_notes.png" data-size="48"></div>
-        <p><b>困ったら「魔法使いの手記」を。</b> 村の宝箱や魔法使いの家に入っている手記には、魔導書や杖、合成、装束、メイジ、使い魔、訪ねる場所まで、この MOD の遊び方が書かれています（全 124 ページ）。遺跡の奥のことだけは、手記の持ち主も知りません。</p>
+        <p><b>困ったときは「魔法使いの手記」を読もう。</b>村の宝箱や魔法使いの家にある手記には、魔導書や杖、合成、装束、メイジ、使い魔、探索場所など、このMODの遊び方が記されている（全124ページ）。ただし、遺跡の最深部については、手記の持ち主すら知らない。</p>
       </div>
     </section>
 
     <!-- ===== 魔導書と杖 ===== -->
-    <section id="catalog" class="section">
+    <section id="catalog" class="section tab-content">
       <h2 class="section-title"><span>魔導書と杖</span></h2>
-      <p class="section-lead">アイコンを押すと、くわしい説明が開きます。数値はゲーム内の値です。</p>
+      <p class="section-lead">アイコンを押すと詳細な説明が開く。数値はゲーム内の値に基づく。</p>
       <div class="filters" role="toolbar" aria-label="絞り込み">
         <div class="chip-group" data-filter="kind">
           <button class="chip is-on" data-value="all">すべて</button>
@@ -125,12 +139,12 @@
     </section>
 
     <!-- ===== 合成台 ===== -->
-    <section id="synthesis" class="section">
+    <section id="synthesis" class="section tab-content">
       <h2 class="section-title"><span>合成台</span></h2>
       <div class="split">
         <div>
-          <p>合成台は、いくつかの魔導書を重ねて新しい一冊に編み直すための台です。上の 3 マスに魔導書を、その下のマスに「コア」を置くと、右のマスに新しい魔導書が現れます（並べる順番は関係ありません）。</p>
-          <p>コアは、色ごとのメイジが 5% の確率で落とします。精霊やシェルクラブ、サンダーエレメント、ボスたちも落とします（右の一覧）。</p>
+          <p>合成台は、複数の魔導書を重ねて新たな一冊を編み出すための台だ。上の3マスに魔導書、その下のマスに「コア」を配置すると、右のマスに新しい魔導書が完成する（並べる順番は問わない）。</p>
+          <p>コアは、色ごとのメイジが5%の確率でドロップする。また、精霊やシェルクラブ、サンダーエレメント、ボスたちからも入手可能だ（右の一覧を参照）。</p>
           <div class="craft-wrap" aria-label="合成台のレシピ">
             <div class="craft-grid">
               <div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div>
@@ -140,8 +154,8 @@
             <div class="cg-arrow">→</div>
             <div class="cg-result" data-icon="synthesis_table_front"></div>
           </div>
-          <p class="small">板材（種類は問わない）で上下をはさみ、真ん中の段に布・マナのかけら・布。</p>
-          <p>合成台は村人の職場にもなります。村に合成台があると、村人のひとりが「魔法使い」になり、マナのかけらとコンパスをダンジョンの地図と交換してくれます（くわしくは「生き物」の節）。</p>
+          <p class="small">板材（種類不問）で上下をはさみ、中段に布・マナのかけら・布を配置する。</p>
+          <p>合成台は村人の職業ブロックにもなる。村に合成台があれば、村人の一人が「魔法使い」となり、マナのかけらとコンパスを渡すことでダンジョンの地図と交換してくれる（詳細は「生き物」の項目を参照）。</p>
         </div>
         <div>
           <h3 class="sub">コア</h3>
@@ -153,102 +167,101 @@
     </section>
 
     <!-- ===== 装束とマナ ===== -->
-    <section id="robes" class="section">
+    <section id="robes" class="section tab-content">
       <h2 class="section-title"><span>装束とマナ</span></h2>
       <div class="split">
         <div>
           <h3 class="sub">マナのしくみ</h3>
-          <p>魔法を使うたびにマナが減り、何もしなくても毎秒およそ 2 ずつ戻ります。マナのバーは画面下、経験値バーのすぐ下に出ます。足りないときは魔法が出ず、杖の耐久も減りません（クリエイティブではマナを使いません）。</p>
+          <p>魔法を使うたびにマナを消費し、何もしなくても毎秒およそ2ずつ自然回復する。マナゲージは画面下部、経験値バーのすぐ下に表示される。マナが足りない場合は魔法が発動せず、杖の耐久値も減らない（クリエイティブモードではマナを消費しない）。</p>
           <ul class="dots">
-            <li>最大マナは初め <b>100</b>。</li>
-            <li><b>マジックソウル</b>：右クリックで最大マナ <b>+20</b>（1 人 20 回まで・死んでも失われない）。古い宝箱にまれに入っています。</li>
+            <li>初期の最大マナは <b>100</b>。</li>
+            <li><b>マジックソウル</b>：右クリックで最大マナ <b>+20</b>（1 人 20 回まで・死んでも失われない）。古い宝箱に稀に入っている。</li>
             <li><b>マナのポーション</b>：奇妙なポーション＋クレイルの実。マナ再生 VI（3 分）。レッドストーンで 8 分、グロウストーンで XI（1 分半）。</li>
-            <li><b>クレイルの実</b>：生のまま食べると 10 秒だけマナの戻りが速くなります。土に植えると育ちます。</li>
+            <li><b>クレイルの実</b>：生のまま食べると10秒間だけマナの回復が早くなる。土に植えれば栽培可能。</li>
           </ul>
         </div>
         <div>
           <h3 class="sub">魔法使いの装束（3 組）</h3>
           <div class="robe-table" id="robe-table"></div>
-          <p class="small">メイジたちの弾や多くの魔法は、鎧の防御力を素通りする「魔法ダメージ」です。装束に付いている<b>魔法防御</b>だけがそれを軽くします。</p>
+          <p class="small">メイジの弾や多くの魔法は、鎧の防御力を無視する「魔法ダメージ」となる。装束に付与された「魔法防御」でのみ、ダメージを軽減できる。</p>
         </div>
       </div>
     </section>
 
     <!-- ===== 生き物 ===== -->
-    <section id="creatures" class="section">
+    <section id="creatures" class="section tab-content">
       <h2 class="section-title"><span>生き物</span></h2>
-      <p class="section-lead">メイジには 6 色の同族がいて、住む場所で放つ魔法が変わります。倒すと 10% で「壊れた杖」を、色つきのメイジは 5% でコアを落とします。遺跡には精霊が、海辺にはカニがいます。村に合成台を置くと、地図を交換してくれる魔法使いの村人も現れます。</p>
+      <p class="section-lead">メイジには6色の同族が存在し、生息地によって放つ魔法が異なる。倒すと10%の確率で「壊れた杖」を、色付きのメイジは5%の確率でコアをドロップする。遺跡には精霊が、海辺にはカニが生息している。村に合成台を設置すれば、地図を交換してくれる魔法使いの村人も現れる。</p>
       <div class="mob-grid" id="mob-grid"></div>
     </section>
 
     <!-- ===== 使い魔 ===== -->
-    <section id="familiars" class="section">
+    <section id="familiars" class="section tab-content">
       <h2 class="section-title"><span>使い魔</span></h2>
-      <p class="section-lead">小さな品に宿る使い魔。品を持って右クリックで呼び出し、もう一度でしまえます。品は消耗せず、一度に連れていられるのは 1 種類だけ。主人が右クリックすると「おすわり」と「ついていく」を切り替えます。</p>
+      <p class="section-lead">小さなアイテムに宿る使い魔。アイテムを持って右クリックで召喚し、もう一度右クリックで戻せる。アイテムは消耗せず、一度に連れ歩けるのは1種類のみ。主人が右クリックすることで「待機」と「追従」を切り替えられる。</p>
       <div class="fam-grid" id="fam-grid"></div>
-      <p class="small">使い魔が倒れると、その品は 1 分のあいだ眠ります（そのあとは元気な姿で呼べます）。品が持ち物から離れると、使い魔はひとりでに品へ帰ります。</p>
+      <p class="small">使い魔が倒れると、そのアイテムは1分間休眠状態になる（その後は再び元気な姿で召喚可能）。アイテムがインベントリから離れると、使い魔は自動的にアイテムへと帰還する。</p>
     </section>
 
     <!-- ===== ボス ===== -->
-    <section id="bosses" class="section">
+    <section id="bosses" class="section tab-content">
       <h2 class="section-title"><span>ボス</span></h2>
-      <p class="section-lead">ボスは 10 体。8 体はダンジョンの奥のボス部屋にはじめて入ると、魔法陣から現れます（ひとつの場所で一度だけ。焔魔イグニードとルーンの神兵だけは、まだ棲み処がありません）。倒すと、近くで戦っていた全員が進捗の「挑戦」を達成します。挑戦は 1 つ前のボスを倒すと見えるようになるので、下の順に挑むのがおすすめです。</p>
-      <div class="boss-list" id="boss-list"></div>
-      <p class="small">ボスの技の多くは魔法ダメージです。装束の魔法防御で軽くなります。ボスが落とすものは、宝箱やソーサラーとの交換では手に入りません。</p>
+      <p class="section-lead">ボスは全10体。アイコンをクリックすると正体が現れ、詳細が表示される。8体はダンジョン奥のボス部屋に初めて足を踏み入れた際、魔法陣から出現する。倒すと進捗の「挑戦」が達成されるため、順番に挑むのがおすすめ。</p>
+      <div class="boss-grid" id="boss-grid"></div>
     </section>
 
     <!-- ===== ダンジョン ===== -->
-    <section id="places" class="section">
+    <section id="places" class="section tab-content">
       <h2 class="section-title"><span>ダンジョン</span></h2>
       <div class="place-grid" id="place-grid"></div>
-      <p class="small">魔導書は、ここに挙げた場所のほか、廃坑・ダンジョン・森の洋館・要塞・ネザー要塞・砦の遺跡・エンドシティ・難破船・古代都市などバニラの宝箱にも入ります（1 つの宝箱に 1 冊以上入る確率 約 42%）。</p>
+      <p class="small">魔導書は、ここに挙げた場所のほか、廃坑、ダンジョン、森の洋館、要塞、ネザー要塞、砦の遺跡、エンドシティ、難破船、古代都市など、バニラの宝箱にも生成される（1つの宝箱に1冊以上入っている確率は約42%）。</p>
     </section>
 
     <!-- ===== 導入方法 ===== -->
-    <section id="install" class="section">
+    <section id="install" class="section tab-content">
       <h2 class="section-title"><span>導入方法</span></h2>
       <ol class="steps">
         <li>
           <h3>NeoForge を入れる</h3>
-          <p><a href="https://neoforged.net/" target="_blank" rel="noopener">NeoForge 公式サイト</a>から Minecraft <b>1.21.1</b> 用のインストーラー（<b>21.1.251</b> 以降）をダウンロードして実行し、「Install client」でインストールします。</p>
+          <p><a href="https://neoforged.net/" target="_blank" rel="noopener">NeoForge公式サイト</a>からMinecraft <b>1.21.1</b>用のインストーラー（<b>21.1.251</b>以降）をダウンロードして実行し、「Install client」を選択してインストールする。</p>
         </li>
         <li>
           <h3>MOD をダウンロードする</h3>
-          <p>下のボタンから、いちばん新しい <code>grimoirefantasia-◯.◯.◯.jar</code> をダウンロードします。</p>
+          <p>下のボタンから、最新の <code>grimoirefantasia-◯.◯.◯.jar</code> をダウンロードする。</p>
           <p><a class="btn btn-primary" id="download-btn-2" href="#">GitHub Releases を開く</a></p>
         </li>
         <li>
           <h3>mods フォルダに入れる</h3>
-          <p>ランチャーで NeoForge のプロファイルを一度起動してから閉じ、<code>.minecraft/mods</code> フォルダに jar ファイルを入れます。</p>
+          <p>ランチャーでNeoForgeのプロファイルを一度起動して閉じ、<code>.minecraft/mods</code> フォルダにjarファイルを配置する。</p>
         </li>
         <li>
           <h3>遊ぶ</h3>
-          <p>NeoForge のプロファイルで起動し、タイトル画面の「Mods」に <b>Grimoire Fantasia</b> があれば完了です。まずは村で「魔法使いの手記」を探してみてください。</p>
+          <p>NeoForgeのプロファイルで起動し、タイトル画面の「Mods」一覧に <b>Grimoire Fantasia</b> があれば導入完了。まずは村で「魔法使いの手記」を探してみよう。</p>
         </li>
       </ol>
       <div class="warn">
-        <b>設定</b>：「Mods → Grimoire Fantasia → 設定」から、魔法がほかのプレイヤーや友好モブに当たるかどうかを切り替えられます（初期値はどちらも OFF）。タイトル画面でもワールドの中でも変えられ、全ワールド共通です。Essential や LAN で公開しているときはホストの人の設定、専用サーバーではサーバー側の設定が使われます。
+        <b>設定</b>：「Mods → Grimoire Fantasia → 設定」から、魔法が他のプレイヤーや友好モブに当たるかどうかを切り替え可能（初期値はどちらもOFF）。タイトル画面でもワールド内でも変更でき、全ワールドで共通となる。EssentialやLAN公開時はホストの設定が、専用サーバーではサーバー側の設定が適用される。
       </div>
     </section>
 
     <!-- ===== Q&A ===== -->
-    <section id="faq" class="section">
+    <section id="faq" class="section tab-content">
       <h2 class="section-title"><span>Q&amp;A</span></h2>
       <details>
-        <summary>マルチプレイで使えますか？</summary>
-        <p>はい。サーバーとクライアントの両方に同じバージョンの MOD を入れてください。</p>
+        <summary>マルチプレイで使えるか</summary>
+        <p>可能。サーバーとクライアントの両方に同じバージョンのMODを導入すること。</p>
       </details>
       <details>
         <summary>魔法が自分や味方に当たることは？</summary>
-        <p>唱えた本人・同じチーム・自分のペットと使い魔には当たりません。ほかのプレイヤーと友好モブに当たるかは設定で切り替えられます。</p>
+        <p>唱えた本人、同じチーム、自分のペットと使い魔には当たらない。他のプレイヤーや友好モブに当たるかどうかは設定で切り替え可能。</p>
       </details>
       <details>
-        <summary>魔導書や杖は修理できますか？</summary>
-        <p>できません。擦り切れたら、また探すか作り直してください。壊れた杖は多めに集めておくと安心です。</p>
+        <summary>魔導書や杖は修理できるか</summary>
+        <p>不可。耐久値が尽きたら、新しく探すか作り直す必要がある。壊れた杖は多めに集めておくと安心だ。</p>
       </details>
       <details>
-        <summary>ほかの MOD といっしょに使えますか？</summary>
-        <p>いくつか代表的なものは確かめましたが、多くの組み合わせは確かめていません。問題があれば GitHub の Issues で教えてください。</p>
+        <summary>他のMODと一緒に使えるか</summary>
+        <p>代表的なものは動作確認済みだが、全ての組み合わせを検証しているわけではない。問題があればGitHubのIssuesへ報告してほしい。</p>
       </details>
     </section>
   </main>
@@ -272,6 +285,14 @@
     <p id="detail-desc" class="detail-desc"></p>
     <dl id="detail-stats" class="detail-stats"></dl>
     <div id="detail-extra"></div>
+  </dialog>
+
+  <!-- ボス詳細用ダイアログ -->
+  <dialog id="boss-detail" aria-labelledby="boss-detail-name">
+    <button class="dialog-close" aria-label="閉じる">×</button>
+    <div class="boss-detail-content" id="boss-detail-content">
+      <!-- JSで動的に構築される -->
+    </div>
   </dialog>
 
   <script src="app.js"></script>
