@@ -916,12 +916,13 @@ const DATA = {
 /* ---------- アニメーションするテクスチャ ---------- */
 const ANIM = {
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
-  durandal: [20, 2], gungnir: [24, 2], nordensia: [24, 2],
+  durandal: [24, 2], gungnir: [24, 2], nordensia: [24, 2], rune_axe: [24, 2], prominence_scythe: [24, 2],
+  world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
   magic_soul: [16, 2], mana_shard: [8, 4],
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
   miasma_stone: [8, 3], ocean_drop: [8, 2], saint_soul: [24, 2], monster_soul: [24, 2],
-  charged_orb: [8, 2], thunder_beast_sword: [8, 2], thunder_beast_cannon: [4, 3],
+  charged_orb: [8, 2], thunder_beast_sword: [24, 2], thunder_beast_cannon: [4, 3],
   earth_grace: [16, 2], demon_flame: [16, 2], demon_contract: [16, 2], holy_beast_egg: [16, 2],
   core_overload: [24, 2], ancient_emergency_device: [24, 2],
 };
@@ -955,7 +956,7 @@ function sprite(id, size = 32) {
     el.style.backgroundSize = `${size}px ${size}px`;
   }
   el.setAttribute('role', 'img');
-  el.setAttribute('aria-label', DATA.names[id] || id);
+  el.setAttribute('aria-label', (DATA.names[id] || (DATA.items.find(i => i.id === id) || {}).name || id));
   return el;
 }
 
@@ -975,6 +976,8 @@ function face(skin, size = 48) {
 const RARITY = { uncommon: 'アンコモン', rare: 'レア', epic: 'エピック', unique: 'ユニーク', legendary: 'レジェンダリー' };
 const SOURCE = { chest: '宝箱', synthesis: '合成台', drop: '生き物から', craft: '作業台' };
 const byId = Object.fromEntries(DATA.items.map(i => [i.id, i]));
+/** アイテムの名前（図鑑の魔導書・杖は DATA.items、それ以外は DATA.names） */
+function nameOf(id) { return DATA.names[id] || (byId[id] && byId[id].name) || id; }
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -1056,7 +1059,7 @@ if(dialog) {
 function slot(id) {
   const s = el('span', 'slot');
   s.append(sprite(id, 32));
-  s.title = DATA.names[id] || '';
+  s.title = nameOf(id);
   if (byId[id] || DATA.descs[id]) s.addEventListener('click', () => openDetail(id));
   return s;
 }
@@ -1153,6 +1156,198 @@ if(recipes) {
     recipes.append(box);
   });
 }
+
+
+/* ---------- 合成の流れ図 ----------
+ * DATA.items の recipe から自動で組み立てる。
+ * 段（tier）：レシピの材料にならない元の魔導書 = 0、合成でできる魔導書 = 材料の段の最大 + 1。
+ * 合成魔導書どうしを合成するレシピを足すと、自動で 2 段目・3 段目の列が増える。
+ */
+const CORE_COLORS = {
+  red_core: '#ff6a55', blue_core: '#5ab4ff', green_core: '#46d982',
+  purple_core: '#b77bff', yellow_core: '#ffd34d',
+};
+function buildSynthesisFlow(root) {
+  const recipes = DATA.items.filter(i => i.recipe).map(i => ({ out: i.id, ins: i.recipe[0], core: i.recipe[1] }));
+  if (!recipes.length) return;
+  const recipeOf = Object.fromEntries(recipes.map(r => [r.out, r]));
+
+  // 段を決める
+  const tier = {};
+  const tierOf = id => {
+    if (tier[id] != null) return tier[id];
+    const r = recipeOf[id];
+    tier[id] = r ? 1 + Math.max(...r.ins.map(tierOf)) : 0;
+    return tier[id];
+  };
+  const ids = new Set();
+  recipes.forEach(r => { ids.add(r.out); r.ins.forEach(i => ids.add(i)); });
+  ids.forEach(tierOf);
+  const maxTier = Math.max(...[...ids].map(i => tier[i]));
+  const cols = Array.from({ length: maxTier + 1 }, () => []);
+
+  // 並び順：合成でできる魔導書は図鑑の順、元の魔導書は「使われる先の平均の高さ」の順（線の交差を減らす）
+  const order = DATA.items.map(i => i.id);
+  [...ids].filter(i => tier[i] > 0).sort((a, b) => order.indexOf(a) - order.indexOf(b)).forEach(i => cols[tier[i]].push(i));
+  const usedBy = {};
+  recipes.forEach(r => r.ins.forEach(i => (usedBy[i] = usedBy[i] || []).push(r.out)));
+  const rowOf = {};
+  const place = () => cols.forEach(c => c.forEach((id, k) => (rowOf[id] = (k + .5) / c.length)));
+  for (let t = maxTier - 1; t >= 0; t--) {
+    const base = [...ids].filter(i => tier[i] === t && !cols[t].includes(i));
+    cols[t].push(...base);
+  }
+  for (let pass = 0; pass < 4; pass++) {
+    place();
+    for (let t = maxTier - 1; t >= 0; t--) {
+      const mean = id => { const u = usedBy[id] || []; return u.reduce((s, o) => s + rowOf[o], 0) / (u.length || 1); };
+      cols[t].sort((a, b) => mean(a) - mean(b));
+    }
+  }
+
+  // 寸法
+  // 列の間隔は画面の幅に合わせて詰める（タブが隠れていて幅が測れないときは画面幅から見積もる）
+  const PAD = 14, ROW = 66;
+  const avail = (root.clientWidth || (window.innerWidth - 48)) - 2;
+  const NODE_W = avail < 480 ? 92 : 112;
+  const JOIN_W = Math.max(80, Math.min(150, (avail - PAD * 2 - NODE_W * (maxTier + 1)) / Math.max(1, maxTier)));
+  const rows = Math.max(...cols.map(c => c.length));
+  const H = rows * ROW + PAD * 2;
+  const colX = t => PAD + t * (NODE_W + JOIN_W);          // 魔導書の列の左端
+  const W = colX(maxTier) + NODE_W + PAD;
+  const pos = {};
+  cols.forEach((c, t) => {
+    const gap = (H - PAD * 2) / c.length;
+    c.forEach((id, k) => (pos[id] = { x: colX(t), y: PAD + gap * (k + .5) }));
+  });
+
+  // 枠
+  const wrap = el('div', 'flow');
+  wrap.style.width = W + 'px';
+  wrap.style.height = H + 'px';
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('class', 'flow-lines');
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.setAttribute('aria-hidden', 'true');
+  const defs = document.createElementNS(NS, 'defs');
+  Object.entries(CORE_COLORS).forEach(([core, color]) => {
+    const m = document.createElementNS(NS, 'marker');
+    m.setAttribute('id', 'arrow-' + core);
+    m.setAttribute('viewBox', '0 0 10 10');
+    m.setAttribute('refX', '9'); m.setAttribute('refY', '5');
+    m.setAttribute('markerWidth', '7'); m.setAttribute('markerHeight', '7');
+    m.setAttribute('orient', 'auto');
+    const tri = document.createElementNS(NS, 'path');
+    tri.setAttribute('d', 'M0 0 L10 5 L0 10 z');
+    tri.setAttribute('fill', color);
+    m.append(tri);
+    defs.append(m);
+  });
+  svg.append(defs);
+  wrap.append(svg);
+
+  // 段の見出し
+  cols.forEach((c, t) => {
+    const h = el('p', 'flow-head', t === 0 ? '材料の魔導書' : (maxTier === 1 ? '合成魔導書' : `合成 ${t} 段目`));
+    h.style.left = colX(t) + 'px';
+    h.style.width = NODE_W + 'px';
+    wrap.append(h);
+  });
+
+  // 線とつなぎ目
+  const groups = {};               // id → その魔導書に関係する線とつなぎ目
+  const link = (id, n) => (groups[id] = groups[id] || []).push(n);
+  const SLOT = 40;
+  recipes.forEach(r => {
+    const color = CORE_COLORS[r.core] || 'var(--violet)';
+    const o = pos[r.out];
+    const jx = o.x - JOIN_W * .42, jy = o.y;               // つなぎ目（コア）の位置
+    const parts = [];
+    r.ins.forEach(i => {
+      const p = pos[i];
+      const sx = p.x + NODE_W / 2 + SLOT / 2, sy = p.y;
+      const c = (jx - sx) * .5;
+      const path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', `M${sx} ${sy} C${sx + c} ${sy} ${jx - c} ${jy} ${jx - 15} ${jy}`);
+      path.setAttribute('stroke', color);
+      path.setAttribute('class', 'flow-path');
+      svg.append(path);
+      parts.push(path);
+      link(i, path);
+    });
+    const out = document.createElementNS(NS, 'path');
+    out.setAttribute('d', `M${jx + 15} ${jy} L${o.x + NODE_W / 2 - SLOT / 2 - 3} ${jy}`);
+    out.setAttribute('stroke', color);
+    out.setAttribute('class', 'flow-path');
+    out.setAttribute('marker-end', `url(#arrow-${r.core})`);
+    svg.append(out);
+    parts.push(out);
+
+    const join = el('button', 'flow-join');
+    join.type = 'button';
+    join.style.left = jx + 'px';
+    join.style.top = jy + 'px';
+    join.style.setProperty('--c', color);
+    join.title = `${nameOf(r.core)}（${r.ins.map(nameOf).join(' ＋ ')} → ${nameOf(r.out)}）`;
+    join.append(sprite(r.core, 22));
+    join.addEventListener('click', () => openDetail(r.out));
+    wrap.append(join);
+    parts.push(join);
+
+    parts.forEach(n => { link(r.out, n); });
+    r.ins.forEach(i => { link(i, join); link(i, out); });
+    join.addEventListener('mouseenter', () => focus(parts, [r.out, ...r.ins]));
+    join.addEventListener('focus', () => focus(parts, [r.out, ...r.ins]));
+    join.addEventListener('mouseleave', unfocus);
+    join.addEventListener('blur', unfocus);
+  });
+
+  // 魔導書の札
+  const nodes = {};
+  ids.forEach(id => {
+    const p = pos[id];
+    const it = byId[id];
+    const n = el('button', 'flow-node' + (it ? ' r-' + it.rarity : ''));
+    n.type = 'button';
+    n.style.left = p.x + 'px';
+    n.style.top = p.y + 'px';
+    n.style.width = NODE_W + 'px';
+    const s = el('span', 'flow-slot');
+    s.append(sprite(id, 32));
+    n.append(s, el('span', 'flow-name', nameOf(id)));
+    n.addEventListener('click', () => openDetail(id));
+    const on = () => {
+      const rel = new Set([id]);
+      (usedBy[id] || []).forEach(o => rel.add(o));
+      if (recipeOf[id]) recipeOf[id].ins.forEach(i => rel.add(i));
+      focus(groups[id] || [], [...rel]);
+    };
+    n.addEventListener('mouseenter', on);
+    n.addEventListener('focus', on);
+    n.addEventListener('mouseleave', unfocus);
+    n.addEventListener('blur', unfocus);
+    wrap.append(n);
+    nodes[id] = n;
+  });
+
+  // なぞった魔導書・コアに関係する線だけを目立たせる
+  function focus(parts, rel) {
+    wrap.classList.add('is-focus');
+    wrap.querySelectorAll('.on').forEach(e => e.classList.remove('on'));
+    parts.forEach(e => e.classList.add('on'));
+    rel.forEach(i => nodes[i] && nodes[i].classList.add('on'));
+  }
+  function unfocus() {
+    wrap.classList.remove('is-focus');
+    wrap.querySelectorAll('.on').forEach(e => e.classList.remove('on'));
+  }
+
+  root.append(wrap);
+}
+const flowRoot = document.getElementById('synthesis-flow');
+if (flowRoot) buildSynthesisFlow(flowRoot);
 
 /* ---------- 装束 ---------- */
 const ROBES = [
@@ -1370,7 +1565,7 @@ if(bossDialog) {
 
 function dropButton(id, p) {
   const d = el('button', 'drop'); d.type = 'button';
-  d.append(sprite(id, 24), el('span', null, DATA.names[id]), el('b', null, p));
+  d.append(sprite(id, 24), el('span', null, nameOf(id)), el('b', null, p));
   if (byId[id] || DATA.descs[id]) d.addEventListener('click', () => openDetail(id));
   return d;
 }

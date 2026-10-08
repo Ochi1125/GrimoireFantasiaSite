@@ -594,3 +594,52 @@ dialog[open] {
   html { scroll-behavior: auto; }
   .feature, .card, .mob, .place, .fam, .boss-card, .btn { transition: none !important; transform: none !important; }
 }
+
+/* 合成の流れ図（app.js の buildSynthesisFlow） */
+.flow-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 8px 0; margin-bottom: 8px;
+}
+.flow { position: relative; margin: 0 auto; }
+.flow-lines { position: absolute; inset: 0; overflow: visible; }
+.flow-path { fill: none; stroke-width: 2.5; stroke-linecap: round; opacity: .75; transition: opacity .2s, stroke-width .2s; }
+.flow-head {
+  position: absolute; top: -4px; margin: 0; text-align: center;
+  font-size: .75rem; color: var(--muted); letter-spacing: .08em; white-space: nowrap;
+}
+.flow-node {
+  position: absolute; transform: translate(0, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: none; border: 0; padding: 0; font: inherit; color: var(--text); cursor: pointer;
+  transition: opacity .2s;
+}
+.flow-slot {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  background: #120f22; border: 1px solid #2c2550; border-radius: 8px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.flow-name { font-size: .72rem; line-height: 1.2; text-align: center; max-width: 100%; }
+.flow-node.r-uncommon .flow-name { color: var(--uncommon); }
+.flow-node.r-rare .flow-name { color: var(--rare); }
+.flow-node.r-epic .flow-name { color: var(--epic); }
+.flow-node.r-unique .flow-name { color: var(--unique); }
+.flow-node.r-legendary .flow-name { color: var(--legendary); }
+.flow-node:hover .flow-slot, .flow-node:focus-visible .flow-slot, .flow-node.on .flow-slot { border-color: var(--violet); box-shadow: 0 0 10px rgba(155, 123, 255, .5); }
+.flow-join {
+  position: absolute; width: 30px; height: 30px; transform: translate(-50%, -50%);
+  display: grid; place-items: center; padding: 0; cursor: pointer;
+  background: #120f22; border: 2px solid var(--c); border-radius: 50%;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--c) 45%, transparent);
+  transition: opacity .2s, transform .2s;
+}
+.flow-join:hover, .flow-join:focus-visible { transform: translate(-50%, -50%) scale(1.15); }
+.flow.is-focus .flow-path { opacity: .12; }
+.flow.is-focus .flow-path.on { opacity: 1; stroke-width: 3.5; }
+.flow.is-focus .flow-join { opacity: .25; }
+.flow.is-focus .flow-join.on { opacity: 1; }
+.flow.is-focus .flow-node { opacity: .35; }
+.flow.is-focus .flow-node.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .flow-path, .flow-node, .flow-join, .flow-slot { transition: none !important; }
+}
