@@ -95,17 +95,6 @@ const DATA = {
   },
   {
    "kind": "grimoire",
-   "id": "ice_grimoire",
-   "name": "氷の魔導書",
-   "rarity": "uncommon",
-   "source": "chest",
-   "mana": "30",
-   "dur": "65",
-   "effect": "まわり 4m の相手に 4 ダメージと鈍足（10 秒）。水面も凍る",
-   "desc": "自身の周囲に氷のつぶてを放つ初心者向けの魔法。未熟な魔法使いは何度もこの魔法に助けられるという。"
-  },
-  {
-   "kind": "grimoire",
    "id": "wind_grimoire",
    "name": "風の魔導書",
    "rarity": "uncommon",
@@ -147,6 +136,17 @@ const DATA = {
    "dur": "45",
    "effect": "前方 10m の敵を 5 秒燃やす",
    "desc": "閉じていても紙が温かい。目の前の敵を焼き尽くさんと燻っている。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "ice_grimoire",
+   "name": "氷の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "30",
+   "dur": "65",
+   "effect": "まわり 4m の相手に 4 ダメージと鈍足（10 秒）。水面も凍る",
+   "desc": "自身の周囲に氷のつぶてを放つ初心者向けの魔法。未熟な魔法使いは何度もこの魔法に助けられるという。"
   },
   {
    "kind": "grimoire",
@@ -265,6 +265,18 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "tornado_grimoire",
+   "name": "竜巻の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "70",
+   "dur": "50",
+   "effect": "竜巻の弾を撃ち、当たった所に竜巻。半径 10m の敵を 5 秒吸い寄せる（ダメージなし・ボスには効かない）",
+   "desc": "風の魔導書にグリーンコアの力を注いだもの。巻き起こる風は、あらゆるものを渦の中心へと引きずり込む。",
+   "recipe": [["wind_grimoire"], "green_core"]
+  },
+  {
+   "kind": "grimoire",
    "id": "black_thunder_grimoire",
    "name": "黒雷の魔導書",
    "rarity": "epic",
@@ -357,6 +369,18 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "resoflare",
+   "name": "レゾフレア",
+   "rarity": "unique",
+   "source": "synthesis",
+   "mana": "100",
+   "dur": "70",
+   "effect": "巨大な火球を 30m 飛ばし、通り道のブロックを焼き払う。生き物か硬いブロック（黒曜石・岩盤など）にふれると半径 15m の球の大爆発で地形ごと吹き飛ばし、まわりを炭に変えて燃やす。直撃 80 ＋ 爆発 60〜15 の魔法ダメージ、燻炎 10 秒（再使用は 15 秒後）",
+   "desc": "業火の魔導書にレッドコアの熱を極限まで注ぎ込んだ、最上位の炎の魔法。放たれた火球は大地さえも焼き尽くし、炭へと変える。",
+   "recipe": [["hellfire_grimoire"], "red_core"]
+  },
+  {
+   "kind": "grimoire",
    "id": "thunder_beast_cannon",
    "name": "雷獣砲",
    "rarity": "unique",
@@ -385,7 +409,7 @@ const DATA = {
    "source": "drop",
    "mana": "100",
    "dur": "100",
-   "effect": "1 分間、攻撃・魔法攻撃が 2 倍、移動速度上昇 II・跳躍力上昇 II、落下ダメージ無効。代わりに受けるダメージが 1.4 倍（再使用は 30 秒後）",
+   "effect": "1 分間、自分にエフェクト「コア・オーバーロード」：攻撃・魔法攻撃が 2 倍、移動速度・跳躍力アップ、落下ダメージ無効。代わりに受けるダメージが 1.4 倍（再使用は 30 秒後）",
    "desc": "ルーンの神兵が緊急時に使う、コアを暴走させる術を記した魔導書。力と引き換えに、守りは削られる。"
   },
   {
@@ -519,18 +543,6 @@ const DATA = {
   },
   {
    "kind": "wand",
-   "id": "ice_wand",
-   "name": "氷の杖",
-   "rarity": "rare",
-   "source": "craft",
-   "mana": "10 / 20 / 40",
-   "dur": "320",
-   "effect": "ためて 3 段階。冷気の波で鈍足 II → 鈍足 IV → 凍結（5 秒）",
-   "desc": "周囲を凍てつかせる氷の杖。熟練の魔法使いの放つ冷気は敵の体を凍らせる。",
-   "from": "ice_grimoire"
-  },
-  {
-   "kind": "wand",
    "id": "wind_wand",
    "name": "風の杖",
    "rarity": "rare",
@@ -576,6 +588,18 @@ const DATA = {
    "effect": "ためて 3 段階。前方 10 / 15 / 20m を燃やし、4 / 8 / 14 ダメージ",
    "desc": "熱を内部に溜め続けた杖。普段は燃えていないが、発動時には身を焦がす業火を放つ。",
    "from": "fire_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "ice_wand",
+   "name": "氷の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "10 / 20 / 40",
+   "dur": "320",
+   "effect": "ためて 3 段階。冷気の波で鈍足 II → 鈍足 IV → 凍結（5 秒）",
+   "desc": "周囲を凍てつかせる氷の杖。熟練の魔法使いの放つ冷気は敵の体を凍らせる。",
+   "from": "ice_grimoire"
   },
   {
    "kind": "wand",
@@ -657,7 +681,7 @@ const DATA = {
    "source": "craft",
    "mana": "60 / 100 / 150",
    "dur": "320",
-   "effect": "ためて 3 段階。12 / 20 / 32 ダメージ、半径 5 / 7 / 10m、炎上 5 / 8 / 10 秒",
+   "effect": "ためて 3 段階。25 / 40 / 60 ダメージ、半径 5 / 7 / 10m、炎上 5 / 8 / 10 秒",
    "desc": "業火の魔導書を杖に宿したもの。ためるほどに火球は膨れ上がり、あたりを焼き尽くす。",
    "from": "hellfire_grimoire"
   },
@@ -696,6 +720,18 @@ const DATA = {
    "effect": "吹雪の渦が半径 20m の敵を 10 秒引き寄せて凍らせる",
    "desc": "小さな吹雪がいつも渦を巻いている杖。鋭い氷が嵐となって襲い掛かる時、それは命をも容易に奪う矛となる。",
    "from": "blizzard_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "tornado_wand",
+   "name": "竜巻の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "70",
+   "dur": "210",
+   "effect": "竜巻の弾を撃ち、当たった所に竜巻。半径 20m の敵を 8 秒吸い寄せる（ダメージなし・再使用は 5 秒後）",
+   "desc": "先端で小さな竜巻が渦を巻き続ける杖。放たれた嵐は、遠く離れた敵さえも逃さない。",
+   "from": "tornado_grimoire"
   },
   {
    "kind": "wand",
@@ -744,10 +780,23 @@ const DATA = {
    "effect": "爆発の弾（威力 10）＋弱体化 5 種 IV と毒 100（60 秒）",
    "desc": "濃い瘴気を閉じこめた杖。その瘴気は触れるだけで体の自由が奪われる。",
    "from": "miasma_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "resoflare_unleash",
+   "name": "レゾフレア＝アンリーシュ",
+   "rarity": "legendary",
+   "source": "craft",
+   "mana": "250",
+   "dur": "540",
+   "effect": "3 秒ためないと撃てない（ためきると杖が光る）。巨大な火球を 30m 飛ばし、半径 15m の球の大爆発。直撃 200 ＋ 爆発 150〜40 の魔法ダメージ、燻炎 20 秒（再使用は 30 秒後）",
+   "desc": "レゾフレアを魔法の杖に宿し、その炎の枷を解き放ったもの。太陽のごとく燃え上がる火球は、ひとたび放たれれば何もかもを灰に還す。",
+   "from": "resoflare"
   }
  ],
  "names": {
   "broken_wand": "壊れた杖",
+  "magic_wand": "魔法の杖",
   "red_core": "レッドコア",
   "green_core": "グリーンコア",
   "blue_core": "ブルーコア",
@@ -862,6 +911,7 @@ const DATA = {
   "rune_axe": "ルーンアクス"
  },
  "descs": {
+  "magic_wand": "上位のメイジが手にしていた、傷ひとつない杖。\n先の宝玉には、今もマナが静かに満ちている。\n上位メイジ 5 種が 10% で落とす。レゾフレア＝アンリーシュの材料。",
   "broken_wand": "メイジが持っている壊れた杖。修理しなければほとんど使い物にならない。",
   "red_core": "炎の魔力を凝縮したコア。宝石のように輝き、温かく脈打っている。",
   "green_core": "風の魔力を凝縮したコア。淡く発光し、絶えず微風をまとっている。",
@@ -925,6 +975,7 @@ const ANIM = {
   charged_orb: [8, 2], thunder_beast_sword: [24, 2], thunder_beast_cannon: [4, 3],
   earth_grace: [16, 2], demon_flame: [16, 2], demon_contract: [16, 2], holy_beast_egg: [16, 2],
   core_overload: [24, 2], ancient_emergency_device: [24, 2],
+  resoflare: [16, 2], resoflare_unleash: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
@@ -1048,6 +1099,7 @@ function sourceText(it) {
   if (DROP[it.id]) return DROP[it.id];
   if (it.source === 'chest') return `古い宝箱・ソーサラーとの交換（${RARITY[it.rarity]}）`;
   if (it.source === 'synthesis') return '合成台で作る';
+  if (it.id === 'resoflare_unleash') return '作業台：レゾフレア ＋ 魔法の杖';
   if (it.source === 'craft') return '作業台：魔導書 ＋ 壊れた杖';
   return '';
 }
@@ -1071,7 +1123,8 @@ function recipeRow(grims, core, out) {
 }
 function wandRow(grim, wand) {
   const row = el('div', 'recipe-row');
-  row.append(slot(grim), el('span', 'plus', '＋'), slot('broken_wand'), el('span', 'eq', '→'), slot(wand));
+  const base = wand === 'resoflare_unleash' ? 'magic_wand' : 'broken_wand';
+  row.append(slot(grim), el('span', 'plus', '＋'), slot(base), el('span', 'eq', '→'), slot(wand));
   return row;
 }
 
@@ -1129,11 +1182,11 @@ renderCatalog();
 
 /* ---------- 合成台 ---------- */
 const CORES = [
-  ['red_core', 'レッドコア', '炎', 'レッドメイジ 1% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
-  ['green_core', 'グリーンコア', '風', 'グリーンメイジ 1% ／ ルーンの神兵 50%'],
-  ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 1% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
-  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 1% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
-  ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 1% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
+  ['red_core', 'レッドコア', '炎', 'レッドメイジ 1% ／ フレイムメイジ 3% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
+  ['green_core', 'グリーンコア', '風', 'グリーンメイジ 1% ／ アースメイジ 3% ／ ルーンの神兵 50%'],
+  ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
+  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 1% ／ ダークメイジ 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
+  ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 1% ／ ライトメイジ 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
 ];
 const coreList = document.getElementById('core-list');
 if(coreList) {
@@ -1373,11 +1426,16 @@ if(robeTable) {
 /* ---------- 生き物 ---------- */
 const MOBS = [
   ['mage', 'メイジ', '森（夜）・森林の小屋', '体力 22。距離をとって魔法の弾を撃つ。'],
-  ['red_mage', 'レッドメイジ', 'ネザー', '体力 34。火の弾で相手を燃やす。レッドコアを落とす。'],
-  ['green_mage', 'グリーンメイジ', '空に浮かぶ島・巨大樹の迷宮', '体力 30。風の弾で押し飛ばす。グリーンコアを落とす。'],
-  ['blue_mage', 'ブルーメイジ', '氷の塔・大海の塔', '体力 34。氷の弾で一瞬凍りつかせる。ブルーコアを落とす。'],
+  ['red_mage', 'レッドメイジ', 'ネザー', '体力 50。火の弾で相手を燃やす。レッドコアを落とす。'],
+  ['green_mage', 'グリーンメイジ', '空に浮かぶ島・巨大樹の迷宮', '体力 50。風の弾で押し飛ばす。グリーンコアを落とす。'],
+  ['blue_mage', 'ブルーメイジ', '氷の塔・大海の塔', '体力 50。氷の弾で一瞬凍りつかせる。ブルーコアを落とす。'],
   ['yellow_mage', 'イエローメイジ', '聖なる遺跡・雷獣の渓谷', '体力 50。重い金の弾を撃ち、弱ると自分を癒す。イエローコアを落とす。'],
-  ['purple_mage', 'パープルメイジ', '沼地の小屋・魔獣の遺跡', '体力 60。メイジの仲間でいちばん強い。毒の弾（毒 II 6 秒＋弱体化）を撃つ。パープルコアを落とす。'],
+  ['purple_mage', 'パープルメイジ', '沼地の小屋・魔獣の遺跡', '体力 50。下位のメイジでいちばん強い。毒の弾（毒 II 6 秒＋弱体化）を撃つ。パープルコアを落とす。'],
+  ['flame_mage', 'フレイムメイジ', 'まだ自然には現れない', '体力 250。レッドメイジの上位。炎の弾に加え、相手の足もとに炎の輪を浮かべ、1 秒後に火柱（20 ダメージ＋炎上 8 秒）を噴き上げる。魔法の杖・レッドコアを落とす。'],
+  ['earth_mage', 'アースメイジ', 'まだ自然には現れない', '体力 250。グリーンメイジの上位。風の弾に加え、竜巻の弾を撃ち、着弾点のまわり 8 m の相手を 2 秒間吸い寄せる。魔法の杖・グリーンコアを落とす。'],
+  ['ice_mage', 'アイスメイジ', 'まだ自然には現れない', '体力 250。ブルーメイジの上位。氷の弾に加え、近づいた相手を冷気の波（8 ダメージ＋鈍足 IV）で押し返す。魔法の杖・ブルーコアを落とす。'],
+  ['light_mage', 'ライトメイジ', 'まだ自然には現れない', '体力 250。イエローメイジの上位。光をためてまぶしい閃光を放ち、まわり 10 m の相手を盲目にする（12 ダメージ）。弱ると 50 回復する。魔法の杖・イエローコアを落とす。'],
+  ['dark_mage', 'ダークメイジ', 'まだ自然には現れない', '体力 250。パープルメイジの上位。毒の弾に加え、相手に呪いをかけ、10 秒間受けるダメージを 1.4 倍にする。魔法の杖・パープルコアを落とす。'],
 ];
 const mobGrid = document.getElementById('mob-grid');
 function mobCard(iconEl, name, where, text) {
