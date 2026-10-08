@@ -348,7 +348,7 @@ const DATA = {
    "kind": "grimoire",
    "id": "earth_grace",
    "name": "大地の恩寵",
-   "rarity": "unique",
+   "rarity": "epic",
    "source": "drop",
    "mana": "200",
    "dur": "50",
@@ -381,7 +381,7 @@ const DATA = {
    "kind": "grimoire",
    "id": "core_overload",
    "name": "コア・オーバーロード",
-   "rarity": "legendary",
+   "rarity": "unique",
    "source": "drop",
    "mana": "100",
    "dur": "100",
@@ -392,7 +392,7 @@ const DATA = {
    "kind": "grimoire",
    "id": "tenkai_raibaku",
    "name": "天海雷瀑",
-   "rarity": "legendary",
+   "rarity": "unique",
    "source": "drop",
    "mana": "500",
    "dur": "60",
@@ -1030,7 +1030,7 @@ function openDetail(id) {
 }
 function sourceText(it) {
   const DROP = {
-    bouncing_orb_grimoire: 'マナスライム 0.2%（ドロップ増加で 3〜5%）',
+    bouncing_orb_grimoire: 'マナスライム 0.2%（ドロップ増加 I 0.4% ／ II 0.7% ／ III 1.0%）',
     seekers_lament: '魔導士テセロス 10%',
     freezing_breath: '氷竜グライオリア 10%',
     scorching_breath: '炎竜レギウス 10%',
@@ -1126,11 +1126,11 @@ renderCatalog();
 
 /* ---------- 合成台 ---------- */
 const CORES = [
-  ['red_core', 'レッドコア', '炎', 'レッドメイジ 5% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
-  ['green_core', 'グリーンコア', '風', 'グリーンメイジ 5% ／ ルーンの神兵 50%'],
-  ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 5% ／ シェルクラブ 10% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
-  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 5% ／ ダークスピリット 10% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
-  ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 5% ／ サンダーエレメント 5% ／ ホーリースピリット 10% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
+  ['red_core', 'レッドコア', '炎', 'レッドメイジ 1% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
+  ['green_core', 'グリーンコア', '風', 'グリーンメイジ 1% ／ ルーンの神兵 50%'],
+  ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 1% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
+  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 1% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
+  ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 1% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
 ];
 const coreList = document.getElementById('core-list');
 if(coreList) {
