@@ -389,8 +389,13 @@ b { color: #fff; }
 }
 .boss-card:hover {
   transform: translateY(-4px); 
-  border-color: var(--violet);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 16px var(--card-glow, rgba(155, 123, 255, 0.2));
+  /* --card-glow / --card-accent はボスのテーマ色（app.js で入れる）。
+     box-shadow は先に書いたものが上に重なるので、光を黒い影より前に書く */
+  border-color: var(--card-accent, var(--violet));
+  box-shadow:
+    0 0 0 1px var(--card-glow, rgba(155, 123, 255, 0.2)),
+    0 0 22px 4px var(--card-glow, rgba(155, 123, 255, 0.2)),
+    0 8px 24px rgba(0,0,0,0.4);
 }
 .boss-card-icon-wrap { margin-bottom: 12px; }
 .boss-card-icon {
@@ -521,7 +526,11 @@ dialog {
   background: var(--bg-2); color: var(--text);
   border: 1px solid var(--violet); border-radius: 16px; padding: 24px;
 }
-dialog::backdrop { background: rgba(5, 3, 12, .7); backdrop-filter: blur(3px); }
+/* backdrop-filter（ぼかし）は開くアニメーションの毎コマで画面全体を計算し直して重くなるので使わない */
+dialog::backdrop { background: rgba(5, 3, 12, .8); }
+/* 窓を開いているあいだ、後ろのボスカードのアニメーション（シルエット解除・ホバー解除）を止める */
+body:has(dialog[open]) .boss-card,
+body:has(dialog[open]) .boss-card * { transition: none; }
 /* ポップアップのアニメーションをシンプル＆滑らかに */
 dialog[open] {
   animation: dialogFadeIn 0.25s ease-out forwards;
