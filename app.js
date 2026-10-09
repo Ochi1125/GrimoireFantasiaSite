@@ -1054,7 +1054,7 @@ const ANIM = {
   resoflare: [16, 2], resoflare_unleash: [24, 2],
   mana_stone: [8, 3],
   world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
-  thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2],
+  thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2], durandal: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
