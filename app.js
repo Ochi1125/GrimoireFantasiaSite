@@ -4,7 +4,7 @@
  *   REPO … GitHub の「ユーザー名/リポジトリ名」
  *   VERSION … 表示する MOD のバージョン
  * ================================================================ */
-const REPO = 'Ochi1125/GrimoireFantasia';
+const REPO = 'Ochi1125/GrimoireFantasiaSite';
 const VERSION = '2.0.0-beta';
 
 /* ---------- アイテムのデータ（言語ファイルとコードの値から作成） ---------- */
@@ -1048,13 +1048,17 @@ const ANIM = {
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
   miasma_stone: [8, 3], ocean_drop: [8, 2], saint_soul: [24, 2], monster_soul: [24, 2],
-  charged_orb: [8, 2], thunder_beast_sword: [8, 2], thunder_beast_cannon: [4, 3],
+  charged_orb: [8, 2], thunder_beast_cannon: [4, 3],
   earth_grace: [16, 2], demon_flame: [16, 2], demon_contract: [16, 2], holy_beast_egg: [16, 2],
   core_overload: [24, 2], ancient_emergency_device: [24, 2],
+  resoflare: [16, 2], resoflare_unleash: [24, 2],
+  mana_stone: [8, 3],
+  world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
+  thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
-  if (id.endsWith('_wand') && id !== 'broken_wand') return [8, 2];
+  if (id.endsWith('_wand') && id !== 'broken_wand' && id !== 'magic_wand') return [8, 2];
   return null;
 }
 
@@ -1255,17 +1259,17 @@ renderCatalog();
 
 /* ---------- 合成台 ---------- */
 const CORES = [
-  ['red_core', 'レッドコア', '炎', 'レッドメイジ 1% ／ フレイムメイジ 3% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
-  ['green_core', 'グリーンコア', '風', 'グリーンメイジ 1% ／ アースメイジ 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
-  ['blue_core', 'ブルーコア', '氷', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
-  ['yellow_core', 'イエローコア', '雷', 'イエローメイジ 1% ／ ライトメイジ 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
-  ['purple_core', 'パープルコア', '深い魔力', 'パープルメイジ 1% ／ ダークメイジ 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
+  ['red_core', 'レッドコア', 'レッドメイジ 1% ／ フレイムメイジ 3% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
+  ['green_core', 'グリーンコア', 'グリーンメイジ 1% ／ アースメイジ 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
+  ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
+  ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
+  ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
 ];
 const coreList = document.getElementById('core-list');
-for (const [id, name, attr, from] of CORES) {
+for (const [id, name, from] of CORES) {
   const li = el('li');
   li.append(sprite(id, 32));
-  const t = el('span'); t.append(el('b', null, `${name}（${attr}）`), el('small', null, from));
+  const t = el('span'); t.append(el('b', null, name), el('small', null, from));
   li.append(t);
   coreList.append(li);
 }
