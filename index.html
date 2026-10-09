@@ -63,7 +63,7 @@
         <ul class="badges">
           <li>Minecraft <b>1.21.1</b></li>
           <li>NeoForge <b>21.1.251〜</b></li>
-          <li>バージョン <b id="mod-version">1.2.0</b></li>
+          <li>バージョン <b id="mod-version">2.0.0-beta</b></li>
         </ul>
       </div>
     </section>
@@ -85,7 +85,7 @@
         <article class="feature">
           <div class="feature-icons" data-icons="synthesis_table_front,red_core,holy_fire_grimoire"></div>
           <h3>合成台で新しい魔法を編む</h3>
-          <p>魔導書同士をコアでつなぐと、新たな魔導書が生まれる。聖火・吹雪・黒雷・慈光・酸など、宝箱からは手に入らない9種類の魔法が存在する。</p>
+          <p>魔導書同士をコアでつなぐと、新たな魔導書が生まれる。聖火・吹雪・黒雷・慈光・竜巻・レゾフレアなど、宝箱からは手に入らない11種類の魔法が存在する。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="wizard_hat,archmage_robe_top,magic_soul"></div>
@@ -95,7 +95,7 @@
         <article class="feature">
           <div class="feature-icons" data-icons="nordensia,durandal,gungnir"></div>
           <h3>ダンジョンとボス</h3>
-          <p>沼地の小屋、氷の塔、空に浮かぶ島、海にそびえる大海の塔、山岳の火山、根の張りめぐらされた巨大樹の迷宮、荒野の雷獣の渓谷、地下8層の聖なる遺跡、地下10層の魔獣の遺跡。その奥では強力なボスたちが待ち受ける。</p>
+          <p>沼地の小屋、氷の塔、空に浮かぶ島、海にそびえる大海の塔、山岳の火山、根の張りめぐらされた巨大樹の迷宮、荒野の雷獣の渓谷、砂漠のフレイムジグラート、密林のルーンドーム、地下8層の聖なる遺跡、地下10層の魔獣の遺跡。その奥では強力なボスたちが待ち受ける。</p>
         </article>
         <article class="feature">
           <div class="feature-icons" data-icons="blue_feather,small_hat,ice_dragon_egg"></div>
@@ -105,7 +105,7 @@
       </div>
       <div class="notes-callout">
         <div class="sprite" data-src="img/wizard_notes.png" data-size="48"></div>
-        <p><b>困ったときは「魔法使いの手記」を読もう。</b>村の宝箱や魔法使いの家にある手記には、魔導書や杖、合成、装束、メイジ、使い魔、探索場所など、このMODの遊び方が記されている（全124ページ）。ただし、遺跡の最深部については、手記の持ち主すら知らない。</p>
+        <p><b>困ったときは「魔法使いの手記」を読もう。</b>村の宝箱や魔法使いの家にある手記には、魔導書や杖、合成、装束、メイジ、使い魔、探索場所など、このMODの遊び方が記されている（全130ページ）。ただし、遺跡の最深部については、手記の持ち主すら知らない。</p>
       </div>
     </section>
 
@@ -144,7 +144,7 @@
       <div class="split">
         <div>
           <p>合成台は、複数の魔導書を重ねて新たな一冊を編み出すための台だ。上の3マスに魔導書、その下のマスに「コア」を配置すると、右のマスに新しい魔導書が完成する（並べる順番は問わない）。</p>
-          <p>コアは、基本的にボスたちから手に入る。色ごとのメイジも1%の確率で落とすほか、精霊やシェルクラブ、サンダーエレメントは5%の確率で落とす（右の一覧を参照）。ただし、モンスタースポナーから湧いた敵はコアを落とさない。</p>
+          <p>コアは、基本的にボスたちから手に入る。色ごとのメイジも1%、上位のメイジは3%、精霊やシェルクラブ、サンダーエレメントは5%の確率で落とす（右の一覧を参照）。ただし、モンスタースポナーから湧いた敵はコアを落とさない。</p>
           <div class="craft-wrap" aria-label="合成台のレシピ">
             <div class="craft-grid">
               <div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div><div class="cg-cell" data-icon="oak"></div>
@@ -165,7 +165,7 @@
       <h3 class="sub">合成の流れ</h3>
       <p class="small">左の魔導書を、矢印の途中にあるコアといっしょに合成台へ置くと、右の魔導書ができる。線の色はコアの色。魔導書やコアにカーソルを合わせると、つながっている線だけが光る（クリックで詳しい説明）。</p>
       <div class="flow-scroll" id="synthesis-flow"></div>
-      <h3 class="sub">合成レシピ（9 種）</h3>
+      <h3 class="sub">合成レシピ（11 種）</h3>
       <div class="recipes" id="recipe-list"></div>
     </section>
 
@@ -209,7 +209,7 @@
     <!-- ===== ボス ===== -->
     <section id="bosses" class="section tab-content">
       <h2 class="section-title"><span>ボス</span></h2>
-      <p class="section-lead">ボスは全10体。アイコンをクリックすると正体が現れ、詳細が表示される。8体はダンジョン奥のボス部屋に初めて足を踏み入れた際、魔法陣から出現する。倒すと進捗の「挑戦」が達成されるため、順番に挑むのがおすすめ。</p>
+      <p class="section-lead">ボスは全10体。アイコンをクリックすると正体が現れ、詳細が表示される。どのボスも、ダンジョン奥のボス部屋に初めて足を踏み入れた際、魔法陣から出現する。倒すと進捗の「挑戦」が達成されるため、順番に挑むのがおすすめ。</p>
       <div class="boss-grid" id="boss-grid"></div>
     </section>
 
