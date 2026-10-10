@@ -123,8 +123,8 @@
           <button class="chip is-on" data-value="all">入手：すべて</button>
           <button class="chip" data-value="chest">宝箱</button>
           <button class="chip" data-value="synthesis">合成台</button>
-          <button class="chip" data-value="drop">生き物から</button>
-          <button class="chip" data-value="craft">杖（作業台）</button>
+          <button class="chip" data-value="drop">ドロップ</button>
+          <button class="chip" data-value="craft">クラフト</button>
         </div>
       </div>
       <div class="catalog" id="catalog-grid"></div>
@@ -189,7 +189,7 @@
           <p class="small">メイジの弾や多くの魔法は、鎧の防御力を無視する「魔法ダメージ」となる。装束に付与された「魔法防御」でのみ、ダメージを軽減できる。</p>
           <h3 class="sub">魔法の布とポーチ</h3>
           <div class="feature-icons" data-icons="magic_cloth,mage_cloth,sage_cloth,archmage_cloth"></div>
-          <p class="small">布にマナを染み込ませると、魔法の布（マナのかけら）・魔導士の布（マナクリスタル）・大魔導士の布（マナストーン）になる。賢者の布は、強いボスのいるダンジョンの宝箱でしか見つからない。</p>
+          <p class="small">布を素材 8 個で囲むと、魔法の布（マナのかけら）・魔導士の布（マナクリスタル）・賢者の布（マナストーン）・大魔導士の布（魔力の結晶）になる。魔力の結晶は、上位のボス（焔魔イグニードから先）だけが落とす。</p>
           <div class="feature-icons" data-icons="magic_pouch,wizard_pouch,sage_pouch,archmage_pouch"></div>
           <ul class="dots">
             <li><b>マジックポーチ</b>：魔導書だけを 27 冊。</li>
@@ -198,6 +198,16 @@
             <li><b>アークメイジポーチ</b>：入れ物以外なんでも 108 個（2 ページ）。</li>
           </ul>
           <p class="small">ひとつ下のポーチと布から作り、中身はそのまま引き継がれる。</p>
+          <h3 class="sub">専用のエンチャント</h3>
+          <p class="small">エンチャントテーブル・宝箱・司書の村人の取引に、ほかのエンチャントと同じように出てくる。魔導書・杖・アーティファクトもエンチャントできる（魔導書・杖に付くバニラのエンチャントは耐久力と修繕だけ。アーティファクトは剣と同じものが付き、耐久力・修繕は付かない）。</p>
+          <ul class="dots">
+            <li><b>クールダウン短縮 I〜III</b>：魔導書・杖・アーティファクトのクールタイムが 10 / 20 / 30% 短くなる。</li>
+            <li><b>魔法威力増加 I〜V</b>：攻撃の魔導書・杖・アーティファクトの魔法のダメージ（魔法の爆発・雷もふくむ）が 1.1 / 1.2 / 1.4 / 1.7 / 2.0 倍。ダメージ増加系と同時には付かず、V はテーブルからは出ない（金床で合成する）。</li>
+            <li><b>体力増加 I〜III</b>：胴の防具。最大体力 +5 / +10 / +20。</li>
+            <li><b>マナ回復 I〜III</b>：防具。マナ回復速度 +10 / 20 / 30%（部位ごとに足し合わさる）。</li>
+            <li><b>最大マナ I〜III</b>：防具。最大マナ +10 / 30 / 50%（部位ごとに足し合わさる）。</li>
+            <li><b>魔法ダメージ軽減 I〜IV</b>：防具（バニラの防具にも付く）。受ける魔法ダメージが 1 レベルにつき 4% 減る。ダメージ軽減系と同時には付かない。</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -271,7 +281,7 @@
       </details>
       <details>
         <summary>魔導書や杖は修理できるか</summary>
-        <p>不可。耐久値が尽きたら、新しく探すか作り直す必要がある。壊れた杖は多めに集めておくと安心だ。</p>
+        <p>可能。バニラの道具と同じく、同じ魔導書・杖どうしを作業台や金床で合成すれば耐久値が戻る（金床ならエンチャントもまとめられる）。耐久力・修繕のエンチャントも付けられる。アーティファクトは壊れないので、金床でエンチャントをまとめるときだけ合成できる。</p>
       </details>
       <details>
         <summary>他のMODと一緒に使えるか</summary>
