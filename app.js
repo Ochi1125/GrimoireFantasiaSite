@@ -99,6 +99,28 @@ const DATA = {
    "desc": "夜の獣の眼を借りる術を記した魔導書。闇の中でも昼のように見える。"
   },
   {
+  "kind": "grimoire",
+  "id": "sunrise_grimoire",
+  "name": "昇陽の魔導書",
+  "rarity": "uncommon",
+  "source": "chest",
+  "mana": "100",
+  "dur": "50",
+  "effect": "朝にする（ネザー・エンドでは使えない）。クールタイム 30 秒",
+  "desc": "夜明けを呼ぶ祈りを記した魔導書。読み上げれば、東の空がたちまち白んでいく。"
+ },
+  {
+  "kind": "grimoire",
+  "id": "moonset_grimoire",
+  "name": "落月の魔導書",
+  "rarity": "uncommon",
+  "source": "chest",
+  "mana": "100",
+  "dur": "50",
+  "effect": "夜にする（ネザー・エンドでは使えない）。クールタイム 30 秒",
+  "desc": "太陽を沈め、月を呼ぶ術を記した魔導書。読み上げれば、空はたちまち夜の色に染まる。"
+ },
+  {
    "kind": "grimoire",
    "id": "wind_grimoire",
    "name": "風の魔導書",
@@ -120,6 +142,17 @@ const DATA = {
    "effect": "まわり 10m の敵に毒 I（10 秒）",
    "desc": "沼の瘴気を閉じ込めた魔導書。開くと、まわりの空気がじわりと濁る。"
   },
+  {
+  "kind": "grimoire",
+  "id": "teleport_grimoire",
+  "name": "転移の魔導書",
+  "rarity": "rare",
+  "source": "drop",
+  "mana": "20",
+  "dur": "200",
+  "effect": "見ている所へ瞬間移動（最大 30m。ブロックの手前に出て、埋まらない。水・溶岩・草は通り抜ける）",
+  "desc": "エンダーマンが抱えていた魔導書。目に映る場所へ、一瞬で身を移す。"
+ },
   {
    "kind": "grimoire",
    "id": "healing_grimoire",
@@ -193,6 +226,28 @@ const DATA = {
    "effect": "跳ねる紫の球を撃つ。ダメージ 4・最大 10 回跳ね返る",
    "desc": "マナスライムの体の奥で固まっていた魔導書。開くと、ぷるんとした紫の球が弾み出る。"
   },
+  {
+  "kind": "grimoire",
+  "id": "corrosion_grimoire",
+  "name": "腐食の魔導書",
+  "rarity": "rare",
+  "source": "drop",
+  "mana": "30",
+  "dur": "43",
+  "effect": "まわり 16m の敵に防御力低下 II（15 秒）",
+  "desc": "ゾンビの腐った肉から見つかった魔導書。まわりのものすべてを、少しずつ朽ちさせる。"
+ },
+  {
+  "kind": "grimoire",
+  "id": "arrow_grimoire",
+  "name": "射矢の魔導書",
+  "rarity": "rare",
+  "source": "drop",
+  "mana": "30",
+  "dur": "30",
+  "effect": "前へ魔法の矢を 1 本（物理ダメージ 10。拾えない）",
+  "desc": "スケルトンの骨の間から見つかった魔導書。弓がなくても、魔力で矢を形作って放てる。"
+ },
   {
    "kind": "grimoire",
    "id": "lightning_grimoire",
@@ -386,6 +441,24 @@ const DATA = {
     "purple_core"
    ]
   },
+  {
+  "kind": "grimoire",
+  "id": "lifeline_grimoire",
+  "name": "命脈の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "100",
+  "dur": "50",
+  "effect": "自分に衝撃吸収（黄色いハート 5 個 = +10）を 5 分。クールタイム 1 分",
+  "desc": "回復と灯の魔法を、ブルーコアで一つに編んだ魔導書。命の脈を太くし、傷を受け止める光の膜を張る。",
+  "recipe": [
+   [
+    "healing_grimoire",
+    "light_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
   {
    "kind": "grimoire",
    "id": "seekers_lament",
@@ -610,6 +683,30 @@ const DATA = {
    "from": "night_vision_grimoire"
   },
   {
+  "kind": "wand",
+  "id": "sunrise_wand",
+  "name": "昇陽の杖",
+  "rarity": "rare",
+  "source": "craft",
+  "mana": "50",
+  "dur": "500",
+  "effect": "朝にする（ネザー・エンドでは使えない）。クールタイム 30 秒",
+  "desc": "昇陽の魔導書を杖に宿したもの。少ない魔力で朝を招く。",
+  "from": "sunrise_grimoire"
+ },
+  {
+  "kind": "wand",
+  "id": "moonset_wand",
+  "name": "落月の杖",
+  "rarity": "rare",
+  "source": "craft",
+  "mana": "50",
+  "dur": "500",
+  "effect": "夜にする（ネザー・エンドでは使えない）。クールタイム 30 秒",
+  "desc": "落月の魔導書を杖に宿したもの。少ない魔力で夜を招く。",
+  "from": "moonset_grimoire"
+ },
+  {
    "kind": "wand",
    "id": "wind_wand",
    "name": "風の杖",
@@ -633,6 +730,18 @@ const DATA = {
    "desc": "毒の魔導書を杖に宿したもの。濃い瘴気が相手の体を蝕み、足取りを重くする。",
    "from": "poison_grimoire"
   },
+  {
+  "kind": "wand",
+  "id": "teleport_wand",
+  "name": "転移の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "10",
+  "dur": "2000",
+  "effect": "見ている所へ瞬間移動（最大 60m）。クールタイム 1 秒",
+  "desc": "転移の魔導書を杖に宿したもの。より遠くへ、より軽やかに跳ぶ。",
+  "from": "teleport_grimoire"
+ },
   {
    "kind": "wand",
    "id": "healing_wand",
@@ -705,6 +814,30 @@ const DATA = {
    "desc": "跳球の魔導書を杖に宿したもの。三つの球が扇のように散り、あたりを跳ね回る。",
    "from": "bouncing_orb_grimoire"
   },
+  {
+  "kind": "wand",
+  "id": "corrosion_wand",
+  "name": "腐食の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "30",
+  "dur": "230",
+  "effect": "まわり 32m の敵に防御力低下 IV（30 秒）",
+  "desc": "腐食の魔導書を杖に宿したもの。より広く、より深く、鎧を朽ちさせる。",
+  "from": "corrosion_grimoire"
+ },
+  {
+  "kind": "wand",
+  "id": "arrow_wand",
+  "name": "射矢の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "30",
+  "dur": "450",
+  "effect": "前へ扇形（60°）に魔法の矢を 5 本（1 本 物理ダメージ 10）",
+  "desc": "射矢の魔導書を杖に宿したもの。一度に何本もの矢を扇のように放つ。",
+  "from": "arrow_grimoire"
+ },
   {
    "kind": "wand",
    "id": "lightning_wand",
@@ -850,6 +983,18 @@ const DATA = {
    "from": "miasma_grimoire"
   },
   {
+  "kind": "wand",
+  "id": "lifeline_wand",
+  "name": "命脈の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "350",
+  "effect": "自分に衝撃吸収（黄色いハート 10 個 = +20）を 10 分。クールタイム 1 分",
+  "desc": "命脈の魔導書を杖に宿したもの。より厚い光の膜が、より長く持ち主を守る。",
+  "from": "lifeline_grimoire"
+ },
+  {
    "kind": "wand",
    "id": "resoflare_unleash",
    "name": "レゾフレア＝アンリーシュ",
@@ -863,6 +1008,36 @@ const DATA = {
   }
  ],
  "names": {
+  "manasteel_ingot": "マナスチールインゴット",
+  "manaaurum_ingot": "マナオーラムインゴット",
+  "mana_diamond": "マナダイヤモンド",
+  "manalite_ingot": "マナライトインゴット",
+  "manasteel_helmet": "マナスチールのヘルメット",
+  "manasteel_chestplate": "マナスチールのチェストプレート",
+  "manasteel_leggings": "マナスチールのレギンス",
+  "manasteel_boots": "マナスチールのブーツ",
+  "manaaurum_helmet": "マナオーラムのヘルメット",
+  "manaaurum_chestplate": "マナオーラムのチェストプレート",
+  "manaaurum_leggings": "マナオーラムのレギンス",
+  "manaaurum_boots": "マナオーラムのブーツ",
+  "manadiamond_helmet": "マナダイヤモンドのヘルメット",
+  "manadiamond_chestplate": "マナダイヤモンドのチェストプレート",
+  "manadiamond_leggings": "マナダイヤモンドのレギンス",
+  "manadiamond_boots": "マナダイヤモンドのブーツ",
+  "manalite_helmet": "マナライトのヘルメット",
+  "manalite_chestplate": "マナライトのチェストプレート",
+  "manalite_leggings": "マナライトのレギンス",
+  "manalite_boots": "マナライトのブーツ",
+  "tesseros_summon_circle": "テセロスの召喚陣",
+  "glaioria_summon_circle": "グライオリアの召喚陣",
+  "regius_summon_circle": "レギウスの召喚陣",
+  "shinra_summon_circle": "森羅の守護者の召喚陣",
+  "fulgarion_summon_circle": "フルガリオンの召喚陣",
+  "ignied_summon_circle": "イグニードの召喚陣",
+  "rune_giant_summon_circle": "ルーンの神兵の召喚陣",
+  "nodens_summon_circle": "ノーデンスの召喚陣",
+  "cynthia_summon_circle": "シンシアの召喚陣",
+  "grimnowl_summon_circle": "グリムノウルの召喚陣",
   "broken_wand": "壊れた杖",
   "red_core": "レッドコア",
   "green_core": "グリーンコア",
@@ -1060,6 +1235,8 @@ const ANIM = {
   magic_soul: [16, 2], mana_shard: [8, 4],
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
+  mana_diamond: [16, 2], manalite_ingot: [16, 2],
+  tesseros_summon_circle: [8, 3], glaioria_summon_circle: [8, 3], regius_summon_circle: [8, 3], shinra_summon_circle: [8, 3], fulgarion_summon_circle: [8, 3], ignied_summon_circle: [8, 3], rune_giant_summon_circle: [8, 3], nodens_summon_circle: [8, 3], cynthia_summon_circle: [8, 3], grimnowl_summon_circle: [8, 3],
   miasma_stone: [8, 3], ocean_drop: [8, 2], saint_soul: [24, 2], monster_soul: [24, 2],
   charged_orb: [8, 2], thunder_beast_cannon: [4, 3],
   earth_grace: [16, 2], demon_flame: [16, 2], demon_contract: [16, 2], holy_beast_egg: [16, 2],
@@ -1194,6 +1371,9 @@ function sourceText(it) {
     tenkai_raibaku: '海王ノーデンス 10%',
     cynthia_prayer: '聖騎士シンシア 10%',
     raison_detre: '魔獣グリムノウル 10%',
+    corrosion_grimoire: 'ゾンビ 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    arrow_grimoire: 'スケルトン 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    teleport_grimoire: 'エンダーマン 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
   };
   if (DROP[it.id]) return DROP[it.id];
   if (it.source === 'chest') return `古い宝箱・ソーサラーとの交換（${RARITY[it.rarity]}）`;
@@ -1439,6 +1619,14 @@ const ROBES = [
     '賢者の布（布＋マナストーン 8 個）で作る。光るルーンのストールと葉の肩当ての、緑と金の装束。', '1 部位ごとマナ回復速度 +60%、4 部位で最大マナ +70% ／ 魔法防御 計 24'],
   ['archmage', ['archmage_hat', 'archmage_robe_top', 'archmage_robe_bottom', 'archmage_boots'], '大魔導士の装束',
     '大魔導士の布（布＋魔力の結晶 8 個。魔力の結晶は上位のボスが落とす）で作る。星空のマントと高い襟、帽子のまわりを結晶が回る。刃や牙への守りも固く、燃えない。', '1 部位ごとマナ回復速度 +150%、4 部位で最大マナ +150% ／ 魔法防御 計 30'],
+  ['manasteel', ['manasteel_helmet', 'manasteel_chestplate', 'manasteel_leggings', 'manasteel_boots'], 'マナスチールの鎧',
+    'マナスチールインゴット（鉄インゴット＋マナのかけら 8 個）で作る。青い光の筋が走る、青白い鋼の鎧。防御 2/7/5/2・防具強度 0.5。', '1 部位ごとマナ回復速度 +10%、4 部位で魔法ダメージ +10% ／ 魔法防御 計 6'],
+  ['manaaurum', ['manaaurum_helmet', 'manaaurum_chestplate', 'manaaurum_leggings', 'manaaurum_boots'], 'マナオーラムの鎧',
+    'マナオーラムインゴット（金インゴット＋マナクリスタル 8 個）で作る。薄紅の金に紫のマナクリスタルを散りばめ、赤紫のマントをなびかせる華やかな鎧。防御 3/7/6/2・防具強度 1。', '1 部位ごとマナ回復速度 +20%、4 部位で魔法ダメージ +20% ／ 魔法防御 計 9'],
+  ['manadiamond', ['manadiamond_helmet', 'manadiamond_chestplate', 'manadiamond_leggings', 'manadiamond_boots'], 'マナダイヤモンドの鎧',
+    'マナダイヤモンド（ダイヤモンド＋マナのかけら 8 個）で作る。紫の結晶の板と白銀の鎧。胸と肩に結晶をはめ込み、兜の溝が紫に光る。防御 3/8/7/3・防具強度 2.5。', '1 部位ごとマナ回復速度 +50%、4 部位で魔法ダメージ +50% ／ 魔法防御 計 12'],
+  ['manalite', ['manalite_helmet', 'manalite_chestplate', 'manalite_leggings', 'manalite_boots'], 'マナライトの鎧',
+    'マナライトインゴット（ネザライトインゴット＋魔力の結晶 8 個）で作る。脈打つ紫の光と角を持つ黒紫の鎧。防御 4/9/7/4・防具強度 4・ノックバック耐性。燃えない。', '1 部位ごとマナ回復速度 +100%、4 部位で魔法ダメージ +100% ／ 魔法防御 計 16'],
 ];
 const robeTable = document.getElementById('robe-table');
 for (const [, pieces, name, how, bonus] of ROBES) {
@@ -1656,8 +1844,8 @@ const FAMS = [
   ['holy_beast_egg', '聖なるウサギ', '最大 2 体・噛みつく', '出ているあいだ マナ回復速度 +50%', '聖なる遺跡の宝物庫 20%'],
   ['miasma_stone', '瘴気の鷹', '1 羽・追尾する羽と闇の槍', '', '魔獣の遺跡の宝物庫 20%'],
   ['ancient_emergency_device', 'ルーンの戦兵', '最大 2 体・近接の拳（アイアンゴーレムと同じ強さ）。体力 300', '出ているあいだ 耐性（1 体で I・2 体で II）', 'ルーンの神兵 30%'],
-  ['saint_soul', 'ホーリースピリット', '1 体・光のビームと、仲間をまとめて癒す魔法', '', '聖騎士シンシア 10%'],
-  ['monster_soul', 'ダークスピリット', '1 体・闇のビームと、体力を吸い取る魔法', '', '魔獣グリムノウル 10%'],
+  ['saint_soul', 'ホーリースピリット', '1 体・体力 300。近接 20・光のビーム 30。半径 30 m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15 m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）', '', '聖騎士シンシア 10%'],
+  ['monster_soul', 'ダークスピリット', '1 体・体力 200。近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30 m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）', '', '魔獣グリムノウル 10%'],
 ];
 const famGrid = document.getElementById('fam-grid');
 for (const [item, name, how, buff, odds] of FAMS) {
