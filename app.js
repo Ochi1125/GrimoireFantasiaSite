@@ -1327,36 +1327,57 @@ const NEEDS = {
   broken_black_knight_pendant: "この先に使用する場所はない。",
 };
 
-/* ---------- 詳しい説明の窓 ---------- */
+/* ---------- 詳しい説明の窓（魔導書・杖・素材・防具・生き物・使い魔・ダンジョンで共通） ---------- */
 const dialog = document.getElementById('detail');
+/**
+ * 説明の窓を開く。o の中身：
+ *   icon（要素）・kind（上の小さな字）・kindClass（その字の色のクラス）・name・desc（説明文）・
+ *   stats（[見出し, 中身] の配列。中身は文字か要素）・extra（下に足す要素の配列）・view（3D の設定。viewer.js）・wide（広い窓）
+ */
+function openInfo(o) {
+  const icon = document.getElementById('detail-icon');
+  icon.replaceChildren();
+  if (o.icon) icon.append(o.icon);
+  icon.hidden = !o.icon;
+  const kind = document.getElementById('detail-kind');
+  kind.textContent = o.kind || '';
+  kind.className = 'detail-kind' + (o.kindClass ? ' ' + o.kindClass : '');
+  document.getElementById('detail-name').textContent = o.name;
+  const desc = document.getElementById('detail-desc');
+  desc.textContent = o.desc || '';
+  desc.hidden = !o.desc;
+  const stats = document.getElementById('detail-stats');
+  stats.replaceChildren();
+  for (const [k, v] of (o.stats || [])) {
+    if (v == null || v === '') continue;
+    const dd = el('dd');
+    if (typeof v === 'string') dd.textContent = v; else dd.append(v);
+    stats.append(el('dt', null, k), dd);
+  }
+  const extra = document.getElementById('detail-extra');
+  extra.replaceChildren(...(o.extra || []));
+  const view = document.getElementById('detail-view');
+  if (window.GFViewer) window.GFViewer.dispose();
+  view.replaceChildren();
+  view.hidden = !o.view;
+  dialog.classList.toggle('is-wide', !!(o.view || o.wide));
+  if (typeof dialog.showModal === 'function' && !dialog.open) dialog.showModal();
+  dialog.scrollTop = 0;
+  if (o.view && window.GFViewer) window.GFViewer.show(view, o.view);
+}
 function openDetail(id) {
   const it = byId[id];
-  const icon = document.getElementById('detail-icon');
-  icon.replaceChildren(sprite(id, 64));
-  const stats = document.getElementById('detail-stats');
-  const extra = document.getElementById('detail-extra');
-  stats.replaceChildren();
-  extra.replaceChildren();
-  const add = (k, v) => { stats.append(el('dt', null, k), el('dd', null, v)); };
   if (it) {
-    document.getElementById('detail-kind').textContent =
-      `${it.kind === 'wand' ? '杖' : '魔導書'} ・ ${RARITY[it.rarity]}`;
-    document.getElementById('detail-kind').className = 'detail-kind r-' + it.rarity;
-    document.getElementById('detail-name').textContent = it.name;
-    document.getElementById('detail-desc').textContent = it.desc;
-    add('効果', it.effect);
-    add('消費マナ', it.mana);
-    add('耐久', it.dur);
-    add('入手', sourceText(it));
-    if (it.recipe) extra.append(recipeRow(it.recipe[0], it.recipe[1], it.id));
-    if (it.from) extra.append(wandRow(it.from, it.id));
+    openInfo({
+      icon: sprite(id, 64),
+      kind: `${it.kind === 'wand' ? '杖' : '魔導書'} ・ ${RARITY[it.rarity]}`, kindClass: 'r-' + it.rarity,
+      name: it.name, desc: it.desc,
+      stats: [['レア度', RARITY[it.rarity]], ['効果', it.effect], ['消費マナ', it.mana], ['耐久', it.dur], ['入手', sourceText(it)]],
+      extra: [it.recipe && recipeRow(it.recipe[0], it.recipe[1], it.id), it.from && wandRow(it.from, it.id)].filter(Boolean),
+    });
   } else {
-    document.getElementById('detail-kind').textContent = '';
-    document.getElementById('detail-name').textContent = nameOf(id);
-    document.getElementById('detail-desc').textContent = DATA.descs[id] || '';
-    if (NEEDS[id]) add('攻略での役目', NEEDS[id]);
+    openInfo({ icon: sprite(id, 64), name: nameOf(id), desc: DATA.descs[id] || '', stats: [['攻略での役目', NEEDS[id]]] });
   }
-  if (typeof dialog.showModal === 'function') dialog.showModal();
 }
 function sourceText(it) {
   const DROP = {
@@ -1383,6 +1404,23 @@ function sourceText(it) {
 }
 dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+dialog.addEventListener('close', () => { if (window.GFViewer) window.GFViewer.dispose(); });
+
+/** 一覧のマス（アイコンと名前だけ）。押すと onOpen。 */
+function tile(iconEl, name, onOpen, cls) {
+  const b = el('button', 'tile' + (cls ? ' ' + cls : ''));
+  b.type = 'button';
+  if (iconEl) { const box = el('span', 'tile-icon'); box.append(iconEl); b.append(box); }
+  b.append(el('span', 'tile-name', name));
+  b.addEventListener('click', onOpen);
+  return b;
+}
+/** 見出しの要素（クリックで説明が開くアイテムの丸いボタンを並べる）。 */
+function itemChips(list) {
+  const box = el('div', 'drops');
+  list.forEach(([id, p]) => box.append(dropButton(id, p)));
+  return box;
+}
 
 function slot(id) {
   const s = el('span', 'slot');
@@ -1429,16 +1467,7 @@ function renderCatalog() {
     (filter.source === 'all' || it.source === filter.source));
   if (!list.length) grid.append(el('p', 'empty', '当てはまるものはありません'));
   for (const it of list) {
-    const card = el('button', 'card');
-    card.type = 'button';
-    const box = el('span', 'icon-box'); box.append(sprite(it.id, 40));
-    const body = el('span');
-    body.append(el('p', 'card-name r-' + it.rarity, it.name));
-    body.append(el('p', 'card-meta', it.effect));
-    body.append(el('p', 'card-meta', `マナ ${it.mana} ・ 耐久 ${it.dur}`));
-    card.append(box, body);
-    card.addEventListener('click', () => openDetail(it.id));
-    grid.append(card);
+    grid.append(tile(sprite(it.id, 40), it.name, () => openDetail(it.id), 'r-' + it.rarity));
   }
 }
 document.querySelectorAll('.chip-group').forEach(group => {
@@ -1607,81 +1636,171 @@ function buildSynthesisFlow() {
   box.replaceChildren(flow);
 }
 
-/* ---------- 装束 ---------- */
-const ROBES = [
-  ['apprentice', ['apprentice_hat', 'apprentice_robe', 'apprentice_leggings', 'apprentice_boots'], '見習いの装束',
-    '布で作る。縄のベルトと継ぎ当ての、飾りのない一揃い。刃や牙への守りは控えめで、魔法の傷を防ぐ。', '4 部位でマナ回復速度 +10% ／ 魔法防御 計 6'],
-  ['wizard', ['wizard_hat', 'wizard_robe_top', 'wizard_robe_bottom', 'wizard_boots'], '魔法使いの装束',
-    '魔法の布（布＋マナのかけら 8 個）で作る。帽子の先で星の飾りが揺れる、藤色の装束。', '1 部位ごとマナ回復速度 +20%、4 部位で最大マナ +20% ／ 魔法防御 計 11'],
-  ['mage', ['mage_hat', 'mage_robe_top', 'mage_robe_bottom', 'mage_boots'], '魔導士の装束',
-    '魔導士の布（布＋マナクリスタル 8 個）で作る。立ち襟と背中のマント、腰に魔導書を下げた深い青と銀の装束。', '1 部位ごとマナ回復速度 +35%、4 部位で最大マナ +40% ／ 魔法防御 計 17'],
-  ['sage', ['sage_hat', 'sage_robe_top', 'sage_robe_bottom', 'sage_boots'], '賢者の装束',
-    '賢者の布（布＋マナストーン 8 個）で作る。光るルーンのストールと葉の肩当ての、緑と金の装束。', '1 部位ごとマナ回復速度 +60%、4 部位で最大マナ +70% ／ 魔法防御 計 24'],
-  ['archmage', ['archmage_hat', 'archmage_robe_top', 'archmage_robe_bottom', 'archmage_boots'], '大魔導士の装束',
-    '大魔導士の布（布＋魔力の結晶 8 個。魔力の結晶は上位のボスが落とす）で作る。星空のマントと高い襟、帽子のまわりを結晶が回る。刃や牙への守りも固く、燃えない。', '1 部位ごとマナ回復速度 +150%、4 部位で最大マナ +150% ／ 魔法防御 計 30'],
-  ['manasteel', ['manasteel_helmet', 'manasteel_chestplate', 'manasteel_leggings', 'manasteel_boots'], 'マナスチールの鎧',
-    'マナスチールインゴット（鉄インゴット＋マナのかけら 8 個）で作る。青い光の筋が走る、青白い鋼の鎧。防御 2/7/5/2・防具強度 0.5。', '1 部位ごとマナ回復速度 +10%、4 部位で魔法ダメージ +10% ／ 魔法防御 計 6'],
-  ['manaaurum', ['manaaurum_helmet', 'manaaurum_chestplate', 'manaaurum_leggings', 'manaaurum_boots'], 'マナオーラムの鎧',
-    'マナオーラムインゴット（金インゴット＋マナクリスタル 8 個）で作る。薄紅の金に紫のマナクリスタルを散りばめ、赤紫のマントをなびかせる華やかな鎧。防御 3/7/6/2・防具強度 1。', '1 部位ごとマナ回復速度 +20%、4 部位で魔法ダメージ +20% ／ 魔法防御 計 9'],
-  ['manadiamond', ['manadiamond_helmet', 'manadiamond_chestplate', 'manadiamond_leggings', 'manadiamond_boots'], 'マナダイヤモンドの鎧',
-    'マナダイヤモンド（ダイヤモンド＋マナのかけら 8 個）で作る。紫の結晶の板と白銀の鎧。胸と肩に結晶をはめ込み、兜の溝が紫に光る。防御 3/8/7/3・防具強度 2.5。', '1 部位ごとマナ回復速度 +50%、4 部位で魔法ダメージ +50% ／ 魔法防御 計 12'],
-  ['manalite', ['manalite_helmet', 'manalite_chestplate', 'manalite_leggings', 'manalite_boots'], 'マナライトの鎧',
-    'マナライトインゴット（ネザライトインゴット＋魔力の結晶 8 個）で作る。脈打つ紫の光と角を持つ黒紫の鎧。防御 4/9/7/4・防具強度 4・ノックバック耐性。燃えない。', '1 部位ごとマナ回復速度 +100%、4 部位で魔法ダメージ +100% ／ 魔法防御 計 16'],
+/* ---------- 防具（魔法使いの装束 5 組・魔法金属の鎧 4 組） ----------
+ * model：3D の形（models.js の ◯◯_Hat / _Top / _Bottom / _Boots）とテクスチャ（img/models/◯◯.png・_glow・_bright）の名前。
+ * 数値は仕様書 7 章「防具」の表と同じ。 */
+const ARMORS = [
+  { id: 'apprentice', group: 'robe', name: '見習いの装束', rarity: 'common', tex: 'apprentice_robe',
+    pieces: ['apprentice_hat', 'apprentice_robe', 'apprentice_leggings', 'apprentice_boots'],
+    desc: '縄のベルトと継ぎ当ての、飾りのない一揃い。刃や牙への守りは控えめで、魔法の傷を防ぐ。',
+    def: '0 / 1 / 1 / 0', mdef: '1 / 2 / 2 / 1（計 6）', dur: '6', tough: '0',
+    effect: '4 部位でマナ回復速度 +10%', material: '布' },
+  { id: 'wizard', group: 'robe', name: '魔法使いの装束', rarity: 'uncommon', tex: 'wizard_robe',
+    pieces: ['wizard_hat', 'wizard_robe_top', 'wizard_robe_bottom', 'wizard_boots'],
+    desc: '帽子の先で星の飾りが揺れる、藤色の装束。胸に光る三日月の紋。',
+    def: '1 / 3 / 2 / 1', mdef: '2 / 4 / 3 / 2（計 11）', dur: '15', tough: '0',
+    effect: '1 部位ごとにマナ回復速度 +20%\n4 部位で最大マナ +20%', material: '魔法の布（布＋マナのかけら 8 個）' },
+  { id: 'mage', group: 'robe', name: '魔導士の装束', rarity: 'rare', tex: 'mage_robe',
+    pieces: ['mage_hat', 'mage_robe_top', 'mage_robe_bottom', 'mage_boots'],
+    desc: '立ち襟と背中のマント、腰に魔導書を下げた深い青と銀の装束。',
+    def: '1 / 4 / 3 / 1', mdef: '3 / 6 / 5 / 3（計 17）', dur: '22', tough: '0',
+    effect: '1 部位ごとにマナ回復速度 +35%\n4 部位で最大マナ +40%', material: '魔導士の布（布＋マナクリスタル 8 個）' },
+  { id: 'sage', group: 'robe', name: '賢者の装束', rarity: 'epic', tex: 'sage_robe',
+    pieces: ['sage_hat', 'sage_robe_top', 'sage_robe_bottom', 'sage_boots'],
+    desc: '光るルーンのストールと葉の肩当ての、緑と金の装束。帽子の先に宝石が浮かぶ。',
+    def: '2 / 4 / 4 / 2', mdef: '5 / 8 / 6 / 5（計 24）', dur: '30', tough: '1',
+    effect: '1 部位ごとにマナ回復速度 +60%\n4 部位で最大マナ +70%', material: '賢者の布（布＋マナストーン 8 個）' },
+  { id: 'archmage', group: 'robe', name: '大魔導士の装束', rarity: 'unique', tex: 'archmage_robe',
+    pieces: ['archmage_hat', 'archmage_robe_top', 'archmage_robe_bottom', 'archmage_boots'],
+    desc: '星空のマントと高い襟、帽子のまわりを結晶が回る。刃や牙への守りも固い。',
+    def: '3 / 6 / 5 / 3', mdef: '6 / 10 / 8 / 6（計 30）', dur: '42', tough: '6',
+    effect: '1 部位ごとにマナ回復速度 +150%\n4 部位で最大マナ +150%\nノックバック耐性（1 部位 0.1）・燃えない',
+    material: '大魔導士の布（布＋魔力の結晶 8 個。魔力の結晶は上位のボスが落とす）' },
+  { id: 'manasteel', group: 'metal', name: 'マナスチールの鎧', rarity: 'uncommon', tex: 'manasteel_armor',
+    pieces: ['manasteel_helmet', 'manasteel_chestplate', 'manasteel_leggings', 'manasteel_boots'],
+    desc: '青い光の筋が走る、青白い鋼の鎧。魔法金属の鎧でいちばん素朴。',
+    def: '2 / 7 / 5 / 2', mdef: '1 / 2 / 2 / 1（計 6）', dur: '20', tough: '0.5',
+    effect: '1 部位ごとにマナ回復速度 +10%\n4 部位で与える魔法ダメージ +10%', material: 'マナスチールインゴット（鉄インゴット＋マナのかけら 8 個）' },
+  { id: 'manaaurum', group: 'metal', name: 'マナオーラムの鎧', rarity: 'rare', tex: 'manaaurum_armor',
+    pieces: ['manaaurum_helmet', 'manaaurum_chestplate', 'manaaurum_leggings', 'manaaurum_boots'],
+    desc: '薄紅の金に紫のマナクリスタルを散りばめ、赤紫のマントをなびかせる華やかな鎧。',
+    def: '3 / 7 / 6 / 2', mdef: '2 / 3 / 2 / 2（計 9）', dur: '25', tough: '1',
+    effect: '1 部位ごとにマナ回復速度 +20%\n4 部位で与える魔法ダメージ +20%', material: 'マナオーラムインゴット（金インゴット＋マナクリスタル 8 個）' },
+  { id: 'manadiamond', group: 'metal', name: 'マナダイヤモンドの鎧', rarity: 'epic', tex: 'manadiamond_armor',
+    pieces: ['manadiamond_helmet', 'manadiamond_chestplate', 'manadiamond_leggings', 'manadiamond_boots'],
+    desc: '紫の結晶の板と白銀の鎧。胸と肩に結晶をはめ込み、兜の溝が紫に光る。',
+    def: '3 / 8 / 7 / 3', mdef: '3 / 4 / 3 / 2（計 12）', dur: '36', tough: '2.5',
+    effect: '1 部位ごとにマナ回復速度 +50%\n4 部位で与える魔法ダメージ +50%', material: 'マナダイヤモンド（ダイヤモンド＋マナのかけら 8 個）' },
+  { id: 'manalite', group: 'metal', name: 'マナライトの鎧', rarity: 'unique', tex: 'manalite_armor',
+    pieces: ['manalite_helmet', 'manalite_chestplate', 'manalite_leggings', 'manalite_boots'],
+    desc: '脈打つ紫の光と角を持つ黒紫の鎧。まわりを結晶が回る。',
+    def: '4 / 9 / 7 / 4', mdef: '4 / 5 / 4 / 3（計 16）', dur: '42', tough: '4',
+    effect: '1 部位ごとにマナ回復速度 +100%\n4 部位で与える魔法ダメージ +100%\nノックバック耐性（1 部位 0.1）・燃えない',
+    material: 'マナライトインゴット（ネザライトインゴット＋魔力の結晶 8 個）' },
 ];
-const robeTable = document.getElementById('robe-table');
-for (const [, pieces, name, how, bonus] of ROBES) {
-  const r = el('div', 'robe');
-  const h = el('div', 'robe-head');
-  pieces.forEach(p => h.append(sprite(p, 28)));
-  h.append(el('span', null, name));
-  r.append(h, el('p', null, how), el('p', null, bonus));
-  robeTable.append(r);
+RARITY.common = 'コモン';
+/** グレーの人型（プレイヤーと同じ形）に防具 4 部位を着せた 3D。脚の回転の中心はプレイヤーと同じ ±1.9。 */
+function armorView(a) {
+  const legs = { right_leg: { x: -1.9 }, left_leg: { x: 1.9 } };
+  const layer = slot => ({ key: `${a.id}_${slot}`, tex: a.tex, glow: a.tex + '_glow', bright: a.tex + '_bright', pose: legs });
+  return {
+    parts: [{ key: 'humanoid', tex: 'mannequin', hide: ['hat'] }, layer('Hat'), layer('Top'), layer('Bottom'), layer('Boots')],
+    toggles: [{ label: a.group === 'robe' ? '帽子' : 'ヘルメット', index: 1 }, { label: '上', index: 2 }, { label: '下', index: 3 }, { label: '靴', index: 4 }],
+  };
+}
+function openArmor(a) {
+  const icons = el('div', 'feature-icons');
+  a.pieces.forEach(p => icons.append(sprite(p, 32)));
+  openInfo({
+    name: a.name, kind: `${a.group === 'robe' ? '魔法使いの装束' : '魔法金属の鎧'} ・ ${RARITY[a.rarity]}`, kindClass: 'r-' + a.rarity,
+    desc: a.desc, view: armorView(a),
+    stats: [['部位', icons], ['レア度', RARITY[a.rarity]], ['防御', a.def + '（頭 / 胴 / 脚 / 足）'], ['魔法防御', a.mdef], ['防具強度', a.tough],
+      ['耐久倍率', a.dur], ['効果', a.effect], ['素材', a.material]],
+  });
+}
+for (const a of ARMORS) {
+  document.getElementById(a.group === 'robe' ? 'robe-grid' : 'metal-grid')
+    .append(tile(sprite(a.pieces[1], 40), a.name, () => openArmor(a), 'r-' + a.rarity));
 }
 
-/* ---------- 生き物 ---------- */
+/* ---------- 生き物 ----------
+ * icon：['face', スキン] は顔の切り出し、['sprite', ID] はドット絵、['pic', ファイル] は立体の絵（img/mob_◯◯.png）。
+ * view：3D の設定（なければ立体の絵だけ）。数値は仕様書 9 章の表と同じ。 */
+const HUMAN = (tex, glow) => ({ parts: [{ key: 'humanoid', tex, glow }] });
 const MOBS = [
-  ['mage', 'メイジ', '森（夜）・森林の小屋', '体力 22。距離をとって魔法の弾（6）を撃つ。'],
-  ['red_mage', 'レッドメイジ', 'ネザー・フレイムジグラート', '体力 50。火の弾で相手を燃やす。炎が効かない。レッドコアを落とす。'],
-  ['green_mage', 'グリーンメイジ', '空に浮かぶ島・巨大樹の迷宮・ルーンドーム', '体力 50。風の弾で押し飛ばす。落下ダメージを受けない。グリーンコアを落とす。'],
-  ['blue_mage', 'ブルーメイジ', '氷の塔・大海の塔', '体力 50。氷の弾で一瞬凍りつかせる。ブルーコアを落とす。'],
-  ['yellow_mage', 'イエローメイジ', '聖なる遺跡・雷獣の渓谷', '体力 50。重い金の弾を撃ち、弱ると自分を癒す。イエローコアを落とす。'],
-  ['purple_mage', 'パープルメイジ', '沼地の小屋・魔獣の遺跡', '体力 50。下位のメイジでいちばん強い。毒の弾（毒 II 6 秒＋弱体化）を撃つ。パープルコアを落とす。'],
-  ['flame_mage', 'フレイムメイジ', '上位のメイジ（スポーンエッグ）', '体力 250。弾は 2 倍の強さ。8 秒ごとに相手の足もとから火柱（20 ダメージ＋炎上）。魔法の杖・レッドコアを落とす。'],
-  ['earth_mage', 'アースメイジ', '上位のメイジ（スポーンエッグ）', '体力 250。弾は 2 倍の強さ。10 秒ごとに竜巻の弾を撃ち、半径 8m の相手を吸い寄せる。魔法の杖・グリーンコアを落とす。'],
-  ['ice_mage', 'アイスメイジ', '上位のメイジ（スポーンエッグ）', '体力 250。弾は 2 倍の強さ。近づくと冷気の波（8 ダメージ・鈍足 IV）で押し返す。魔法の杖・ブルーコアを落とす。'],
-  ['light_mage', 'ライトメイジ', '上位のメイジ（スポーンエッグ）', '体力 250。弾は 2 倍の強さ。光をためて閃光を放ち、半径 10m を盲目に（12 ダメージ）。弱ると 50 回復。魔法の杖・イエローコアを落とす。'],
-  ['dark_mage', 'ダークメイジ', '上位のメイジ（スポーンエッグ）', '体力 250。弾は 2 倍の強さ。15 秒ごとに呪いをかけ、受けるダメージを 1.4 倍にする。魔法の杖・パープルコアを落とす。'],
+  { name: 'メイジ', icon: ['face', 'mage'], type: '敵', hp: '22', where: '森（夜）・森林の小屋',
+    text: '距離をとって魔法の弾（6）を撃つ。木の扉は開けて通る。', drops: [['broken_wand', '10%']], view: HUMAN('mage') },
+  { name: 'レッドメイジ', icon: ['face', 'red_mage'], type: '敵', hp: '50', where: 'ネザー・フレイムジグラート',
+    text: '火の弾（5）で相手を燃やす。炎が効かない。', drops: [['broken_wand', '10%'], ['red_core', '1%']], view: HUMAN('red_mage') },
+  { name: 'グリーンメイジ', icon: ['face', 'green_mage'], type: '敵', hp: '50', where: '空に浮かぶ島・巨大樹の迷宮・ルーンドーム',
+    text: '風の弾（4）で押し飛ばす。落下ダメージを受けない。', drops: [['broken_wand', '10%'], ['green_core', '1%']], view: HUMAN('green_mage') },
+  { name: 'ブルーメイジ', icon: ['face', 'blue_mage'], type: '敵', hp: '50', where: '氷の塔・大海の塔',
+    text: '氷の弾（6）で一瞬凍りつかせる。', drops: [['broken_wand', '10%'], ['blue_core', '1%']], view: HUMAN('blue_mage') },
+  { name: 'イエローメイジ', icon: ['face', 'yellow_mage'], type: '敵', hp: '50', where: '聖なる遺跡・雷獣の渓谷',
+    text: '重い金の弾（7）を撃ち、弱ると自分を 10 癒す（10 秒に 1 回）。', drops: [['broken_wand', '10%'], ['yellow_core', '1%']], view: HUMAN('yellow_mage') },
+  { name: 'パープルメイジ', icon: ['face', 'purple_mage'], type: '敵', hp: '50', where: '沼地の小屋・魔獣の遺跡',
+    text: '下位のメイジでいちばん強い。毒の弾（5。毒 II 6 秒＋弱体化 5 秒）を撃つ。', drops: [['broken_wand', '10%'], ['purple_core', '1%']], view: HUMAN('purple_mage') },
+  { name: 'フレイムメイジ', icon: ['face', 'flame_mage'], type: '敵（上位のメイジ）', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: '弾は下位の 2 倍の強さ。8 秒ごとに相手の足もとから火柱（20 ダメージ＋炎上）。炎が効かない。',
+    drops: [['magic_wand', '10%'], ['red_core', '3%']], view: HUMAN('flame_mage', 'flame_mage_glow') },
+  { name: 'アースメイジ', icon: ['face', 'earth_mage'], type: '敵（上位のメイジ）', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: '弾は下位の 2 倍の強さ。10 秒ごとに竜巻の弾を撃ち、半径 8m の相手を吸い寄せる。落下ダメージを受けない。',
+    drops: [['magic_wand', '10%'], ['green_core', '3%']], view: HUMAN('earth_mage', 'earth_mage_glow') },
+  { name: 'アイスメイジ', icon: ['face', 'ice_mage'], type: '敵（上位のメイジ）', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: '弾は下位の 2 倍の強さ。近づくと冷気の波（8 ダメージ・鈍足 IV）で押し返す。',
+    drops: [['magic_wand', '10%'], ['blue_core', '3%']], view: HUMAN('ice_mage', 'ice_mage_glow') },
+  { name: 'ライトメイジ', icon: ['face', 'light_mage'], type: '敵（上位のメイジ）', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: '弾は下位の 2 倍の強さ。光をためて閃光を放ち、半径 10m を盲目に（12 ダメージ）。弱ると 50 回復。',
+    drops: [['magic_wand', '10%'], ['yellow_core', '3%']], view: HUMAN('light_mage', 'light_mage_glow') },
+  { name: 'ダークメイジ', icon: ['face', 'dark_mage'], type: '敵（上位のメイジ）', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: '弾は下位の 2 倍の強さ。15 秒ごとに呪いをかけ、受けるダメージを 1.4 倍にする。',
+    drops: [['magic_wand', '10%'], ['purple_core', '3%']], view: HUMAN('dark_mage', 'dark_mage_glow') },
+  { name: 'マナスライム', icon: ['sprite', 'mana_slime'], type: '敵', hp: '1.5 / 6 / 24（大きさで変わる）', where: '沼・マングローブの沼',
+    text: '紫のスライム。いちばん小さいものがマナのかけらを落とし、ごくまれに跳球の魔導書を持っている。',
+    drops: [['mana_shard', '1〜2 個（いちばん小さいものだけ）'], ['bouncing_orb_grimoire', '0.2%']],
+    view: { parts: [{ key: 'slime', tex: 'mana_slime', translucent: ['outer'] }] } },
+  { name: 'ソーサラー', icon: ['sprite', 'sorcerer'], type: '友好', hp: '35', where: '村の魔法使いの家',
+    text: '友好的な魔法使い。魔導書を 5 冊預けると、1 冊と取り替えてくれる（宝箱から出る魔導書だけ）。敵を魔法の弾で攻撃する。',
+    drops: [], view: { parts: [{ key: 'sorcerer', tex: 'sorcerer' }] } },
+  { name: '魔法使い（村人）', icon: ['pic', 'mob_wizard_villager'], type: '友好（村人の職業）', where: '合成台のある村',
+    text: '村に合成台があると、村人のひとりが魔法使いになる。マナのかけら 5〜30 個とコンパス 1 個を渡すと、ダンジョンの地図と交換してくれる。レベルを上げるほど行ける場所が増える（新米：沼地の小屋・大きな浮島／見習い：火山・巨大樹／一人前：雷獣の渓谷・フレイムジグラート／熟練者：ルーンドーム・大海の塔／達人：聖なる遺跡・魔獣の遺跡）。',
+    drops: [] },
+  { name: 'ユニコーン', icon: ['pic', 'mob_unicorn'], type: '友好', hp: '30〜40', where: 'クリスタルの野（まれ）',
+    text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。繁殖はできない。',
+    drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）']], dropNote: '革 0〜2',
+    view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow',
+      hide: ['saddle', 'head_saddle', 'mouth_saddle_wrap', 'left_saddle_mouth', 'right_saddle_mouth', 'left_saddle_line', 'right_saddle_line',
+        'left_front_baby_leg', 'right_front_baby_leg', 'left_hind_baby_leg', 'right_hind_baby_leg'] }] } },
+  { name: 'シェルクラブ', icon: ['pic', 'mob_shell_crab'], type: '敵', hp: '100', where: '砂浜・石だらけの海岸・大海の塔',
+    text: '青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。', drops: [['blue_core', '5%']],
+    view: { parts: [{ key: 'shell_crab', tex: 'shell_crab' }] } },
+  { name: 'サンダーエレメント', icon: ['pic', 'mob_thunder_element'], type: '敵', hp: '40', where: '雷獣の渓谷',
+    text: 'ビリビリした雷の塊。宙をただよい、15m 以内の相手に雷のビームを放つ。炎が効かない。', drops: [['yellow_core', '5%']],
+    view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow' }] } },
+  { name: '炎の悪魔', icon: ['pic', 'mob_demon_imp'], type: '敵', hp: '60', where: '焔魔イグニードが呼ぶ',
+    text: '宙をただよう小さな赤い悪魔。爪で相手を燃やし、炎の弾を撃つ。', drops: [],
+    view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow' }] } },
+  { name: 'ホーリースピリット', icon: ['pic', 'mob_holy_spirit'], type: '敵', hp: '120', where: '聖なる遺跡',
+    text: '宙をただよう白い精霊。近接攻撃（15）と光のビーム（15）。半径 16m の自分と仲間の傷を 10 癒す（20 秒に 1 回）。', drops: [['yellow_core', '5%']],
+    view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
+  { name: 'ダークスピリット', icon: ['pic', 'mob_dark_spirit'], type: '敵', hp: '120', where: '魔獣の遺跡',
+    text: '宙をただよう闇の精霊。近接攻撃（15）と闇のビーム（15）。5 秒かけて相手の体力を吸い取る。', drops: [['purple_core', '5%']],
+    view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
 ];
-const mobGrid = document.getElementById('mob-grid');
-function mobCard(iconEl, name, where, text) {
-  const m = el('div', 'mob');
-  const box = el('span', 'icon-box'); box.append(iconEl);
-  const b = el('div');
-  b.append(el('h3', null, name), el('p', 'where', where), el('p', null, text));
-  m.append(box, b);
-  mobGrid.append(m);
-}
-for (const [skin, name, where, text] of MOBS) mobCard(face(skin, 40), name, where, text);
-[['mana_slime', 'マナスライム', '沼・マングローブの沼', '紫のスライム。小さいものがマナのかけらを落とし、ごくまれに跳球の魔導書を持っている。'],
- ['sorcerer', 'ソーサラー', '村の魔法使いの家', '友好的な魔法使い。魔導書を 5 冊預けると、1 冊と取り替えてくれる。']].forEach(([icon, name, where, text]) => {
-  const icon2 = sprite(icon, 40); icon2.classList.add('face'); icon2.setAttribute('aria-label', name);
-  mobCard(icon2, name, where, text);
-});
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
   const img = el('img', 'mob-portrait');
   img.src = `img/${file}.png`; img.width = img.height = size; img.alt = name;
   return img;
 }
-[['mob_wizard_villager', '魔法使い（村人）', '合成台のある村', '村人の職業。村に合成台があると、村人のひとりが魔法使いになる。マナのかけら 5〜30 個とコンパス 1 個を渡すと、ダンジョンの地図と交換してくれる。レベルを上げるほど行ける場所が増える（新米：沼地の小屋・大きな浮島／見習い：火山・巨大樹／一人前：雷獣の渓谷・フレイムジグラート／熟練者：ルーンドーム・大海の塔／達人：聖なる遺跡・魔獣の遺跡）。'],
- ['mob_unicorn', 'ユニコーン', 'クリスタルの野（まれ）', '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。体力 30〜40・足の速さもジャンプ力もウマより上。繁殖はできない。倒すと革と、30% でユニコーンの角（ドロップ増加で 1 レベルにつき +10%）を落とす。'],
- ['mob_shell_crab', 'シェルクラブ', '砂浜・石だらけの海岸・大海の塔', '体力 100。青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。ブルーコアを落とす。'],
- ['mob_thunder_element', 'サンダーエレメント', '雷獣の渓谷', '体力 40。ビリビリした雷の塊。宙をただよい、15 m 以内の相手に雷のビームを放つ。イエローコアを落とす。'],
- ['mob_demon_imp', '炎の悪魔', '焔魔イグニードが呼ぶ', '体力 60。宙をただよう小さな赤い悪魔。爪で相手を燃やし、炎の弾を撃つ。ドロップはない。'],
- ['mob_holy_spirit', 'ホーリースピリット', '聖なる遺跡', '体力 120。宙をただよう白い精霊。光のビームを放ち、まわりの魔物の傷を癒す。イエローコアを落とす。'],
- ['mob_dark_spirit', 'ダークスピリット', '魔獣の遺跡', '体力 120。宙をただよう闇の精霊。闇のビームを放ち、相手の体力を吸い取る。パープルコアを落とす。']].forEach(([file, name, where, text]) => {
-  mobCard(portrait(file, name, 48), name, where, text);
-});
+function mobIcon(m, size) {
+  const [t, v] = m.icon;
+  if (t === 'face') return face(v, size);
+  if (t === 'pic') return portrait(v, m.name, size);
+  const s = sprite(v, size); s.classList.add('face'); s.setAttribute('aria-label', m.name);
+  return s;
+}
+function openMob(m) {
+  const drops = m.drops.length ? itemChips(m.drops) : (m.dropNote ? null : 'なし');
+  let dropEl = drops;
+  if (m.dropNote) { dropEl = el('div'); dropEl.append(el('span', null, m.dropNote)); if (drops) dropEl.append(drops); }
+  openInfo({
+    icon: m.view ? null : mobIcon(m, 64), name: m.name, kind: m.type, desc: m.text, view: m.view,
+    stats: [['種類', m.type], ['体力', m.hp], ['すみか', m.where], ['ドロップ', dropEl]],
+  });
+}
+const mobGrid = document.getElementById('mob-grid');
+for (const m of MOBS) mobGrid.append(tile(mobIcon(m, 44), m.name, () => openMob(m)));
 
 /* ---------- ボス（進捗の順） ---------- */
 const BOSSES = [
@@ -1828,35 +1947,52 @@ function dropButton(id, p) {
   return d;
 }
 
-/* ---------- 使い魔 ---------- */
+/* ---------- 使い魔（7 章の召喚アイテムの順） ----------
+ * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 7 章・9 章の値。 */
 const FAMS = [
-  ['blue_feather', '幸せの青い鳥', '最大 3 羽・つつく', '', '宝箱 15%'],
-  ['black_feather', '八咫烏', '最大 2 羽・鋭いくちばし', '出ているあいだ 暗視', '宝箱 5%'],
-  ['frayed_yarn', 'モフ猫', '1 匹・魔法の弾（10）', '出ているあいだ 落下ダメージなし', '宝箱 5%'],
-  ['sturdy_string', '実験体S', '1 匹・噛みつきと、動きを鈍らせる蜘蛛糸', '', '魔導士テセロス 30%'],
-  ['ice_dragon_egg', '幼い氷竜', '1 匹・噛みつき・凍てつく息吹・氷のつぶて', '出ているあいだ 落下ダメージなし', '氷竜グライオリア 30%'],
-  ['fire_dragon_egg', '幼い炎竜', '1 匹・噛みつき・灼けつく息吹・炎の球', '出ているあいだ 火のダメージを受けない', '炎竜レギウス 30%'],
-  ['sapling_sprout', '樹の精霊', '1 体・小さな杖で殴り、5 秒ごとに半径 20 m の仲間を 5 回復', '', '森羅の守護者 30%'],
-  ['small_hat', 'チェシャ猫', '1 匹・宙に浮かんで強い魔法の弾（20）', '', '宝箱 5%'],
-  ['charged_orb', 'サンダーエレメント', '最大 3 体・雷のビーム（毎秒 10）、当たった相手から 15 m 以内の敵にも感電', '', '雷獣フルガリオン 30%'],
-  ['demon_contract', '炎の悪魔', '最大 2 体・近接の爪と炎の弾（どちらも 50）で燃やす', '出ているあいだ 火のダメージを受けない', '焔魔イグニード 30%'],
-  ['ocean_drop', '大海のイルカ', '最大 2 頭・宙を泳いで水のビームと水の斬撃', '出ているあいだ 水中呼吸・イルカの好意', '海王ノーデンス 30%'],
-  ['holy_beast_egg', '聖なるウサギ', '最大 2 体・噛みつく', '出ているあいだ マナ回復速度 +50%', '聖なる遺跡の宝物庫 20%'],
-  ['miasma_stone', '瘴気の鷹', '1 羽・追尾する羽と闇の槍', '', '魔獣の遺跡の宝物庫 20%'],
-  ['ancient_emergency_device', 'ルーンの戦兵', '最大 2 体・近接の拳（アイアンゴーレムと同じ強さ）。体力 300', '出ているあいだ 耐性（1 体で I・2 体で II）', 'ルーンの神兵 30%'],
-  ['saint_soul', 'ホーリースピリット', '1 体・体力 300。近接 20・光のビーム 30。半径 30 m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15 m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）', '', '聖騎士シンシア 10%'],
-  ['monster_soul', 'ダークスピリット', '1 体・体力 200。近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30 m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）', '', '魔獣グリムノウル 10%'],
+  { item: 'blue_feather', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
+    view: { parts: [{ key: 'bird', tex: 'blue_bird', hide: ['middle_leg'] }] } },
+  { item: 'black_feather', name: '八咫烏', count: '最大 2 羽', hp: '30', how: '鋭いくちばし（8）。足が 3 本ある。', buff: '出ているあいだ 暗視', odds: '宝箱 5%',
+    view: { parts: [{ key: 'bird', tex: 'yatagarasu' }] } },
+  { item: 'frayed_yarn', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 5%',
+    view: { parts: [{ key: 'mofu_cat', tex: 'mofu_cat', pose: { left_hind_leg: { z: 2.5 }, right_hind_leg: { z: 2.5 } } }] } },
+  { item: 'sturdy_string', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
+    view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
+  { item: 'ice_dragon_egg', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
+    view: { parts: [{ key: 'baby_ice_dragon', tex: 'baby_ice_dragon', glow: 'baby_ice_dragon_glow' }] } },
+  { item: 'fire_dragon_egg', name: '幼い炎竜', count: '1 匹', hp: '50', how: '噛みつき・灼けつく息吹・炎の球。', buff: '出ているあいだ 火のダメージを受けない', odds: '炎竜レギウス 30%',
+    view: { parts: [{ key: 'baby_fire_dragon', tex: 'baby_fire_dragon', glow: 'baby_fire_dragon_glow' }] } },
+  { item: 'sapling_sprout', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
+    view: { parts: [{ key: 'tree_spirit', tex: 'tree_spirit', glow: 'tree_spirit_glow' }] } },
+  { item: 'small_hat', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
+    view: { parts: [{ key: 'cheshire_cat', tex: 'cheshire_cat' }] } },
+  { item: 'charged_orb', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
+    view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow' }] } },
+  { item: 'demon_contract', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
+    view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow' }] } },
+  { item: 'ocean_drop', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
+    view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin' }] } },
+  { item: 'holy_beast_egg', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
+    view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit' }] } },
+  { item: 'miasma_stone', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
+    view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow' }] } },
+  { item: 'ancient_emergency_device', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
+    view: { parts: [{ key: 'rune_soldier', tex: 'rune_soldier', glow: 'rune_soldier_glow' }] } },
+  { item: 'saint_soul', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
+    view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
+  { item: 'monster_soul', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
+    view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
 ];
-const famGrid = document.getElementById('fam-grid');
-for (const [item, name, how, buff, odds] of FAMS) {
-  const f = el('div', 'fam');
-  f.append(sprite(item, 48), el('h3', null, name), el('p', 'item', DATA.names[item]), el('p', null, how));
-  if (buff) f.append(el('p', 'buff', buff));
-  f.append(el('p', 'odds', '入手：' + odds));
-  f.addEventListener('click', () => openDetail(item));
-  f.style.cursor = 'pointer';
-  famGrid.append(f);
+function openFam(f) {
+  const item = el('div');
+  item.append(dropButton(f.item, ''));
+  openInfo({
+    name: f.name, kind: '使い魔', desc: DATA.descs[f.item] || '', view: f.view,
+    stats: [['召喚アイテム', item], ['数', f.count], ['体力', f.hp], ['能力', f.how], ['主人への効果', f.buff || 'なし'], ['入手', f.odds]],
+  });
 }
+const famGrid = document.getElementById('fam-grid');
+for (const f of FAMS) famGrid.append(tile(sprite(f.item, 40), f.name, () => openFam(f)));
 
 /* ---------- ダンジョン ---------- */
 const PLACES = [
@@ -1908,13 +2044,13 @@ const PLACES = [
 ];
 const placeGrid = document.getElementById('place-grid');
 for (const [name, biome, color, text, notes] of PLACES) {
-  const p = el('article', 'place');
-  p.style.setProperty('--accent', color);
-  p.append(el('h3', null, name), el('p', 'biome', biome), el('p', null, text));
-  const ul = el('ul');
-  notes.forEach(n => ul.append(el('li', null, n)));
-  p.append(ul);
-  placeGrid.append(p);
+  const t = tile(null, name, () => {
+    const ul = el('ul', 'dots');
+    notes.forEach(n => ul.append(el('li', null, n)));
+    openInfo({ name, kind: biome, desc: text, stats: [['見どころ', ul]] });
+  }, 'tile-place');
+  t.style.setProperty('--accent', color);
+  placeGrid.append(t);
 }
 
 /* ---------- リンク・メニュー ---------- */
@@ -1943,19 +2079,21 @@ let flowBuilt = false;
 function showTab(hash, scroll) {
   const id = (hash || '').replace(/^#/, '');
   let target = id && document.getElementById(id);
-  if (target && !target.classList.contains('tab-content')) target = target.closest('.tab-content');
+  const inner = target && !target.classList.contains('tab-content') ? target : null;
+  if (inner) target = inner.closest('.tab-content');
   if (!target) target = document.getElementById('home');
   document.querySelectorAll('dialog[open]').forEach(d => d.close());
   tabs.forEach(t => t.classList.toggle('is-active', t === target));
   navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + target.id));
   if (target.id === 'synthesis') { buildSynthesisFlow(); flowBuilt = true; }
-  if (scroll) window.scrollTo(0, 0);
+  if (inner) inner.scrollIntoView({ block: 'start' });
+  else if (scroll) window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', () => showTab(location.hash, true));
 // 同じタブのリンクをもう一度押したときは hashchange が起きないので、上へ戻すだけ
 document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#"]');
-  if (a && a.getAttribute('href') === location.hash) { e.preventDefault(); window.scrollTo(0, 0); }
+  if (a && a.getAttribute('href') === location.hash) { e.preventDefault(); showTab(location.hash, true); }
 });
 showTab(location.hash, false);
 // 画面の幅が変わったら、合成の流れ図を作り直す（見えているときだけ）

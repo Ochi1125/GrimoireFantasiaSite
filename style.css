@@ -266,15 +266,47 @@ b { color: #fff; }
 .dots li { margin-bottom: 6px; }
 
 /* 共通のカードホバーエフェクト */
-.feature, .card, .mob, .place, .fam {
+.feature, .tile {
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.2s ease;
 }
-.feature:hover, .card:hover, .card:focus-visible, .mob:hover, .place:hover, .fam:hover {
+.feature:hover, .tile:hover, .tile:focus-visible {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 12px rgba(155, 123, 255, 0.15);
   border-color: var(--violet);
   outline: none;
 }
+
+/* ホームの「どんな MOD？」とマナのしくみ */
+.home-section { padding-top: 56px; }
+.mana-box {
+  margin-top: 32px; padding: 6px 24px 22px;
+  background: linear-gradient(180deg, #14243a, var(--bg-2)); border: 1px solid #2f5577; border-radius: var(--radius);
+}
+.mana-box .sub { color: #8fd8ff; }
+.mana-box > p { margin: 0 0 12px; }
+.mana-word { color: #7fd4ff; font-weight: 700; }
+.mana-demo { margin: 6px 0 16px; }
+.mana-bar {
+  position: relative; height: 18px; max-width: 420px; border-radius: 3px; overflow: hidden;
+  background: #0b1420; border: 2px solid #000; box-shadow: inset 0 0 0 1px #233a52;
+}
+.mana-short { position: absolute; inset: 0 22% 0 0; background: #e03030; animation: manaShort 2.4s ease-out infinite; }
+.mana-fill { position: absolute; inset: 0 auto 0 0; width: 64%; background: linear-gradient(180deg, #9fe4ff, #3fa8e0); z-index: 1; }
+.mana-num {
+  position: absolute; inset: 0; display: grid; place-items: center; z-index: 2;
+  font-size: .8rem; line-height: 1; color: #7fd4ff;
+  text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
+}
+@keyframes manaShort { 0%, 40% { opacity: 1; } 80%, 100% { opacity: 0; } }
+.mana-demo .small { margin: 6px 0 0; }
+.mana-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mana-steps li {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(14, 11, 29, .55); border: 1px solid var(--line); border-radius: 10px; padding: 14px;
+}
+.mana-steps b { color: #8fd8ff; }
+.mana-steps p { margin: 4px 0 0; font-size: .9rem; color: #d6cfe8; }
+.mana-step-icon { flex: none; }
 
 /* 特徴 */
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
@@ -292,6 +324,29 @@ b { color: #fff; }
 }
 .notes-callout p { margin: 0; }
 
+/* 一覧のマス（アイコンと名前だけ。押すと説明の窓） */
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+.tile {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font: inherit; color: var(--text); cursor: pointer; text-align: center;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 8px 12px;
+}
+.tile-icon {
+  width: 56px; height: 56px; display: grid; place-items: center;
+  background: #120f22; border-radius: 10px; border: 1px solid #2c2550;
+}
+.tile-name { font-size: .86rem; font-weight: 700; line-height: 1.35; }
+.tile.r-common .tile-name { color: #fff; }
+.tile.r-uncommon .tile-name { color: var(--uncommon); }
+.tile.r-rare .tile-name { color: var(--rare); }
+.tile.r-epic .tile-name { color: var(--epic); }
+.tile.r-unique .tile-name { color: var(--unique); }
+.tile.r-legendary .tile-name { color: var(--legendary); }
+.tiles-text { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+.tile-place { --accent: var(--violet); border-top: 3px solid var(--accent); padding: 16px 12px; }
+.tile-place .tile-name { font-family: var(--serif), serif; font-size: 1rem; }
+
 /* 図鑑 */
 .filters { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 22px; }
 .chip-group { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
@@ -303,19 +358,7 @@ b { color: #fff; }
 }
 .chip:hover { border-color: var(--gold-2); color: var(--text); }
 .chip.is-on { background: var(--gold); color: #26190a; border-color: var(--gold); font-weight: 700; }
-.catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
-.card {
-  display: flex; gap: 12px; align-items: flex-start; text-align: left; cursor: pointer;
-  font: inherit; color: inherit;
-  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 12px;
-}
-.card .icon-box {
-  width: 52px; height: 52px; display: grid; place-items: center;
-  background: #120f22; border-radius: 8px; border: 1px solid #2c2550; flex: none;
-}
-.card-name { font-weight: 700; margin: 0; line-height: 1.4; }
-.card-meta { margin: 2px 0 0; font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.r-common { color: #fff; }
 .r-uncommon { color: var(--uncommon); }
 .r-rare { color: var(--rare); }
 .r-epic { color: var(--epic); }
@@ -358,24 +401,7 @@ b { color: #fff; }
 .recipe-name { margin: 10px 0 0; font-weight: 700; }
 .recipe p { margin: 4px 0 0; font-size: .9rem; color: #d6cfe8; }
 
-/* 装束 */
-.robe-table { display: grid; gap: 10px; }
-.robe {
-  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
-}
-.robe-head { display: flex; align-items: center; gap: 6px; font-weight: 700; margin-bottom: 4px; }
-.robe p { margin: 0; font-size: .9rem; color: #d6cfe8; }
-
 /* 生き物 */
-.mob-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-.mob {
-  display: flex; gap: 14px; background: var(--panel); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 14px;
-}
-.mob h3 { margin: 0; font-size: 1.05rem; }
-.mob .where { margin: 0; font-size: .8rem; color: var(--gold); }
-.mob p { margin: 4px 0 0; font-size: .9rem; color: #d6cfe8; }
-.mob .icon-box { width: 56px; height: 56px; display: grid; place-items: center; background: #120f22; border-radius: 8px; flex: none; }
 .face { border-radius: 4px; }
 .mob-portrait { display: block; border-radius: 6px; image-rendering: auto; }
 
@@ -463,32 +489,6 @@ b { color: #fff; }
 .drop:hover { background: rgba(14, 11, 29, .9); border-color: var(--violet); }
 .drop b { color: var(--gold); }
 
-/* 使い魔 */
-.fam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
-.fam {
-  display: flex; flex-direction: column; align-items: center;
-  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px;
-  text-align: center;
-}
-.fam h3 { font-size: 1rem; margin: 8px 0 0; }
-.fam .item { font-size: .8rem; color: var(--muted); margin: 0; }
-.fam p { font-size: .88rem; margin: 6px 0 0; color: #d6cfe8; }
-.fam .buff { color: var(--rare); }
-.fam .odds { color: var(--gold); font-size: .8rem; margin-top: auto; padding-top: 8px; }
-
-/* 場所 */
-.place-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
-.place {
-  --accent: var(--violet);
-  display: flex; flex-direction: column;
-  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;
-  border-top: 3px solid var(--accent);
-}
-.place h3 { font-family: var(--serif), serif; margin: 0; }
-.place .biome { margin: 0 0 6px; font-size: .8rem; color: var(--muted); }
-.place p { margin: 0; font-size: .92rem; color: #d6cfe8; }
-.place ul { margin: 8px 0 0; padding-left: 1.2em; font-size: .88rem; color: #d6cfe8; }
-
 /* 導入 */
 .steps { counter-reset: step; list-style: none; padding: 0; display: grid; gap: 14px; }
 .steps li {
@@ -562,6 +562,24 @@ dialog[open] {
 .detail-stats dt { color: var(--muted); font-size: .88rem; }
 .detail-stats dd { margin: 0; white-space: pre-line; }
 #detail-extra .recipe-row { margin-top: 14px; }
+#detail.is-wide { width: min(720px, calc(100vw - 32px)); }
+#detail-icon[hidden], #detail-view[hidden], .detail-desc[hidden] { display: none; }
+#detail-view { margin: -8px -8px 16px; }
+.detail-stats .drops { margin-top: 0; }
+.detail-stats .dots { margin: 0; }
+.detail-stats .feature-icons { flex-wrap: wrap; }
+
+/* 3D ビューワー（viewer.js） */
+.viewer {
+  position: relative; border-radius: 12px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 35%, #2a2350, #120f22 75%);
+  border: 1px solid #2c2550;
+}
+.viewer-canvas { display: block; width: 100%; touch-action: none; cursor: grab; }
+.viewer-canvas:active { cursor: grabbing; }
+.viewer-msg { margin: 0; padding: 120px 0; text-align: center; color: var(--muted); }
+.viewer-toggles { position: absolute; left: 10px; bottom: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.viewer-toggles .chip { font-size: .8rem; padding: 2px 12px; }
 
 /* ボス詳細用ダイアログ特化 */
 #boss-detail { width: min(800px, calc(100vw - 32px)); padding: 0; overflow: hidden; border: 1px solid var(--bl, #6b5627); }
@@ -571,6 +589,7 @@ dialog[open] {
 /* ===== スマホ ===== */
 @media (max-width: 860px) {
   .feature-grid { grid-template-columns: 1fr 1fr; }
+  .mana-steps { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; gap: 8px; }
   .boss { flex-direction: column; align-items: center; text-align: left; }
 }
@@ -586,13 +605,15 @@ dialog[open] {
   .nav.is-open { display: flex; }
   .nav a { padding: 10px 12px; font-size: 1rem; }
   .feature-grid { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+  .mana-box { padding: 4px 14px 16px; }
   .hero { padding-top: 64px; }
   .steps li { padding-left: 64px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sprite.anim, .stars, dialog[open], .tab-content.is-active { animation: none !important; }
+  .sprite.anim, .stars, dialog[open], .tab-content.is-active, .mana-short { animation: none !important; }
   html { scroll-behavior: auto; }
-  .feature, .card, .mob, .place, .fam, .boss-card, .btn { transition: none !important; transform: none !important; }
+  .feature, .tile, .boss-card, .btn { transition: none !important; transform: none !important; }
 }
 
 /* 合成の流れ図（app.js の buildSynthesisFlow） */
