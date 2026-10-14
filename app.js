@@ -67,6 +67,17 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "attraction_grimoire",
+   "name": "引寄の魔導書",
+   "rarity": "uncommon",
+   "source": "chest",
+   "mana": "20",
+   "dur": "150",
+   "effect": "まわり 15m の落ちているアイテムと経験値オーブを、すべて自分の足もとへ集める",
+   "desc": "磁石のような紋章の魔導書。散らばった物も経験も、一度に手もとへ集まる。"
+  },
+  {
+   "kind": "grimoire",
    "id": "levitation_grimoire",
    "name": "浮遊の魔導書",
    "rarity": "uncommon",
@@ -97,6 +108,28 @@ const DATA = {
    "dur": "60",
    "effect": "自分に暗視を 3 分",
    "desc": "夜の獣の眼を借りる術を記した魔導書。闇の中でも昼のように見える。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "leap_grimoire",
+   "name": "跳躍の魔導書",
+   "rarity": "uncommon",
+   "source": "chest",
+   "mana": "40",
+   "dur": "60",
+   "effect": "自分に跳躍力上昇 III を 3 分",
+   "desc": "うさぎの足跡が描かれた魔導書。読むと脚が軽くなり、塀も軽々と越えられる。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "ocean_grimoire",
+   "name": "海洋の魔導書",
+   "rarity": "uncommon",
+   "source": "chest",
+   "mana": "40",
+   "dur": "60",
+   "effect": "自分に水中呼吸とイルカの好意を 3 分",
+   "desc": "潮の香りがする魔導書。海の中でも息ができ、イルカのように泳げる。"
   },
   {
   "kind": "grimoire",
@@ -155,6 +188,61 @@ const DATA = {
  },
   {
    "kind": "grimoire",
+   "id": "return_grimoire",
+   "name": "帰還の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "100",
+   "dur": "30",
+   "effect": "3 秒待ってから、ベッド（なければ初期スポーン地点）へ戻る。待つあいだに動く・ダメージを受けると取り消し。同じディメンションの中だけ。クールタイム 5 分",
+   "desc": "寝床の絵が描かれた魔導書。唱えて静かに待てば、眠る場所へ戻れる。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "gale_grimoire",
+   "name": "疾風の魔導書",
+   "rarity": "rare",
+   "source": "drop",
+   "mana": "35",
+   "dur": "80",
+   "effect": "見ている方向へ 1.5 秒、エリトラでロケットを使ったように飛ぶ（向きで曲がれる）。通り道の敵に 4 ダメージ。着地まで落下ダメージなし",
+   "desc": "ハーピィの羽根にはさまれていた魔導書。開くと突風が背中を押し、空へ連れ去る。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "haste_grimoire",
+   "name": "加速の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "40",
+   "dur": "60",
+   "effect": "自分に移動速度上昇 II と採掘速度上昇 II を 2 分",
+   "desc": "風を切る矢が描かれた魔導書。足も手も、いつもより速く動く。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "invisibility_grimoire",
+   "name": "透明の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "50",
+   "dur": "50",
+   "effect": "自分に透明化を 1 分。攻撃すると解ける",
+   "desc": "点線でしか描かれていない人影の魔導書。読むと、自分の姿も薄れていく。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "crystal_wall_grimoire",
+   "name": "晶壁の魔導書",
+   "rarity": "rare",
+   "source": "drop",
+   "mana": "40",
+   "dur": "60",
+   "effect": "目の前 3m に幅 5 × 高さ 3 の結晶の壁を 10 秒。矢・弾・爆発を止め、壊されない",
+   "desc": "クリスタルゴーレムの胸の奥にあった魔導書。マナの結晶が、壊れない壁となって立ちはだかる。"
+  },
+  {
+   "kind": "grimoire",
    "id": "healing_grimoire",
    "name": "回復の魔導書",
    "rarity": "rare",
@@ -185,6 +273,17 @@ const DATA = {
    "dur": "65",
    "effect": "まわり 4m の相手に 4 ダメージと鈍足（10 秒）。水面も凍る",
    "desc": "自身の周囲に氷のつぶてを放つ初心者向けの魔法。未熟な魔法使いは何度もこの魔法に助けられるという。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "ice_shard_grimoire",
+   "name": "氷晶の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "30",
+   "dur": "60",
+   "effect": "氷のつぶてを 3 本、扇形に撃つ。1 本 4 ダメージと移動速度低下 II（3 秒）",
+   "desc": "雪の結晶がはさまった魔導書。氷のつぶてが、扇のように広がって飛ぶ。"
   },
   {
    "kind": "grimoire",
@@ -315,6 +414,61 @@ const DATA = {
    "dur": "50",
    "effect": "右クリック長押しでスロットが回り、離すと -100〜100 の数字が決まる。負なら自分や味方に、正なら敵に、その絶対値のダメージ（0 は何も起きない）",
    "desc": "開くたびに運命の数字が決まる、緑の表紙のサイコロの書。吉と出るか凶と出るかは、神のみぞ知る。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "binding_grimoire",
+   "name": "束縛の魔導書",
+   "rarity": "epic",
+   "source": "drop",
+   "mana": "60",
+   "dur": "50",
+   "effect": "20m 以内の見ている敵 1 体を闇の鎖で 4 秒動けなくする（毎秒 3 ダメージ。ボスは 1 秒）",
+   "desc": "鎖の亡者が引きずっていた魔導書。闇の鎖が、狙った獲物をその場に縫いとめる。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "gravity_grimoire",
+   "name": "重力の魔導書",
+   "rarity": "epic",
+   "source": "chest",
+   "mana": "70",
+   "dur": "50",
+   "effect": "見ている地点（最大 32m）の半径 6m の敵を 2 秒浮かせ、叩きつけて 8 ダメージ（ボスは浮かない）",
+   "desc": "重い錘のような手ざわりの魔導書。見つめた所の敵を宙へ浮かせ、地面へ叩きつける。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "starfall_grimoire",
+   "name": "星降の魔導書",
+   "rarity": "epic",
+   "source": "chest",
+   "mana": "80",
+   "dur": "48",
+   "effect": "見ている地点のまわりに小さな流れ星を 5 つ落とす。1 つで半径 2m に 6 ダメージ。地形は壊さない",
+   "desc": "星空を閉じこめた魔導書。夜空から小さな流れ星を呼び落とす。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "life_drain_grimoire",
+   "name": "吸命の魔導書",
+   "rarity": "epic",
+   "source": "drop",
+   "mana": "50",
+   "dur": "60",
+   "effect": "前方 15m の敵 1 体に紫の光の線を 2 秒つなぎ、合計 10 ダメージ。与えたダメージの半分だけ回復",
+   "desc": "ダークスピリットが抱えていた魔導書。紫の光の線が、相手の命を少しずつ奪う。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "mana_drain_grimoire",
+   "name": "吸魔の魔導書",
+   "rarity": "epic",
+   "source": "drop",
+   "mana": "0",
+   "dur": "40",
+   "effect": "20m 以内の見ている敵 1 体に 10 ダメージ。与えたダメージの 1000% をマナとして取り戻す（最大 200）。クールタイム 1 分",
+   "desc": "深淵の者の瘴気の中に沈んでいた魔導書。傷つけた相手から、魔力をすすり取る。"
   },
   {
    "kind": "grimoire",
@@ -648,6 +802,18 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "attraction_wand",
+   "name": "引寄の杖",
+   "rarity": "rare",
+   "source": "craft",
+   "mana": "毎秒 2",
+   "dur": "1000",
+   "effect": "発動 ⇔ 解除。発動中、まわり 20m のアイテムと経験値オーブを引き寄せ続ける",
+   "desc": "引寄の魔導書を杖に宿したもの。持っているあいだ、あらゆる落とし物が寄ってくる。",
+   "from": "attraction_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "levitation_wand",
    "name": "浮遊の杖",
    "rarity": "rare",
@@ -681,6 +847,30 @@ const DATA = {
    "effect": "自分とまわり 20m の味方（敵以外すべて）に暗視を 15 分",
    "desc": "暗視の魔導書を杖に宿したもの。仲間の目にも、夜を見通す光が宿る。",
    "from": "night_vision_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "leap_wand",
+   "name": "跳躍の杖",
+   "rarity": "rare",
+   "source": "craft",
+   "mana": "40",
+   "dur": "200",
+   "effect": "自分とまわり 20m の敵以外すべてに跳躍力上昇 III を 15 分",
+   "desc": "跳躍の魔導書を杖に宿したもの。仲間たちの脚まで軽くする。",
+   "from": "leap_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "ocean_wand",
+   "name": "海洋の杖",
+   "rarity": "rare",
+   "source": "craft",
+   "mana": "40",
+   "dur": "200",
+   "effect": "自分とまわり 20m の敵以外すべてにコンジットパワーとイルカの好意を 15 分",
+   "desc": "海洋の魔導書を杖に宿したもの。コンジットの加護が仲間たちを包む。",
+   "from": "ocean_grimoire"
   },
   {
   "kind": "wand",
@@ -744,6 +934,66 @@ const DATA = {
  },
   {
    "kind": "wand",
+   "id": "return_wand",
+   "name": "帰還の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "100",
+   "dur": "150",
+   "effect": "1 秒待ってから、ベッド（なければ初期スポーン地点）へ戻る。ディメンションをまたいでも戻れる。クールタイム 1 分",
+   "desc": "帰還の魔導書を杖に宿したもの。どこの世界にいても、すぐに眠る場所へ戻れる。",
+   "from": "return_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "gale_wand",
+   "name": "疾風の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "毎秒 15",
+   "dur": "300",
+   "effect": "押し続けるあいだ見ている方向へ飛び続ける。通り道の敵に 6 ダメージ。離すと着地まで落下ダメージなし",
+   "desc": "疾風の魔導書を杖に宿したもの。風が途切れないかぎり、どこまでも飛んでいける。",
+   "from": "gale_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "haste_wand",
+   "name": "加速の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "60",
+   "dur": "250",
+   "effect": "自分とまわり 20m の敵以外すべてに移動速度上昇 II を 10 分",
+   "desc": "加速の魔導書を杖に宿したもの。仲間たちの足どりを軽くする。",
+   "from": "haste_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "invisibility_wand",
+   "name": "透明の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "80",
+   "dur": "200",
+   "effect": "透明化を 2 分。防具と持ち物も見えなくなり、ボス以外の敵は狙いを外す",
+   "desc": "透明の魔導書を杖に宿したもの。防具も持ち物も消え、敵はこちらを見失う。",
+   "from": "invisibility_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "crystal_wall_wand",
+   "name": "晶壁の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "80",
+   "dur": "300",
+   "effect": "幅 9 × 高さ 4 の壁を 20 秒。しゃがんで使うと自分を囲む半球の壁（半径 4）を 15 秒",
+   "desc": "晶壁の魔導書を杖に宿したもの。身を包む結晶のドームさえ作り出す。",
+   "from": "crystal_wall_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "healing_wand",
    "name": "回復の杖",
    "rarity": "epic",
@@ -777,6 +1027,18 @@ const DATA = {
    "effect": "ためて 3 段階。冷気の波で鈍足 II → 鈍足 IV → 凍結（5 秒）",
    "desc": "周囲を凍てつかせる氷の杖。熟練の魔法使いの放つ冷気は敵の体を凍らせる。",
    "from": "ice_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "ice_shard_wand",
+   "name": "氷晶の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "10 / 20 / 40",
+   "dur": "300",
+   "effect": "ためて 3 段階で 3 / 5 / 7 本。1 本 6 ダメージと移動速度低下 III。3 段目は凍結 2 秒",
+   "desc": "氷晶の魔導書を杖に宿したもの。ためるほど、つぶては増え、冷たさも増す。",
+   "from": "ice_shard_grimoire"
   },
   {
    "kind": "wand",
@@ -897,6 +1159,66 @@ const DATA = {
    "effect": "スロットが 3 つ回り、3 つのうち最大の数字を採用する。効果は天運の魔導書と同じ",
    "desc": "三つのサイコロが先端で踊る杖。いちばん大きな目だけが、運命を決める。",
    "from": "fortune_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "binding_wand",
+   "name": "束縛の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "120",
+   "dur": "200",
+   "effect": "30m 以内の敵、最大 5 体を闇の鎖で 6 秒動けなくする（毎秒 6、終わるときに 20 ダメージ。ボスは 2 秒）",
+   "desc": "束縛の魔導書を杖に宿したもの。何本もの闇の鎖が、群れごと縛りあげる。",
+   "from": "binding_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "gravity_wand",
+   "name": "重力の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "150",
+   "dur": "220",
+   "effect": "最大 60m・半径 10m。浮かせて叩きつけるのを 3 回（1 回 12 ダメージ）",
+   "desc": "重力の魔導書を杖に宿したもの。何度も浮かせては叩きつける。",
+   "from": "gravity_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "starfall_wand",
+   "name": "星降の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "60 / 120 / 200",
+   "dur": "200",
+   "effect": "ためて 3 段階で流れ星 5 / 10 / 20 個（1 つ 10 ダメージ）。3 段目は最後に大きな星（半径 5m に 40）",
+   "desc": "星降の魔導書を杖に宿したもの。ためきれば、最後に大きな星が降ってくる。",
+   "from": "starfall_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "life_drain_wand",
+   "name": "吸命の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "毎秒 25",
+   "dur": "240",
+   "effect": "押し続けるあいだ（最大 5 秒）20m 以内の敵 1 体から吸い続ける。毎秒 8 ダメージ、自分は毎秒 4 回復",
+   "desc": "吸命の魔導書を杖に宿したもの。つないだ線から、命が絶えず流れこむ。",
+   "from": "life_drain_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "mana_drain_wand",
+   "name": "吸魔の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "0",
+   "dur": "150",
+   "effect": "20m 以内の見ている敵 1 体に 10 ダメージ。与えたダメージの 2000% をマナとして取り戻す（最大 500）。クールタイム 1 分",
+   "desc": "吸魔の魔導書を杖に宿したもの。一撃で、枯れた魔力を満たすほどに吸い上げる。",
+   "from": "mana_drain_grimoire"
   },
   {
    "kind": "wand",
@@ -1246,6 +1568,7 @@ const ANIM = {
   sage_cloth: [24, 2], archmage_cloth: [24, 2], magic_crystal: [24, 2], sage_pouch: [24, 2], archmage_pouch: [24, 2],
   world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
   thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2], durandal: [24, 2],
+  binding_wand: [24, 2], life_drain_wand: [24, 2], mana_drain_wand: [24, 2], gravity_wand: [24, 2], starfall_wand: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
@@ -1395,6 +1718,11 @@ function sourceText(it) {
     corrosion_grimoire: 'ゾンビ 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
     arrow_grimoire: 'スケルトン 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
     teleport_grimoire: 'エンダーマン 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    gale_grimoire: 'ハーピィ 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    binding_grimoire: '鎖の亡者 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    crystal_wall_grimoire: 'クリスタルゴーレム 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    life_drain_grimoire: 'ダークスピリット 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
+    mana_drain_grimoire: '深淵の者 1%（プレイヤーが倒したとき。ドロップ増加 1 レベルごとに +0.5%）',
   };
   if (DROP[it.id]) return DROP[it.id];
   if (it.source === 'chest') return `古い宝箱・ソーサラーとの交換（${RARITY[it.rarity]}）`;
@@ -1483,10 +1811,10 @@ renderCatalog();
 /* ---------- 合成台 ---------- */
 const CORES = [
   ['red_core', 'レッドコア', 'レッドメイジ 1% ／ フレイムメイジ 3% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
-  ['green_core', 'グリーンコア', 'グリーンメイジ 1% ／ アースメイジ 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
+  ['green_core', 'グリーンコア', 'グリーンメイジ 1% ／ アースメイジ 3% ／ ハーピィ 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
   ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
-  ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
-  ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
+  ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ クリスタルゴーレム 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
+  ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ 鎖の亡者 3% ／ 深淵の者 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
 ];
 const coreList = document.getElementById('core-list');
 for (const [id, name, from] of CORES) {
@@ -1764,6 +2092,10 @@ const MOBS = [
   { name: 'シェルクラブ', icon: ['pic', 'mob_shell_crab'], type: '敵', hp: '100', where: '砂浜・石だらけの海岸・大海の塔',
     text: '青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。', drops: [['blue_core', '5%']],
     view: { parts: [{ key: 'shell_crab', tex: 'shell_crab' }] } },
+  { name: 'ハーピィ', icon: ['pic', 'mob_harpy'], type: '敵（飛ぶ）', hp: '40', where: '山岳・空に浮かぶ島（どちらも暗いときだけ）',
+    text: '赤い体毛に青い翼の、鳥の脚をした魔物。相手の上空を回り、甲高く鳴いて翼をたたむと急降下してくる（7 ダメージと強いノックバック）。8 秒ごとに羽根を 3 本投げる。弱ると一度だけ高く逃げる。落下ダメージを受けない。',
+    drops: [['gale_grimoire', '1%'], ['green_core', '3%']],
+    view: { parts: [{ key: 'harpy', tex: 'harpy', glow: 'harpy_glow' }] } },
   { name: 'サンダーエレメント', icon: ['pic', 'mob_thunder_element'], type: '敵', hp: '40', where: '雷獣の渓谷',
     text: 'ビリビリした雷の塊。宙をただよい、15m 以内の相手に雷のビームを放つ。炎が効かない。', drops: [['yellow_core', '5%']],
     view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow' }] } },
@@ -1773,9 +2105,21 @@ const MOBS = [
   { name: 'ホーリースピリット', icon: ['pic', 'mob_holy_spirit'], type: '敵', hp: '120', where: '聖なる遺跡',
     text: '宙をただよう白い精霊。近接攻撃（15）と光のビーム（15）。半径 16m の自分と仲間の傷を 10 癒す（20 秒に 1 回）。', drops: [['yellow_core', '5%']],
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
+  { name: 'クリスタルゴーレム', icon: ['pic', 'mob_crystal_golem'], type: '敵', hp: '150', where: 'マナの洞窟',
+    text: '肩や背中からマナクリスタルが突き出た岩の人形。長い腕で殴り（14）、両腕を上げて地面を叩くと、半径 5m に結晶のトゲが生える（10 ダメージと打ち上げ）。足もとに光の輪が広がったら離れること。',
+    drops: [['crystal_wall_grimoire', '1%'], ['yellow_core', '3%']],
+    view: { parts: [{ key: 'crystal_golem', tex: 'crystal_golem', glow: 'crystal_golem_glow' }] } },
+  { name: '鎖の亡者', icon: ['pic', 'mob_chain_wraith'], type: '敵（アンデッド）', hp: '80', where: '魔獣の遺跡・暗い森（まれ）',
+    text: '錆びた鎧を着た亡霊。右腕を後ろへ引いたら鎖を投げてくる合図で、当たると目の前まで引き寄せられる。囲まれると鎖を振り回す。兜があるので日光では燃えない。',
+    drops: [['binding_grimoire', '1%'], ['purple_core', '3%']],
+    view: { parts: [{ key: 'chain_wraith', tex: 'chain_wraith', glow: 'chain_wraith_glow' }] } },
   { name: 'ダークスピリット', icon: ['pic', 'mob_dark_spirit'], type: '敵', hp: '120', where: '魔獣の遺跡',
-    text: '宙をただよう闇の精霊。近接攻撃（15）と闇のビーム（15）。5 秒かけて相手の体力を吸い取る。', drops: [['purple_core', '5%']],
+    text: '宙をただよう闇の精霊。近接攻撃（15）と闇のビーム（15）。5 秒かけて相手の体力を吸い取る。', drops: [['purple_core', '5%'], ['life_drain_grimoire', '1%']],
     view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
+  { name: '深淵の者', icon: ['pic', 'mob_abyss_dweller'], type: '敵（アンデッド）', hp: '200', where: '地下の深い所（y 0 より下の暗い場所）',
+    text: '背を丸めた、得体のしれない人の形の魔物。つかまれるとマナを 15 吸われ、その分だけ傷が癒える。近づくと瘴気を吐く（吐き気・弱体化）。マナを吸うほど速くなる。明るい所を嫌い、倒すと瘴気の雲が残る。',
+    drops: [['mana_drain_grimoire', '1%'], ['purple_core', '3%']],
+    view: { parts: [{ key: 'abyss_dweller', tex: 'abyss_dweller', glow: 'abyss_dweller_glow' }] } },
 ];
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
@@ -2006,7 +2350,7 @@ const PLACES = [
    'パープルメイジに囲まれた古びた小屋。母屋に入ると、主の魔導士テセロスが現れる。',
    ['暖炉の下に隠しチェスト（浮遊の魔導書が必ず 1 冊・魔導士の布 40%）', '小屋ひとつで魔導書 1 冊以上 100%', '母屋で魔導士テセロスが現れる']],
   ['空に浮かぶ島', '海・川・浜辺以外の地上（高さ 200 ほど）', '#7ed98a',
-   'グリーンメイジが住む古い隠れ家。祭壇か見張り塔を中心に、宝箱の部屋・ポーションの部屋・書斎・畑が並ぶ。登る道はない。',
+   'グリーンメイジが住む古い隠れ家。暗くなるとハーピィも飛んでくる。祭壇か見張り塔を中心に、宝箱の部屋・ポーションの部屋・書斎・畑が並ぶ。登る道はない。',
    ['祭壇：マジックソウル 20%・魔法の布 50%']],
   ['大きな浮島（竜のねぐら）', '浮島と同じ場所（ずっとまれ）', '#9fdcff',
    '崩れた石柱が輪になって立つ、大きな空の島。まん中のねぐらには宝箱が 3 つ。',
@@ -2037,12 +2381,12 @@ const PLACES = [
    ['クリスタルブロック（壊すとクリスタル 1〜2 個・幸運で増える）', '地下にマナの洞窟が眠っていることがある', '白晶樹（木材一式）・まれにクリスタルの芽やクリスタルローズ', 'ユニコーンがまれに現れる']],
   ['マナの洞窟', 'クリスタルの平原の地下', '#b06cff',
    '平原の地面にぽっかり開いた穴から、ゆるやかな下り坂が地下 30 ほどまで続く天然の洞窟。奥の大広間は白い方解石とアメジストに覆われ、壁・床・天井から紫のマナクリスタルの結晶が生えている。',
-   ['マナクリスタルが手に入るのはここだけ（1 つの洞窟に結晶のブロックが 20〜28 個。ダイヤのツルハシ以上）', '幸運のツルハシで掘ると 2〜3 か所で魔導士の装備 4 部位ぶん', 'ダンジョンではないので宝箱はない']],
+   ['マナクリスタルが手に入るのはここだけ（1 つの洞窟に結晶のブロックが 20〜28 個。ダイヤのツルハシ以上）', '幸運のツルハシで掘ると 2〜3 か所で魔導士の装備 4 部位ぶん', 'ダンジョンではないので宝箱はない', '暗がりにはクリスタルゴーレムが潜む']],
   ['聖なる遺跡', '平原・ヒマワリ平原', '#f0d060',
    '崩れた石の広場から、らせん階段で地下 8 層へ。暗く、死者やクモ、イエローメイジ、ホーリースピリットがさまよう。仕掛け線の罠やスポナーの部屋に注意。',
    ['チェストの魔導書は、出にくいかわりにレア・エピックが中心', '7〜8 層目に宝物庫（魔導書 1〜2 冊・聖獣の卵 20%・賢者の布 30%）', '最深部の大広間で聖騎士シンシアが目覚める']],
   ['魔獣の遺跡', 'ダークフォレスト', '#9b5bd6',
-   '崩れた見張り塔の下に広がる、魔獣を閉じ込めておく地下 10 層の牢獄。牢屋・実験施設・拷問部屋・看守室が並び、パープルメイジとダークスピリットが見張る。明かりはほとんどない。',
+   '崩れた見張り塔の下に広がる、魔獣を閉じ込めておく地下 10 層の牢獄。牢屋・実験施設・拷問部屋・看守室が並び、パープルメイジとダークスピリット、鎖の亡者が見張る。明かりはほとんどない。',
    ['チェストの魔導書はレア・エピックが中心で、聖なる遺跡より出やすい', '7〜10 層目に宝物庫（魔導書 1〜2 冊・瘴気の魔石 20%・賢者の布 30%）', '最深部の半径 20 の大広間で魔獣グリムノウルが目覚める']],
 ];
 const placeGrid = document.getElementById('place-grid');
