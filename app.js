@@ -399,6 +399,41 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "space_grimoire",
+   "name": "空間の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "50",
+   "dur": "100",
+   "effect": "右クリックで自分のエンダーチェストを開く。クールタイム 1 分",
+   "desc": "転移と転送、ふたつの魔導書を束ねた魔導書。空間をたぐり寄せ、遠く離れたエンダーチェストの中へ手を伸ばす。",
+   "recipe": [
+    [
+     "teleport_grimoire",
+     "transfer_grimoire"
+    ],
+    "blue_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
+   "id": "otherworld_grimoire",
+   "name": "異界の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "80",
+   "dur": "100",
+   "effect": "右クリックで異界の箱（エンダーチェストとは別の、自分だけの 54 マスの入れ物）を開く。クールタイム 1 分",
+   "desc": "空間の魔導書をさらに深くまで開いた魔導書。この世の外にある、自分だけの大きな蔵へ通じている。",
+   "recipe": [
+    [
+     "space_grimoire"
+    ],
+    "green_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
    "id": "mercy_light_grimoire",
    "name": "慈光の魔導書",
    "rarity": "epic",
@@ -566,6 +601,24 @@ const DATA = {
     [
      "explosion_grimoire",
      "wind_grimoire"
+    ],
+    "green_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
+   "id": "bouncing_bomb_grimoire",
+   "name": "跳爆の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "40",
+   "dur": "80",
+   "effect": "跳ねる火の球を前へ 1 つ。ブロックや敵に当たって跳ねるたびに威力 4 の爆発（最大 10 回跳ねる・地形は壊さない）。クールタイム 2 秒",
+   "desc": "跳球と爆発、ふたつの魔導書を束ねた魔導書。弾む火の球が、ふれた所をつぎつぎと吹き飛ばす。",
+   "recipe": [
+    [
+     "bouncing_orb_grimoire",
+     "explosion_grimoire"
     ],
     "green_core"
    ]
@@ -1161,6 +1214,30 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "space_wand",
+   "name": "空間の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "30",
+   "dur": "500",
+   "effect": "右クリックで自分のエンダーチェストを開く。クールタイム 10 秒",
+   "desc": "空間の魔導書を杖に宿したもの。ひと振りで、いつでも自分の箱の中をのぞける。",
+   "from": "space_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "otherworld_wand",
+   "name": "異界の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "50",
+   "dur": "500",
+   "effect": "右クリックで異界の箱（自分だけの 54 マスの入れ物）を開く。クールタイム 10 秒",
+   "desc": "異界の魔導書を魔法の杖に宿したもの。異界の蔵の扉を、軽々と開け閉めできる。",
+   "from": "otherworld_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "mercy_light_wand",
    "name": "慈光の杖",
    "rarity": "unique",
@@ -1302,6 +1379,18 @@ const DATA = {
    "effect": "64m 先に威力 10 の爆発を 0.5 秒ごと。地形を壊さない",
    "desc": "爆迅の魔導書をさらに研ぎ澄ませた杖。威力の高い爆発を間髪入れずに喰らわせるが、魔力の高い者でなければ使いこなすのは難しい。",
    "from": "chain_explosion_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "bouncing_bomb_wand",
+   "name": "跳爆の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "80",
+   "dur": "400",
+   "effect": "跳ねる火の球を正面と左右斜めに 3 つ。跳ねるたびに威力 8 の爆発（最大 10 回・地形は壊さない）。クールタイム 2 秒",
+   "desc": "跳爆の魔導書を杖に宿したもの。三つの火の球が扇のように散り、あたり一面を爆炎に包む。",
+   "from": "bouncing_bomb_grimoire"
   },
   {
    "kind": "wand",
@@ -1593,7 +1682,7 @@ const ANIM = {
   sage_cloth: [24, 2], archmage_cloth: [24, 2], magic_crystal: [24, 2], sage_pouch: [24, 2], archmage_pouch: [24, 2],
   world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
   thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2], durandal: [24, 2],
-  binding_wand: [24, 2], life_drain_wand: [24, 2], mana_drain_wand: [24, 2], gravity_wand: [24, 2], starfall_wand: [24, 2], transfer_wand: [24, 2],
+  binding_wand: [24, 2], life_drain_wand: [24, 2], mana_drain_wand: [24, 2], gravity_wand: [24, 2], starfall_wand: [24, 2], transfer_wand: [24, 2], space_wand: [24, 2], otherworld_wand: [24, 2], bouncing_bomb_wand: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
@@ -1656,9 +1745,9 @@ function el(tag, cls, text) {
 function nameOf(id) {
   return DATA.names[id] || (byId[id] && byId[id].name) || id;
 }
-/** 杖の作業台の材料（レゾフレア＝アンリーシュだけ魔法の杖、ほかは壊れた杖）。 */
+/** 杖の作業台の材料（レゾフレア＝アンリーシュと異界の杖は魔法の杖、ほかは壊れた杖）。 */
 function wandBase(wand) {
-  return wand === 'resoflare_unleash' ? 'magic_wand' : 'broken_wand';
+  return wand === 'resoflare_unleash' || wand === 'otherworld_wand' ? 'magic_wand' : 'broken_wand';
 }
 
 /* ---------- ボスのドロップ品の、攻略での役目（必要性）。ボスのカードと説明の窓に出す ---------- */
