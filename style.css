@@ -663,3 +663,33 @@ dialog[open] {
 @media (prefers-reduced-motion: reduce) {
   .flow-path, .flow-node, .flow-join, .flow-slot { transition: none !important; }
 }
+
+/* 共通の小物 */
+.center { text-align: center; }
+
+/* ボスから手に入るもののネタバレ防止（app.js の secretTile）。押すまで黒いシルエットと「？？？」 */
+.tile.is-secret .tile-icon > * { filter: brightness(0) contrast(.3); transition: filter .3s ease; }
+.tile.is-secret .tile-name { color: var(--muted) !important; letter-spacing: .2em; }
+.tile.is-secret:hover .tile-icon > * { filter: brightness(.25) contrast(.5); }
+body:has(dialog[open]) .tile.is-secret * { transition: none; }
+
+/* ボスの説明の窓：目安の戦力 */
+.boss-gear { font-size: .9rem; color: #e6dcc0; }
+
+/* 生き物：上の説明 */
+.creature-notes { max-width: 820px; margin: 0 auto 24px; color: #d6cfe8; font-size: .95rem; }
+
+/* 進め方 */
+.guide-steps .feature-icons { margin: 8px 0 4px; }
+.guide-steps p { color: #d6cfe8; }
+.spoilers { display: grid; gap: 10px; }
+details.spoiler summary {
+  list-style: none; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px;
+}
+details.spoiler summary::-webkit-details-marker { display: none; }
+details.spoiler summary::before { content: '▸'; color: var(--gold); transition: transform .2s; display: inline-block; }
+details.spoiler[open] summary::before { transform: rotate(90deg); }
+details.spoiler summary span { color: var(--muted); font-weight: 400; font-size: .85rem; }
+details.spoiler[open] { border-color: var(--violet); }
+details.spoiler h3 { font-family: var(--serif), serif; color: var(--gold); font-size: 1.15rem; margin: 14px 0 6px; }
+details.spoiler p { margin: 6px 0 0; }
