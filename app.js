@@ -1836,10 +1836,10 @@ renderCatalog();
 /* ---------- 合成台 ---------- */
 const CORES = [
   ['red_core', 'レッドコア', 'レッドメイジ 1% ／ フレイムメイジ 3% ／ 炎竜レギウス 20% ／ 焔魔イグニード 50%'],
-  ['green_core', 'グリーンコア', 'グリーンメイジ 1% ／ アースメイジ 3% ／ ハーピィ 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
-  ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
+  ['green_core', 'グリーンコア', 'グリーンメイジ 1% ／ アースメイジ 3% ／ ハーピィ 3% ／ ルーン・センチネル 3% ／ 森羅の守護者 20% ／ ルーンの神兵 50%'],
+  ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ ホロウ・ローブ 3% ／ シェルクラブ 5% ／ 氷竜グライオリア 20% ／ 海王ノーデンス 50%'],
   ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ クリスタルゴーレム 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ 雷獣フルガリオン 20% ／ 聖騎士シンシア 50%'],
-  ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ 鎖の亡者 3% ／ 深淵の者 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
+  ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ グリモア・ミミック 3% ／ 鎖の亡者 3% ／ 深淵の者 3% ／ ダークスピリット 5% ／ 魔導士テセロス 20% ／ 魔獣グリムノウル 50%'],
 ];
 const coreList = document.getElementById('core-list');
 for (const [id, name, from] of CORES) {
@@ -2117,10 +2117,18 @@ const MOBS = [
   { name: 'シェルクラブ', icon: ['pic', 'mob_shell_crab'], type: '敵', hp: '100', where: '砂浜・石だらけの海岸・大海の塔',
     text: '青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。', drops: [['blue_core', '5%']],
     view: { parts: [{ key: 'shell_crab', tex: 'shell_crab' }] } },
+  { name: 'ホロウ・ローブ', icon: ['pic', 'mob_hollow_robe'], type: '敵（浮く）', hp: '120', where: '自然には湧かない（スポーンエッグ）',
+    text: '中身のないローブだけが浮かぶ魔法使い。相手と 6〜12m の間をとり、3 秒ごとに凍える魔弾（魔法 8 と鈍化 I・3 秒）を撃つ。魔導書を頭の上に掲げたら氷の詠唱の合図で、1 秒後に相手の足もとから氷柱が立つ（半径 1.5m・魔法 12 と凍結 2 秒）。近づかれると掌で突く（10）。矢などの飛び道具は半分しか効かず、攻撃を受けるとときどき 6〜10m 先へ消えて現れる。',
+    drops: [['blue_core', '3%']],
+    view: { parts: [{ key: 'hollow_robe', tex: 'hollow_robe', glow: 'hollow_robe_glow', bright: 'hollow_robe_bright' }] } },
   { name: 'ハーピィ', icon: ['pic', 'mob_harpy'], type: '敵（飛ぶ）', hp: '40', where: '山岳・空に浮かぶ島（どちらも暗いときだけ）',
     text: '赤い体毛に青い翼の、鳥の脚をした魔物。相手の上空を回り、甲高く鳴いて翼をたたむと急降下してくる（7 ダメージと強いノックバック）。8 秒ごとに羽根を 3 本投げる。弱ると一度だけ高く逃げる。落下ダメージを受けない。',
     drops: [['gale_grimoire', '1%'], ['green_core', '3%']],
     view: { parts: [{ key: 'harpy', tex: 'harpy', glow: 'harpy_glow' }] } },
+  { name: 'ルーン・センチネル', icon: ['pic', 'mob_rune_sentinel'], type: '敵', hp: '250', where: '自然には湧かない（スポーンエッグ）',
+    text: 'ルーンを刻んだ石の番人。浮かぶ拳で殴り（16）、右の拳を後ろへ引いたら拳を飛ばしてくる合図（物理 12。当たっても外れても手もとへ戻る）。両拳を頭の上まで上げたら地面を叩く合図で、半径 6m に 10 ダメージと打ち上げ。体力が半分を切ると覚醒してルーンが強く光り、足が速くなって技の間隔も短くなる。ノックバックを受けない。',
+    drops: [['green_core', '3%']],
+    view: { parts: [{ key: 'rune_sentinel', tex: 'rune_sentinel', glow: 'rune_sentinel_glow', bright: 'rune_sentinel_bright' }] } },
   { name: 'サンダーエレメント', icon: ['pic', 'mob_thunder_element'], type: '敵', hp: '40', where: '雷獣の渓谷',
     text: 'ビリビリした雷の塊。宙をただよい、15m 以内の相手に雷のビームを放つ。炎が効かない。', drops: [['yellow_core', '5%']],
     view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow' }] } },
@@ -2134,6 +2142,10 @@ const MOBS = [
     text: '肩や背中からマナクリスタルが突き出た岩の人形。長い腕で殴り（14）、両腕を上げて地面を叩くと、半径 5m に結晶のトゲが生える（10 ダメージと打ち上げ）。足もとに光の輪が広がったら離れること。',
     drops: [['crystal_wall_grimoire', '1%'], ['yellow_core', '3%']],
     view: { parts: [{ key: 'crystal_golem', tex: 'crystal_golem', glow: 'crystal_golem_glow' }] } },
+  { name: 'グリモア・ミミック', icon: ['pic', 'mob_grimoire_mimic'], type: '敵（飛ぶ）', hp: '50', where: '自然には湧かない（スポーンエッグ）',
+    text: '床に置かれた魔導書のふりをした魔物。4m 以内に近づくか攻撃すると目を覚まし、宙に浮いて噛みつく（8。プレイヤーはマナも 5 吸われる）。6 秒ごとにページを 3 枚飛ばす（魔法 3）。相手を 10 秒見失うと、また床に降りて本のふりに戻る。',
+    drops: [['purple_core', '3%']],
+    view: { parts: [{ key: 'grimoire_mimic', tex: 'grimoire_mimic', glow: 'grimoire_mimic_glow', bright: 'grimoire_mimic_bright' }] } },
   { name: '鎖の亡者', icon: ['pic', 'mob_chain_wraith'], type: '敵（アンデッド）', hp: '80', where: '魔獣の遺跡・暗い森（まれ）',
     text: '錆びた鎧を着た亡霊。右腕を後ろへ引いたら鎖を投げてくる合図で、当たると目の前まで引き寄せられる。囲まれると鎖を振り回す。兜があるので日光では燃えない。',
     drops: [['binding_grimoire', '1%'], ['purple_core', '3%']],
