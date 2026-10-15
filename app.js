@@ -388,6 +388,17 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "transfer_grimoire",
+   "name": "転送の魔導書",
+   "rarity": "epic",
+   "source": "chest",
+   "mana": "500",
+   "dur": "100",
+   "effect": "転送魔法陣を右クリックでそのネットワークに紐づけ（1 つだけ）。右クリックで一覧を開き、選んだ魔法陣の上へ転送。距離・ディメンションによらずマナ 500",
+   "desc": "小さな魔法陣が描かれた魔導書。結んだ魔法陣のもとへ、どこからでも渡れる。"
+  },
+  {
+   "kind": "grimoire",
    "id": "mercy_light_grimoire",
    "name": "慈光の魔導書",
    "rarity": "epic",
@@ -1138,6 +1149,18 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "transfer_wand",
+   "name": "転送の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "500",
+   "dur": "1000",
+   "effect": "転送魔法陣のネットワークにいくつでも紐づけられる（もう一度右クリック・画面の × で外す）。右クリックで一覧を開き、選んだ魔法陣の上へ転送",
+   "desc": "転送の魔導書を杖に宿したもの。いくつもの魔法陣の網を、ひとつの杖で渡り歩ける。",
+   "from": "transfer_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "mercy_light_wand",
    "name": "慈光の杖",
    "rarity": "unique",
@@ -1423,6 +1446,7 @@ const DATA = {
   "wizard_pouch": "ウィザードポーチ",
   "sage_pouch": "セイジポーチ",
   "archmage_pouch": "アークメイジポーチ",
+  "transfer_circle": "転送魔法陣",
   "excavation_grimoire": "整地の魔導書",
   "growth_grimoire": "成長の魔導書",
   "harvest_grimoire": "豊穣の魔導書",
@@ -1511,6 +1535,7 @@ const DATA = {
   "gungnir": "魔獣グリムノウルの内に眠っていた神槍。放てば闇を裂き、狙ったものを決して外さない。\n攻撃力 40・壊れない。\n右クリック【必中の神槍】：背後の魔法陣から槍が 3 本。視界の敵を追尾して必ず当たり（60 ダメージ）、足もとに闇の柱（15 × 4 回・ウィザー）。\n深淵の浸食（持つだけ）：攻撃力と魔法攻撃力が 3 倍。そのかわり受けるダメージも 3 倍。",
   "miasma_stone": "瘴気が凝り固まった魔石。耳を澄ますと、遠くで大きな翼が風を打つ音がする。",
   "broken_black_knight_pendant": "瘴気に染まり、ぼろぼろに砕けたペンダント。割れた蓋の内側には、かすれた誰かの写真の跡だけが残っている。",
+  "transfer_circle": "床に描く、3×3 マスに広がる魔法陣。ゆっくりと明滅しながら光る（明るさ 7）。当たり判定はない。\n右クリックで画面を開き、名前・ネットワークネーム・色（16 色）を決められる。同じネットワークネームの魔法陣どうしで転送でき（マナ 500・ディメンションもまたげる）、ネットワークネームを知らない人は入れない。\n作り方：マジックソウルを真ん中に、マナストーンを上下左右、マナクリスタルを四隅",
   "magic_pouch": "魔法の布で縫った、魔導書だけをしまっておけるポーチ。27 冊まで入り、壊しても中身はそのまま残る。\n作り方：魔法の布 3・革 5",
   "wizard_pouch": "魔導士の布で縫ったポーチ。魔導書のほか、杖や使い魔の召喚アイテムも 27 個まで入る。\n作り方：マジックポーチ・魔導士の布 2・ユニコーンの角・革 5（中身は引き継ぐ）",
   "sage_pouch": "賢者の布で縫ったポーチ。魔導書・杖・使い魔の召喚アイテムが 54 個まで入る。\n作り方：ウィザードポーチ・賢者の布 2・マナストーン・革 5（中身は引き継ぐ）",
@@ -1568,7 +1593,7 @@ const ANIM = {
   sage_cloth: [24, 2], archmage_cloth: [24, 2], magic_crystal: [24, 2], sage_pouch: [24, 2], archmage_pouch: [24, 2],
   world_tree_twig: [24, 2], ancient_sword: [24, 2], ancient_spear: [24, 2], spirit_king_staff: [24, 2],
   thunder_beast_sword: [24, 2], prominence_scythe: [24, 2], rune_axe: [24, 2], durandal: [24, 2],
-  binding_wand: [24, 2], life_drain_wand: [24, 2], mana_drain_wand: [24, 2], gravity_wand: [24, 2], starfall_wand: [24, 2],
+  binding_wand: [24, 2], life_drain_wand: [24, 2], mana_drain_wand: [24, 2], gravity_wand: [24, 2], starfall_wand: [24, 2], transfer_wand: [24, 2],
 };
 function animOf(id) {
   if (ANIM[id]) return ANIM[id];
