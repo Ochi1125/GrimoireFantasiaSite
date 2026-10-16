@@ -462,6 +462,17 @@ b { color: #fff; }
 .boss-fire { --b1: #2e120c; --b2: #201010; --bl: #8a3a1e; --bg-glow: rgba(255, 106, 30, .4); --bk: #ffb070; }
 .boss-demon { --b1: #2a0c10; --b2: #1c0a12; --bl: #8a1e2a; --bg-glow: rgba(220, 40, 50, .45); --bk: #ff8a7a; }
 .boss-sea { --b1: #0d2233; --b2: #121a33; --bl: #2f6a86; --bg-glow: rgba(79, 184, 216, .4); --bk: #7fd8f0; }
+/* EXTRA（隠しボス）：月夜の藤色。正体は出さず、大きな「？」だけ */
+.boss-extra-detail, .boss-extra-dialog { --b1: #141a33; --b2: #0d1022; --bl: #6f68b8; --bg-glow: rgba(190, 170, 255, .4); --bk: #d8ccff; }
+.boss-extra { margin-top: 40px; padding-top: 24px; border-top: 1px dashed var(--line); }
+.boss-extra-label { text-align: center; font-family: var(--serif), serif; letter-spacing: 0.5em; color: #cbbcff; margin: 0 0 4px; }
+.boss-grid-extra { grid-template-columns: repeat(auto-fit, minmax(180px, 220px)); justify-content: center; margin-top: 16px; }
+.boss-extra-mark {
+  width: 96px; height: 96px; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line);
+  font-family: var(--serif), serif; font-size: 3.2rem; color: #d8ccff;
+  background: radial-gradient(circle at 50% 45%, rgba(190, 170, 255, .25), rgba(10, 12, 30, .9) 70%);
+  text-shadow: 0 0 14px rgba(190, 170, 255, .8);
+}
 .boss-dark { --b1: #1c0f2a; --b2: #120b1f; --bl: #5a2f7a; --bg-glow: rgba(155, 91, 214, .45); --bk: #b98ae0; }
 .boss-thunder { --b1: #102336; --b2: #0f1a2e; --bl: #3a8ab8; --bg-glow: rgba(90, 220, 255, .45); --bk: #ffe066; }
 .boss-rune { --b1: #0e2620; --b2: #0f1d1c; --bl: #2f8a6a; --bg-glow: rgba(92, 255, 168, .4); --bk: #8affc4; }

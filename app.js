@@ -2349,8 +2349,8 @@ const MOBS = [
   { name: '炎の悪魔', icon: ['pic', 'mob_demon_imp'], type: '敵', hp: '150', where: 'フレイムジグラート（上位のダンジョン）',
     text: '宙をただよう小さな赤い悪魔。爪で相手を燃やし、炎の弾を撃つ。炎が効かない。ボスが呼び出したものは何も落とさない。', drops: [['red_core', '3%']],
     view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow', bright: 'demon_imp_bright' }] } },
-  { name: 'ホーリースピリット', icon: ['pic', 'mob_holy_spirit'], type: '敵', hp: '120', where: '聖なる遺跡',
-    text: '宙をただよう白い精霊。近接攻撃（15）と光のビーム（15）。半径 16m の自分と仲間の傷を 10 癒す（20 秒に 1 回）。', drops: [['yellow_core', '5%']],
+  { name: 'ホーリースピリット', icon: ['pic', 'mob_holy_spirit'], type: '敵', hp: '300', where: '聖なる遺跡',
+    text: '宙をただよう白い精霊。近接攻撃（25）と光のビーム（25）。半径 16m の自分と仲間の傷を 30 癒す（20 秒に 1 回）。', drops: [['yellow_core', '5%']],
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
   { name: 'クリスタルゴーレム', icon: ['pic', 'mob_crystal_golem'], type: '敵', hp: '600', where: 'マナの洞窟',
     text: '肩や背中からマナクリスタルが突き出た岩の人形。長い腕で殴り（28）、両腕を上げて地面を叩くと、半径 5m に結晶のトゲが生える（20 ダメージと打ち上げ）。足もとに光の輪が広がったら離れること。',
@@ -2364,13 +2364,15 @@ const MOBS = [
     text: '錆びた鎧を着た亡霊。殴る力は 20。右腕を後ろへ引いたら鎖を投げてくる合図で、当たると 8 ダメージで目の前まで引き寄せられる。囲まれると鎖を振り回す（12）。兜があるので日光では燃えない。',
     drops: [['binding_grimoire', '1%'], ['purple_core', '3%']],
     view: { parts: [{ key: 'chain_wraith', tex: 'chain_wraith', glow: 'chain_wraith_glow' }] } },
-  { name: 'ダークスピリット', icon: ['pic', 'mob_dark_spirit'], type: '敵', hp: '120', where: '魔獣の遺跡',
-    text: '宙をただよう闇の精霊。近接攻撃（15）と闇のビーム（15）。5 秒かけて相手の体力を吸い取る。', drops: [['purple_core', '5%'], ['life_drain_grimoire', '1%']],
+  { name: 'ダークスピリット', icon: ['pic', 'mob_dark_spirit'], type: '敵', hp: '300', where: '魔獣の遺跡',
+    text: '宙をただよう闇の精霊。近接攻撃（25）と闇のビーム（25）。5 秒かけて相手の体力を 20 吸い取る。', drops: [['purple_core', '5%'], ['life_drain_grimoire', '1%']],
     view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
   { name: '深淵の者', icon: ['pic', 'mob_abyss_dweller'], type: '敵（アンデッド）', hp: '200', where: '地下の深い所（y 0 より下の暗い場所）',
     text: '背を丸めた、得体のしれない人の形の魔物。つかまれるとマナを 15 吸われ、その分だけ傷が癒える。近づくと瘴気を吐く（吐き気・弱体化）。マナを吸うほど速くなる。明るい所を嫌い、倒すと瘴気の雲が残る。',
     drops: [['mana_drain_grimoire', '1%'], ['purple_core', '3%']],
     view: { parts: [{ key: 'abyss_dweller', tex: 'abyss_dweller', glow: 'abyss_dweller_glow' }] } },
+  { name: 'ルナスピリット', icon: ['pic', 'mob_luna_spirit'], type: '敵', hp: '400', where: 'クリスタルの平原（満月と新月の夜だけ）',
+    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [] },
 ];
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
@@ -2463,6 +2465,38 @@ function openBoss(b) {
   box.append(faceBox, body);
   document.getElementById('boss-detail-content').replaceChildren(box);
   bossDialog.className = 'boss-' + b.theme;
+  if (typeof bossDialog.showModal === 'function' && !bossDialog.open) bossDialog.showModal();
+}
+// ---- EXTRA（隠しボス。名前も強さも落とすものも出会い方も、あえて書かない）----
+const extraGrid = document.getElementById('boss-extra-grid');
+if (extraGrid) {
+  for (let i = 0; i < 2; i++) {
+    const card = el('button', 'boss-card boss-card-extra');
+    card.type = 'button';
+    card.style.setProperty('--card-glow', 'rgba(190, 170, 255, 0.45)');
+    card.style.setProperty('--card-accent', '#8f7ad8');
+    const wrap = el('div', 'boss-card-icon-wrap');
+    wrap.append(el('div', 'boss-extra-mark', '？'));
+    card.append(wrap, el('p', 'boss-card-kicker', 'EXTRA'), el('h3', 'boss-card-name', '？？？'));
+    card.setAttribute('aria-label', 'EXTRA の隠しボス。正体はわからない');
+    card.addEventListener('click', openExtra);
+    extraGrid.append(card);
+  }
+}
+function openExtra() {
+  const box = el('article', 'boss in-dialog boss-extra-detail');
+  const faceBox = el('div', 'boss-face');
+  faceBox.append(el('div', 'boss-extra-mark', '？'));
+  const body = el('div', 'boss-body');
+  body.append(el('p', 'boss-kicker', 'EXTRA'));
+  const h = el('h3', null, '？？？'); h.id = 'boss-detail-name';
+  body.append(h, el('p', null, 'この世界のどこかに、まだ誰も知らないボスがいるらしい。その姿を見た者はいない。'));
+  const ul = el('ul', 'dots');
+  ['名前：？？？', '強さ：？？？', '落とすもの：？？？', '出会い方：？？？'].forEach(t => ul.append(el('li', null, t)));
+  body.append(ul);
+  box.append(faceBox, body);
+  document.getElementById('boss-detail-content').replaceChildren(box);
+  bossDialog.className = 'boss-extra-dialog';
   if (typeof bossDialog.showModal === 'function' && !bossDialog.open) bossDialog.showModal();
 }
 bossDialog.querySelector('.dialog-close').addEventListener('click', () => bossDialog.close());
@@ -2564,7 +2598,7 @@ const PLACES = [
    ['暗い通路や部屋にアースメイジ・ルーン・センチネル・ゾンビ・スケルトンなどが湧く', '2 層の宝物庫と実験場の東の壇にいい宝箱（魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '実験場に入ると、施設の番人が目を覚ます']],
   ['クリスタルの平原', '涼しく乾いた平原の奥（沼地より珍しいバイオーム）', '#f3a8cf',
    '白っぽい草原に、淡いピンクの結晶がとがって生える聖なる野。白い幹にピンクや水色の葉をつけた白晶樹が立ち、水は神秘的な藤色。空中には小さな光の粒がただよう。',
-   ['クリスタルブロック（壊すとクリスタル 1〜2 個・幸運で増える）', '地下にマナの洞窟が眠っていることがある', '白晶樹（木材一式）・まれにクリスタルの芽やクリスタルローズ', 'ユニコーンがまれに現れる']],
+   ['クリスタルブロック（壊すとクリスタル 1〜2 個・幸運で増える）', '地下にマナの洞窟が眠っていることがある', '白晶樹（木材一式）・まれにクリスタルの芽やクリスタルローズ', 'ユニコーンがまれに現れる', '満月と新月の夜にだけ、ルナスピリットが姿を見せる']],
   ['マナの洞窟', 'クリスタルの平原の地下', '#b06cff',
    '平原の地面にぽっかり開いた穴から、ゆるやかな下り坂が地下 30 ほどまで続く天然の洞窟。奥の大広間は白い方解石とアメジストに覆われ、壁・床・天井から紫のマナクリスタルの結晶が生えている。',
    ['マナクリスタルが手に入るのはここだけ（1 つの洞窟に結晶のブロックが 20〜28 個。ダイヤのツルハシ以上）', '幸運のツルハシで掘ると 2〜3 か所で魔導士の装備 4 部位ぶん', 'ダンジョンではないので宝箱はない', '暗がりにはクリスタルゴーレムが潜む']],
