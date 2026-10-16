@@ -1477,6 +1477,7 @@ const DATA = {
   "green_core": "グリーンコア",
   "blue_core": "ブルーコア",
   "purple_core": "パープルコア",
+  "moon_core": "ムーンコア",
   "yellow_core": "イエローコア",
   "cloth": "布",
   "mana_shard": "マナのかけら",
@@ -1611,6 +1612,7 @@ const DATA = {
   "green_core": "風の魔力を凝縮したコア。淡く発光し、絶えず微風をまとっている。",
   "blue_core": "氷の魔力を凝縮したコア。触れると冷たく、表面にうっすら霜がつく。",
   "purple_core": "深い魔力を凝縮したコア。中心の光が、こちらを見返しているように静かに揺れる。",
+  "moon_core": "月の魔力を凝縮した、薄く青白いコア。\n夜が深まるほど、内側の光がかすかに満ちていく。",
   "yellow_core": "雷の魔力を凝縮したコア。ときどきパチッと鳴り、持つと指先がしびれる。",
   "cloth": "羊毛からただ織っただけの布。それ自体はただの布だが衣服を作るのには十分だ。",
   "mana_shard": "結晶になったマナの欠片。ほのかな魔力の暖かさが絶えず漂っている。",
@@ -1672,7 +1674,7 @@ const ANIM = {
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
   gungnir: [24, 2], nordensia: [24, 2],
   magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4],
-  red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2],
+  red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2], moon_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
   mana_diamond: [16, 2], manalite_ingot: [16, 2],
   tesseros_summon_circle: [8, 3], glaioria_summon_circle: [8, 3], regius_summon_circle: [8, 3], shinra_summon_circle: [8, 3], fulgarion_summon_circle: [8, 3], ignied_summon_circle: [8, 3], rune_giant_summon_circle: [8, 3], nodens_summon_circle: [8, 3], cynthia_summon_circle: [8, 3], grimnowl_summon_circle: [8, 3],
@@ -2372,7 +2374,7 @@ const MOBS = [
     drops: [['mana_drain_grimoire', '1%'], ['purple_core', '3%']],
     view: { parts: [{ key: 'abyss_dweller', tex: 'abyss_dweller', glow: 'abyss_dweller_glow' }] } },
   { name: 'ルナスピリット', icon: ['pic', 'mob_luna_spirit'], type: '敵', hp: '400', where: 'クリスタルの平原（満月と新月の夜だけ）',
-    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [] },
+    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [['moon_core', '5%']] },
 ];
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
@@ -2656,6 +2658,7 @@ const MATERIALS = [
     ['blue_core', 'ブルーメイジ・アイスメイジ・ホロウ・ローブ・シェルクラブと、ボス。', '合成台、召喚陣'],
     ['yellow_core', 'イエローメイジ・ライトメイジ・クリスタルゴーレム・サンダーエレメント・ホーリースピリットと、ボス。', '合成台、召喚陣'],
     ['purple_core', 'パープルメイジ・ダークメイジ・グリモア・ミミック・鎖の亡者・深淵の者・ダークスピリットと、ボス。', '合成台、召喚陣'],
+    ['moon_core', 'ルナスピリットが 5% で落とす。ほかにも、月の夜に関わる何かが落とすらしい……。', 'まだ使い道は見つかっていない'],
   ] },
   { title: '生き物と植物から', lead: '', items: [
     ['unicorn_horn', 'クリスタルの平原にまれに現れるユニコーンが 30% で落とす（ドロップ増加で増える）。', 'ウィザードポーチ'],
