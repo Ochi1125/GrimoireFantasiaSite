@@ -5,7 +5,7 @@
  *   VERSION … 表示する MOD のバージョン
  * ================================================================ */
 const REPO = 'Ochi1125/GrimoireFantasiaSite';
-const VERSION = '2.0.0-beta';
+const VERSION = '2.0.0';
 
 /* ---------- アイテムのデータ（言語ファイルとコードの値から作成） ---------- */
 const DATA = {
