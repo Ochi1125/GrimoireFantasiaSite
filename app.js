@@ -1462,6 +1462,31 @@ const DATA = {
   "manalite_chestplate": "マナライトのチェストプレート",
   "manalite_leggings": "マナライトのレギンス",
   "manalite_boots": "マナライトのブーツ",
+  "apprentice_summoner_hood": "見習い召喚士のフード",
+  "apprentice_summoner_robe_top": "見習い召喚士のローブ(上)",
+  "apprentice_summoner_robe_bottom": "見習い召喚士のローブ(下)",
+  "apprentice_summoner_boots": "見習い召喚士のブーツ",
+  "summoner_hood": "召喚士のフード",
+  "summoner_robe_top": "召喚士のローブ(上)",
+  "summoner_robe_bottom": "召喚士のローブ(下)",
+  "summoner_boots": "召喚士のブーツ",
+  "monster_summoner_hood": "魔物召喚士のフード",
+  "monster_summoner_robe_top": "魔物召喚士のローブ(上)",
+  "monster_summoner_robe_bottom": "魔物召喚士のローブ(下)",
+  "monster_summoner_boots": "魔物召喚士のブーツ",
+  "beast_summoner_hood": "幻獣召喚士のフード",
+  "beast_summoner_robe_top": "幻獣召喚士のローブ(上)",
+  "beast_summoner_robe_bottom": "幻獣召喚士のローブ(下)",
+  "beast_summoner_boots": "幻獣召喚士のブーツ",
+  "spirit_summoner_hood": "精霊召喚士のフード",
+  "spirit_summoner_robe_top": "精霊召喚士のローブ(上)",
+  "spirit_summoner_robe_bottom": "精霊召喚士のローブ(下)",
+  "spirit_summoner_boots": "精霊召喚士のブーツ",
+  "tanned_leather": "なめし革",
+  "summoner_leather": "召喚士の革",
+  "monster_summoner_leather": "魔物召喚士の革",
+  "beast_summoner_leather": "幻獣召喚士の革",
+  "spirit_summoner_leather": "精霊召喚士の革",
   "tesseros_summon_circle": "テセロスの召喚陣",
   "glaioria_summon_circle": "グライオリアの召喚陣",
   "regius_summon_circle": "レギウスの召喚陣",
@@ -1651,6 +1676,11 @@ const DATA = {
   "mage_cloth": "マナクリスタルの粉を織り込んだ、深い青の布。銀の縁取りが淡く光を返す。\n作り方：布をマナクリスタル 8 個で囲む。下位のダンジョン（氷の塔・浮島もふくむ）のいい宝箱に 25%、上位のダンジョンのいい宝箱に 50% で入っている。",
   "sage_cloth": "古い賢者たちが纏ったという、緑と金の布。胸元のルーンが静かに脈打っている。\n作り方：布をマナストーン 8 個で囲む。上位のダンジョン（5 か所）のいい宝箱に 25% で入っている。",
   "archmage_cloth": "魔力の結晶を砕いて染ませた、深い紫の布。糸の一本一本に濃いマナが流れている。\n作り方：布を魔力の結晶 8 個で囲む。宝箱からは出ない。",
+  "tanned_leather": "革を四枚、丁寧になめして一枚にまとめたもの。やわらかく、マナをよく吸う。\n作り方：革 4 つを 2×2 に並べる。",
+  "summoner_leather": "マナのかけらを揉みこんだなめし革。触れると、小さな生き物の気配がする。\n作り方：なめし革をマナのかけら 8 個で囲む。下位のダンジョンのいい宝箱に 50% で入っている。",
+  "monster_summoner_leather": "マナクリスタルの粉で染めた、黒ずんだ赤の革。魔物の唸り声を吸いこんでいるという。\n作り方：なめし革をマナクリスタル 8 個で囲む。下位のダンジョンのいい宝箱に 25%、上位のダンジョンのいい宝箱に 50% で入っている。",
+  "beast_summoner_leather": "マナストーンを溶かして染めた空色の革。伝説の獣たちが好む匂いがする。\n作り方：なめし革をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱に 25% で入っている。",
+  "spirit_summoner_leather": "魔力の結晶をすりこんだ、真珠のように白い革。精霊たちがそっと寄ってくる。\n作り方：なめし革を魔力の結晶 8 個で囲む。宝箱からは出ない。",
   "magic_crystal": "紫色の魔力が閉じ込められた結晶。\n強大な魔の者の体内で、長い年月をかけて凝り固まったものだという。\n後半のボスだけが落とし、先のボスほど多い（ドロップ増加は効かない）。大魔導士の布の材料。",
   "nordensia": "海王ノーデンスが携えていた三叉の槍。穂先から、いつも冷たい霧がこぼれている。\n攻撃力 45・壊れない。\n海王の威厳（持つだけ）：水中呼吸・イルカの好意。水の中でも地上と同じ速さで掘れて、動ける。\n右クリック：氷の槍（30 ダメージ・2 秒凍結）。\n水中で右クリック長押し【大渦潮】：半径 16 m の敵を前方 4 m へ引き寄せて縛る（最長 10 秒・0.5 秒ごとに 3 ダメージ。クールタイム 30 秒）。",
   "ancient_sword": "竜のねぐらに眠っていた古びた剣。刃は欠け、柄の飾りもすり減っているが、いまだに鋭い。\n攻撃力 16・壊れない。\n氷竜の牙：当てた相手を 2 秒凍結。\n白銀の竜巻：ダッシュ攻撃で相手の足もとに氷の竜巻。半径 3 m の敵に 24 ダメージと打ち上げ（クールタイム 5 秒）。",
@@ -2270,6 +2300,32 @@ const ARMORS = [
     def: '4 / 9 / 7 / 4', mdef: '4 / 5 / 4 / 3（計 16）', dur: '42', tough: '4',
     effect: '1 部位ごとにマナ回復速度 +100%\n4 部位で与える魔法ダメージ +100%\nノックバック耐性（1 部位 0.1）・燃えない',
     material: 'マナライトインゴット（ネザライトインゴット＋魔力の結晶 8 個）' },
+  { id: 'apprentice_summoner', group: 'summoner', name: '見習い召喚士の装束', rarity: 'common', tex: 'apprentice_summoner_robe',
+    pieces: ['apprentice_summoner_hood', 'apprentice_summoner_robe_top', 'apprentice_summoner_robe_bottom', 'apprentice_summoner_boots'],
+    desc: 'はじめて使い魔と契約した者が着る、なめし革のフードとケープ。',
+    def: '0 / 1 / 1 / 0', mdef: '1 / 2 / 2 / 1（計 6）', dur: '6', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +1.25%\n4 部位で呼べる使い魔の種類 +1', material: 'なめし革（革 4 つ）' },
+  { id: 'summoner', group: 'summoner', name: '召喚士の装束', rarity: 'uncommon', tex: 'summoner_robe',
+    pieces: ['summoner_hood', 'summoner_robe_top', 'summoner_robe_bottom', 'summoner_boots'],
+    desc: '背中に召喚陣を縫いこんだ、一人前の召喚士の装束。銅の鈴が使い魔を呼ぶ。',
+    def: '1 / 3 / 2 / 1', mdef: '2 / 4 / 3 / 2（計 11）', dur: '15', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +2.5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −5%', material: '召喚士の革（なめし革＋マナのかけら 8 個）' },
+  { id: 'monster_summoner', group: 'summoner', name: '魔物召喚士の装束', rarity: 'rare', tex: 'monster_summoner_robe',
+    pieces: ['monster_summoner_hood', 'monster_summoner_robe_top', 'monster_summoner_robe_bottom', 'monster_summoner_boots'],
+    desc: '骨の角と牙をあしらった魔物使いの装束。荒々しい使い魔ほど、よく懐く。',
+    def: '1 / 4 / 3 / 1', mdef: '3 / 6 / 5 / 3（計 17）', dur: '22', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −10%', material: '魔物召喚士の革（なめし革＋マナクリスタル 8 個）' },
+  { id: 'beast_summoner', group: 'summoner', name: '幻獣召喚士の装束', rarity: 'epic', tex: 'beast_summoner_robe',
+    pieces: ['beast_summoner_hood', 'beast_summoner_robe_top', 'beast_summoner_robe_bottom', 'beast_summoner_boots'],
+    desc: '一角の額飾りとたたんだ翼をもつ装束。幻獣たちが仲間とみなしてくれる。',
+    def: '2 / 4 / 4 / 2', mdef: '5 / 8 / 6 / 5（計 24）', dur: '30', tough: '1',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +8.75%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −15%、使い魔の体力 +20%', material: '幻獣召喚士の革（なめし革＋マナストーン 8 個）' },
+  { id: 'spirit_summoner', group: 'summoner', name: '精霊召喚士の装束', rarity: 'unique', tex: 'spirit_summoner_robe',
+    pieces: ['spirit_summoner_hood', 'spirit_summoner_robe_top', 'spirit_summoner_robe_bottom', 'spirit_summoner_boots'],
+    desc: '精霊たちに愛された者だけがまとう装束。まわりを五色の精霊が巡っている。',
+    def: '3 / 6 / 5 / 3', mdef: '6 / 10 / 8 / 6（計 30）', dur: '42', tough: '6',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +15%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −20%、使い魔の体力 +50%\nノックバック耐性（1 部位 0.1）・燃えない',
+    material: '精霊召喚士の革（なめし革＋魔力の結晶 8 個。魔力の結晶は後半のボスが落とす）' },
 ];
 RARITY.common = 'コモン';
 /** グレーの人型（プレイヤーと同じ形）に防具 4 部位を着せた 3D。脚の回転の中心はプレイヤーと同じ ±1.9。 */
@@ -2278,21 +2334,21 @@ function armorView(a) {
   const layer = slot => ({ key: `${a.id}_${slot}`, tex: a.tex, glow: a.tex + '_glow', bright: a.tex + '_bright', pose: legs });
   return {
     parts: [{ key: 'humanoid', tex: 'mannequin', hide: ['hat'] }, layer('Hat'), layer('Top'), layer('Bottom'), layer('Boots')],
-    toggles: [{ label: a.group === 'robe' ? '帽子' : 'ヘルメット', index: 1 }, { label: '上', index: 2 }, { label: '下', index: 3 }, { label: '靴', index: 4 }],
+    toggles: [{ label: { robe: '帽子', metal: 'ヘルメット', summoner: 'フード' }[a.group], index: 1 }, { label: '上', index: 2 }, { label: '下', index: 3 }, { label: '靴', index: 4 }],
   };
 }
 function openArmor(a) {
   const icons = el('div', 'feature-icons');
   a.pieces.forEach(p => icons.append(sprite(p, 32)));
   openInfo({
-    name: a.name, kind: `${a.group === 'robe' ? '魔法使いの装束' : '魔法金属の鎧'} ・ ${RARITY[a.rarity]}`, kindClass: 'r-' + a.rarity,
+    name: a.name, kind: `${{ robe: '魔法使いの装束', metal: '魔法金属の鎧', summoner: '召喚士の装束' }[a.group]} ・ ${RARITY[a.rarity]}`, kindClass: 'r-' + a.rarity,
     desc: a.desc, view: armorView(a),
     stats: [['部位', icons], ['レア度', RARITY[a.rarity]], ['防御', a.def + '（頭 / 胴 / 脚 / 足）'], ['魔法防御', a.mdef], ['防具強度', a.tough],
       ['耐久倍率', a.dur], ['効果', a.effect], ['素材', a.material]],
   });
 }
 for (const a of ARMORS) {
-  document.getElementById(a.group === 'robe' ? 'robe-grid' : 'metal-grid')
+  document.getElementById({ robe: 'robe-grid', metal: 'metal-grid', summoner: 'summoner-grid' }[a.group])
     .append(tile(sprite(a.pieces[1], 40), a.name, () => openArmor(a), 'r-' + a.rarity));
 }
 
@@ -2646,6 +2702,13 @@ const MATERIALS = [
     ['mage_cloth', '布をマナクリスタル 8 個で囲む。いい宝箱にも入っている（下位のダンジョンは 25% で 1〜2 枚、上位のダンジョンは 50% で 2〜4 枚）。', '魔導士の装束、ウィザードポーチ'],
     ['sage_cloth', '布をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱にも 25% で 1〜2 枚入っている。', '賢者の装束、セイジポーチ'],
     ['archmage_cloth', '布を魔力の結晶 8 個で囲む。宝箱からは出ない。', '大魔導士の装束、アークメイジポーチ'],
+  ] },
+  { title: '革', lead: '召喚士の装束のもと。革をなめしたなめし革を、マナの素材 8 個で囲むと上の革になる。', items: [
+    ['tanned_leather', '作業台で革 4 つを 2×2 に並べる。', '見習い召喚士の装束、上の革のしん'],
+    ['summoner_leather', 'なめし革をマナのかけら 8 個で囲む。下位のダンジョンのいい宝箱にも 50% で 2〜4 枚入っている。', '召喚士の装束'],
+    ['monster_summoner_leather', 'なめし革をマナクリスタル 8 個で囲む。いい宝箱にも入っている（下位のダンジョンは 25% で 1〜2 枚、上位のダンジョンは 50% で 2〜4 枚）。', '魔物召喚士の装束'],
+    ['beast_summoner_leather', 'なめし革をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱にも 25% で 1〜2 枚入っている。', '幻獣召喚士の装束'],
+    ['spirit_summoner_leather', 'なめし革を魔力の結晶 8 個で囲む。宝箱からは出ない。', '精霊召喚士の装束'],
   ] },
   { title: 'マナの素材', lead: 'マナが固まってできた素材。布や魔法金属の材料になる。', items: [
     ['mana_shard', '沼やマングローブの沼に出るマナスライムの、いちばん小さいものが 1〜2 個落とす（ドロップ増加で増える）。下位のダンジョンのいい宝箱にも 50% で 3〜6 個入っている。', '魔法の布、合成台、マナスチールインゴット、マナダイヤモンド、魔法使いの村人との取引、使い魔のランク上げ（経験値 5）'],
