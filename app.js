@@ -2527,37 +2527,37 @@ function dropButton(id, p) {
 /* ---------- 使い魔（7 章の召喚アイテムの順） ----------
  * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 7 章・9 章の値。 */
 const FAMS = [
-  { item: 'blue_feather', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
+  { item: 'blue_feather', passive: '攻撃力 +50%、移動速度 +20%', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
     view: { parts: [{ key: 'bird', tex: 'blue_bird', hide: ['middle_leg'] }] } },
-  { item: 'black_feather', name: '八咫烏', count: '最大 2 羽', hp: '30', how: '鋭いくちばし（8）。足が 3 本ある。', buff: '出ているあいだ 暗視', odds: '宝箱 5%',
+  { item: 'black_feather', passive: '攻撃力 +50%、つついた敵を 5 秒光らせる', name: '八咫烏', count: '最大 2 羽', hp: '30', how: '鋭いくちばし（8）。足が 3 本ある。', buff: '出ているあいだ 暗視', odds: '宝箱 5%',
     view: { parts: [{ key: 'bird', tex: 'yatagarasu' }] } },
-  { item: 'frayed_yarn', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 5%',
+  { item: 'frayed_yarn', passive: '魔法攻撃力 +50%、スキルクールタイム −10%', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 5%',
     view: { parts: [{ key: 'mofu_cat', tex: 'mofu_cat', pose: { left_hind_leg: { z: 2.5 }, right_hind_leg: { z: 2.5 } } }] } },
-  { item: 'sturdy_string', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
+  { item: 'sturdy_string', passive: '攻撃力 +30%、攻撃した相手に魔法攻撃力低下 II・魔法防御力低下 II', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
     view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
-  { item: 'ice_dragon_egg', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
+  { item: 'ice_dragon_egg', passive: '魔法攻撃力 +40%、凍結している敵へのダメージ +40%', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
     view: { parts: [{ key: 'baby_ice_dragon', tex: 'baby_ice_dragon', glow: 'baby_ice_dragon_glow', bright: 'baby_ice_dragon_bright' }] } },
-  { item: 'fire_dragon_egg', name: '幼い炎竜', count: '1 匹', hp: '50', how: '噛みつき・灼けつく息吹・炎の球。', buff: '出ているあいだ 火のダメージを受けない', odds: '炎竜レギウス 30%',
+  { item: 'fire_dragon_egg', passive: '魔法攻撃力 +40%、燃えている敵へのダメージ +30%', name: '幼い炎竜', count: '1 匹', hp: '50', how: '噛みつき・灼けつく息吹・炎の球。', buff: '出ているあいだ 火のダメージを受けない', odds: '炎竜レギウス 30%',
     view: { parts: [{ key: 'baby_fire_dragon', tex: 'baby_fire_dragon', glow: 'baby_fire_dragon_glow', bright: 'baby_fire_dragon_bright' }] } },
-  { item: 'sapling_sprout', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
+  { item: 'sapling_sprout', passive: '回復量 +50%、回復のクールタイム −20%', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
     view: { parts: [{ key: 'tree_spirit', tex: 'tree_spirit', glow: 'tree_spirit_glow' }] } },
-  { item: 'small_hat', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
+  { item: 'small_hat', passive: '魔法攻撃力 +50%、20% で攻撃をかわす', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
     view: { parts: [{ key: 'cheshire_cat', tex: 'cheshire_cat' }] } },
-  { item: 'charged_orb', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
+  { item: 'charged_orb', passive: '魔法攻撃力 +40%、移動速度 +20%', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
     view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow', bright: 'thunder_element_bright' }] } },
-  { item: 'demon_contract', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
+  { item: 'demon_contract', passive: '攻撃力・魔法攻撃力 +30%、体力 +30%', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
     view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow', bright: 'demon_imp_bright' }] } },
-  { item: 'ocean_drop', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
+  { item: 'ocean_drop', passive: '魔法攻撃力 +40%、体力 +30%', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
     view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin', glow: 'sea_dolphin_glow', bright: 'sea_dolphin_bright' }] } },
-  { item: 'holy_beast_egg', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
+  { item: 'holy_beast_egg', passive: '攻撃が当たるたびに召喚者のマナを 5 回復、スキルクールタイム −10%', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
     view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit', glow: 'holy_rabbit_glow', bright: 'holy_rabbit_bright' }] } },
-  { item: 'miasma_stone', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
+  { item: 'miasma_stone', passive: '攻撃力・魔法攻撃力 +30%、羽が当たると移動速度低下', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
     view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow', bright: 'miasma_hawk_bright' }] } },
-  { item: 'ancient_emergency_device', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
+  { item: 'ancient_emergency_device', passive: '防御力 +10、魔法防御力 +10', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
     view: { parts: [{ key: 'rune_soldier', tex: 'rune_soldier', glow: 'rune_soldier_glow' }] } },
-  { item: 'saint_soul', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
+  { item: 'saint_soul', passive: '回復量 +50%、体力 +50%', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
-  { item: 'monster_soul', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
+  { item: 'monster_soul', passive: '魔法攻撃力 +50%、与えたダメージの 10% を回復', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
     view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
 ];
 function openFam(f) {
@@ -2565,7 +2565,7 @@ function openFam(f) {
   item.append(dropButton(f.item, ''));
   openInfo({
     name: f.name, kind: '使い魔', desc: DATA.descs[f.item] || '', view: f.view,
-    stats: [['召喚アイテム', item], ['数', f.count], ['体力', f.hp], ['能力', f.how], ['主人への効果', f.buff || 'なし'], ['入手', f.odds]],
+    stats: [['召喚アイテム', item], ['数', f.count], ['体力', f.hp], ['能力', f.how], ['主人への効果', f.buff || 'なし'], ['ランク 10 のパッシブ', f.passive || 'なし'], ['入手', f.odds]],
   });
 }
 const famGrid = document.getElementById('fam-grid');
