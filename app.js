@@ -2403,7 +2403,7 @@ const MOBS = [
   { name: 'シェルクラブ', icon: ['pic', 'mob_shell_crab'], type: '敵', hp: '100', where: '砂浜・石だらけの海岸・大海の塔',
     text: '青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。', drops: [['blue_core', '5%']],
     view: { parts: [{ key: 'shell_crab', tex: 'shell_crab' }] } },
-  { name: 'ホロウ・ローブ', icon: ['pic', 'mob_hollow_robe'], type: '中立（浮く）', hp: '120', where: '図書館（最初から 2 体いて、館の中の暗い所でも湧く）',
+  { name: 'ホロウ・ローブ', icon: ['pic', 'mob_hollow_robe'], type: '中立（浮く）', hp: '120', where: '魔導図書館（最初から 2 体いて、館の中の暗い所でも湧く）',
     text: '中身のないローブだけが浮かぶ魔法使い。自分からは襲ってこないが、殴ると怒り、まわり 16m の仲間も一緒に怒る（見失って 20 秒で落ち着く）。相手と 6〜12m の間をとり、3 秒ごとに凍える魔弾（魔法 8 と鈍化 I・3 秒）を撃つ。魔導書を頭の上に掲げたら氷の詠唱の合図で、1 秒後に相手の足もとから氷柱が立つ（半径 1.5m・魔法 12 と凍結 2 秒）。近づかれると掌で突く（10）。矢などの飛び道具は半分しか効かず、攻撃を受けるとときどき 6〜10m 先へ消えて現れる。',
     drops: [['blue_core', '3%']],
     view: { parts: [{ key: 'hollow_robe', tex: 'hollow_robe', glow: 'hollow_robe_glow', bright: 'hollow_robe_bright' }] } },
@@ -2428,7 +2428,7 @@ const MOBS = [
     text: '肩や背中からマナクリスタルが突き出た、見上げるほど大きな岩の人形（高さ 5 ブロック近く）。長い腕で殴り（28）、両腕を上げて地面を叩くと、半径 5m に結晶のトゲが生える（20 ダメージと打ち上げ）。足もとに光の輪が広がったら離れること。',
     drops: [['mana_crystal', '2〜4 個'], ['crystal_wall_grimoire', '1%'], ['yellow_core', '3%']],
     view: { parts: [{ key: 'crystal_golem', tex: 'crystal_golem', glow: 'crystal_golem_glow' }] } },
-  { name: 'グリモア・ミミック', icon: ['pic', 'mob_grimoire_mimic'], type: '敵（飛ぶ）', hp: '50', where: 'ダンジョンの図書室・書庫・図書館（最初から本に化けて床に置かれている。図書館の中の暗い所でも湧く）',
+  { name: 'グリモア・ミミック', icon: ['pic', 'mob_grimoire_mimic'], type: '敵（飛ぶ）', hp: '50', where: 'ダンジョンの図書室・書庫・魔導図書館（最初から本に化けて床に置かれている。魔導図書館の中の暗い所でも湧く）',
     text: '床に置かれた魔導書のふりをした魔物。4m 以内に近づくか攻撃すると目を覚まし、宙に浮いて噛みつく（8。プレイヤーはマナも 5 吸われる）。6 秒ごとにページを 3 枚飛ばす（魔法 3）。相手を 10 秒見失うと、また床に降りて本のふりに戻る。',
     drops: [['purple_core', '3%']],
     view: { parts: [{ key: 'grimoire_mimic', tex: 'grimoire_mimic', glow: 'grimoire_mimic_glow', bright: 'grimoire_mimic_bright' }] } },
@@ -2580,8 +2580,8 @@ function dropButton(id, p) {
   return d;
 }
 
-/* ---------- 使い魔（7 章の召喚アイテムの順） ----------
- * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 7 章・9 章の値。 */
+/* ---------- 使い魔（仕様書 8 章のクリエイティブタブと同じ順。宝箱から出るもの → ボスが落とすもの（進捗の順）） ----------
+ * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 18 章の値。 */
 const FAMS = [
   { item: 'blue_feather', passive: '攻撃力 +50%、移動速度 +20%', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
     view: { parts: [{ key: 'bird', tex: 'blue_bird', hide: ['middle_leg'] }] } },
@@ -2589,6 +2589,12 @@ const FAMS = [
     view: { parts: [{ key: 'bird', tex: 'yatagarasu' }] } },
   { item: 'frayed_yarn', passive: '魔法攻撃力 +50%、スキルクールタイム −10%', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 5%',
     view: { parts: [{ key: 'mofu_cat', tex: 'mofu_cat', pose: { left_hind_leg: { z: 2.5 }, right_hind_leg: { z: 2.5 } } }] } },
+  { item: 'small_hat', passive: '魔法攻撃力 +50%、20% で攻撃をかわす', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
+    view: { parts: [{ key: 'cheshire_cat', tex: 'cheshire_cat' }] } },
+  { item: 'holy_beast_egg', passive: '攻撃が当たるたびに召喚者のマナを 5 回復、スキルクールタイム −10%', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
+    view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit', glow: 'holy_rabbit_glow', bright: 'holy_rabbit_bright' }] } },
+  { item: 'miasma_stone', passive: '攻撃力・魔法攻撃力 +30%、羽が当たると移動速度低下', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
+    view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow', bright: 'miasma_hawk_bright' }] } },
   { item: 'sturdy_string', passive: '攻撃力 +30%、攻撃した相手に魔法攻撃力低下 II・魔法防御力低下 II', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
     view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
   { item: 'ice_dragon_egg', passive: '魔法攻撃力 +40%、凍結している敵へのダメージ +40%', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
@@ -2597,20 +2603,14 @@ const FAMS = [
     view: { parts: [{ key: 'baby_fire_dragon', tex: 'baby_fire_dragon', glow: 'baby_fire_dragon_glow', bright: 'baby_fire_dragon_bright' }] } },
   { item: 'sapling_sprout', passive: '回復量 +50%、回復のクールタイム −20%', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
     view: { parts: [{ key: 'tree_spirit', tex: 'tree_spirit', glow: 'tree_spirit_glow' }] } },
-  { item: 'small_hat', passive: '魔法攻撃力 +50%、20% で攻撃をかわす', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
-    view: { parts: [{ key: 'cheshire_cat', tex: 'cheshire_cat' }] } },
   { item: 'charged_orb', passive: '魔法攻撃力 +40%、移動速度 +20%', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
     view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow', bright: 'thunder_element_bright' }] } },
   { item: 'demon_contract', passive: '攻撃力・魔法攻撃力 +30%、体力 +30%', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
     view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow', bright: 'demon_imp_bright' }] } },
-  { item: 'ocean_drop', passive: '魔法攻撃力 +40%、体力 +30%', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
-    view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin', glow: 'sea_dolphin_glow', bright: 'sea_dolphin_bright' }] } },
-  { item: 'holy_beast_egg', passive: '攻撃が当たるたびに召喚者のマナを 5 回復、スキルクールタイム −10%', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
-    view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit', glow: 'holy_rabbit_glow', bright: 'holy_rabbit_bright' }] } },
-  { item: 'miasma_stone', passive: '攻撃力・魔法攻撃力 +30%、羽が当たると移動速度低下', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
-    view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow', bright: 'miasma_hawk_bright' }] } },
   { item: 'ancient_emergency_device', passive: '防御力 +10、魔法防御力 +10', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
     view: { parts: [{ key: 'rune_soldier', tex: 'rune_soldier', glow: 'rune_soldier_glow' }] } },
+  { item: 'ocean_drop', passive: '魔法攻撃力 +40%、体力 +30%', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
+    view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin', glow: 'sea_dolphin_glow', bright: 'sea_dolphin_bright' }] } },
   { item: 'saint_soul', passive: '回復量 +50%、体力 +50%', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
   { item: 'monster_soul', passive: '魔法攻撃力 +50%、与えたダメージの 10% を回復', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
@@ -2635,7 +2635,7 @@ const PLACES = [
   ['森林の小屋', '森・花の森', '#8fcf6a',
    'メイジがひとりで住む、レンガと木の小さな家。暖炉と本棚のある部屋に宝箱が 1 つ。まわりの暗がりにはメイジや魔物が出る。',
    ['宝箱の魔導書 約 42%']],
-  ['図書館', '森・花の森（森林の小屋よりずっと珍しい）', '#a38bd6',
+  ['魔導図書館', '森・花の森（森林の小屋よりずっと珍しい）', '#a38bd6',
    'うち捨てられた 2 階建ての石と木の館。本棚の並ぶ吹き抜けのホールをホロウ・ローブがさまよい、床の本にはグリモア・ミミックが化けている。明かりが消えていて暗い。',
    ['書庫の宝箱 2 つ（1 階と 2 階の回廊）', '奥の館長の部屋にいい宝箱（マジックソウル 20%・忘却の残滓 20%・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', '館の中の暗い所では、ホロウ・ローブとグリモア・ミミックが湧く']],
   ['沼地の小屋', '沼・マングローブの沼', '#b16bd8',
