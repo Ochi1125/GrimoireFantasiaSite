@@ -125,7 +125,7 @@
     const s = g.userData.st;
     g.position.set(s.x, -s.y, -s.z);
     g.rotation.set(s.rx, -s.ry, -s.rz, 'ZYX');
-    g.scale.setScalar(s.s);
+    g.scale.set(s.s * (s.sx || 1), s.s * (s.sy || 1), s.s * (s.sz || 1));
     g.visible = s.vis;
   }
 
@@ -145,6 +145,7 @@
         }
       } else {
         const [, kd, a0, a1, a2] = a;
+        s.sx = 1; s.sy = 1; s.sz = 1;
         switch (kd) {
           case 0: s.rx = o.rx + Math.sin(t * a2 + a0) * a1; break;
           case 1: s.rz = o.rz + Math.sin(t * a2 + a0) * a1; break;
@@ -158,6 +159,8 @@
           case 9: s.vis = (((t * 20 + a0) % a1) + a1) % a1 < 3; break;
           case 10: { const n = Math.floor(t * 20 / a1); const r = Math.sin(n * 12.9898 + a0 * 78.233) * 43758.5453; s.vis = r - Math.floor(r) < a2; break; }
           case 11: s.s = 1 + Math.sin(t * a2 + a0) * a1; break;
+          case 12: { const k = Math.sin(t * a2 + a0) * a1; s.sx = 1 + k * 0.5; s.sy = 1 + k; s.sz = 1 + k * 0.5; break; }
+          case 13: { const p = (((t + a0) % 3.6) + 3.6) % 3.6; const b = p < 0.12 ? p / 0.12 : p < 0.26 ? 1 - (p - 0.12) / 0.14 : 0; s.vis = b > 0.02; s.sy = Math.max(0.02, b); break; }
         }
       }
       apply(g);
