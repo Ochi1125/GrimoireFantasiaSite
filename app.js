@@ -542,7 +542,7 @@ const DATA = {
    "source": "synthesis",
    "mana": "50",
    "dur": "70",
-   "effect": "吹雪の渦が半径 10m の敵を 5 秒引き寄せ、鈍足 IV・毎秒 10",
+   "effect": "吹雪の渦が半径 5m の敵を 5 秒引き寄せ、鈍足 IV・毎秒 10",
    "desc": "吹雪を思わせる凍てつく魔法。ページをめくると細かな雪が舞い上がる。",
    "recipe": [
     [
@@ -1340,7 +1340,7 @@ const DATA = {
    "source": "craft",
    "mana": "80",
    "dur": "340",
-   "effect": "吹雪の渦が半径 20m の敵を 10 秒引き寄せて凍らせる",
+   "effect": "吹雪の渦が半径 8m の敵を 10 秒引き寄せて凍らせる",
    "desc": "小さな吹雪がいつも渦を巻いている杖。鋭い氷が嵐となって襲い掛かる時、それは命をも容易に奪う矛となる。",
    "from": "blizzard_grimoire"
   },
@@ -2328,17 +2328,17 @@ const ARMORS = [
     pieces: ['monster_summoner_hood', 'monster_summoner_robe_top', 'monster_summoner_robe_bottom', 'monster_summoner_boots'],
     desc: '骨の角と牙をあしらった魔物使いの装束。荒々しい使い魔ほど、よく懐く。',
     def: '1 / 4 / 3 / 1', mdef: '3 / 6 / 5 / 3（計 17）', dur: '22', tough: '0',
-    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −10%', material: '魔物召喚士の革（なめし革＋マナクリスタル 8 個）' },
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −10%\n4 部位で専用の使い魔「獄鎖の魔犬」がそばにいる', material: '魔物召喚士の革（なめし革＋マナクリスタル 8 個）' },
   { id: 'beast_summoner', group: 'summoner', name: '幻獣召喚士の装束', rarity: 'epic', tex: 'beast_summoner_robe',
     pieces: ['beast_summoner_hood', 'beast_summoner_robe_top', 'beast_summoner_robe_bottom', 'beast_summoner_boots'],
     desc: '一角の額飾りとたたんだ翼をもつ装束。幻獣たちが仲間とみなしてくれる。',
     def: '2 / 4 / 4 / 2', mdef: '5 / 8 / 6 / 5（計 24）', dur: '30', tough: '1',
-    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +8.75%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −15%、使い魔の体力 +20%', material: '幻獣召喚士の革（なめし革＋マナストーン 8 個）' },
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +8.75%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −15%、使い魔の体力 +20%\n4 部位で専用の使い魔「金角のグリフォン」がそばにいる', material: '幻獣召喚士の革（なめし革＋マナストーン 8 個）' },
   { id: 'spirit_summoner', group: 'summoner', name: '精霊召喚士の装束', rarity: 'unique', tex: 'spirit_summoner_robe',
     pieces: ['spirit_summoner_hood', 'spirit_summoner_robe_top', 'spirit_summoner_robe_bottom', 'spirit_summoner_boots'],
     desc: '精霊たちに愛された者だけがまとう装束。まわりを五色の精霊が巡っている。',
     def: '3 / 6 / 5 / 3', mdef: '6 / 10 / 8 / 6（計 30）', dur: '42', tough: '6',
-    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +15%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −20%、使い魔の体力 +50%\nノックバック耐性（1 部位 0.1）・燃えない',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +15%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −20%、使い魔の体力 +50%\n4 部位で専用の使い魔「五色の精霊」がそばにいる\nノックバック耐性（1 部位 0.1）・燃えない',
     material: '精霊召喚士の革（なめし革＋魔力の結晶 8 個。魔力の結晶は後半のボスが落とす）' },
 ];
 RARITY.common = 'コモン';
@@ -2409,7 +2409,7 @@ const MOBS = [
     text: '村に合成台があると、村人のひとりが魔法使いになる。マナのかけら 5〜30 個とコンパス 1 個を渡すと、ダンジョンの地図と交換してくれる。レベルを上げるほど行ける場所が増える（新米：沼地の小屋・大きな浮島／見習い：火山・巨大樹／一人前：雷獣の渓谷・フレイムジグラート／熟練者：ルーンドーム・大海の塔／達人：聖なる遺跡・魔獣の遺跡）。',
     drops: [] },
   { name: 'ユニコーン', icon: ['pic', 'mob_unicorn'], type: '友好', hp: '30〜40', where: 'クリスタルの平原（まれ）',
-    text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。繁殖はできない。',
+    text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。なついた 2 頭にクリスタルを 1 個ずつあげると、子どもが生まれる。子どもの強さは両親から受け継ぐ。',
     drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）']], dropNote: '革 0〜2',
     view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow',
       hide: ['saddle', 'head_saddle', 'mouth_saddle_wrap', 'left_saddle_mouth', 'right_saddle_mouth', 'left_saddle_line', 'right_saddle_line',
@@ -2621,7 +2621,7 @@ const FAMS = [
     view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow', bright: 'miasma_hawk_bright' }] } },
   { item: 'wolf_dagger', passive: '攻撃力 +40%、20% で会心（1.5 倍）', name: '幻想の狼王', count: '1 頭', hp: '80', how: '素早く走り、くわえた短剣で斬る（24）。5 秒ごとに相手を駆け抜ける「影走り」（50）、12 秒ごとに半透明の狼を 2 匹呼ぶ「幻狼」。', buff: '出ているあいだ 移動速度 +10%', odds: '上位ダンジョンのいい宝箱 5%',
     view: { parts: [{ key: 'phantom_wolf', tex: 'phantom_wolf', glow: 'phantom_wolf_glow', bright: 'phantom_wolf_bright' }] } },
-  { item: 'discarded_doll', passive: '体力 +30%、操り糸で縛る数 +2', name: 'スクラップドール', count: '1 体', hp: '100', how: '糸に操られて歩き、糸で斬る（18・4m まで届く）。8 秒ごとの「操り糸」で近くの敵 3 体を縛り、防御力と魔法防御力を下げる。', buff: '出ているあいだ 受けるダメージの 15% を人形が肩代わり', odds: '上位ダンジョンのいい宝箱 5%',
+  { item: 'discarded_doll', passive: '体力 +30%、操り糸で操る数 +2', name: 'スクラップドール', count: '1 体', hp: '100', how: '糸に操られて歩き、糸で斬る（18・4m まで届く）。8 秒ごとの「操り糸」で近くの敵 3 体に糸をつなぎ、8 秒のあいだ操ってほかの敵を襲わせる。糸をつないだ敵は防御力と魔法防御力も下がる。', buff: '出ているあいだ 受けるダメージの 15% を人形が肩代わり', odds: '上位ダンジョンのいい宝箱 5%',
     view: { parts: [{ key: 'scrap_doll', tex: 'scrap_doll', glow: 'scrap_doll_glow', bright: 'scrap_doll_bright' }] } },
   { item: 'sturdy_string', passive: '攻撃力 +30%、攻撃した相手に魔法攻撃力低下 II・魔法防御力低下 II', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
     view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
@@ -2654,6 +2654,33 @@ function openFam(f) {
 }
 const famGrid = document.getElementById('fam-grid');
 for (const f of FAMS) famGrid.append(secretTile(f.item, sprite(f.item, 40), f.name, () => openFam(f)));
+
+/* ---------- 召喚士の専用使い魔（仕様書 18 章「召喚士の専用使い魔」）。絵は img/fam_◯◯.png ---------- */
+const COMPANIONS = [
+  { pic: 'fam_hell_chain_hound', name: '獄鎖の魔犬', armor: '魔物召喚士の装束', hp: '35',
+    desc: '骨の仮面をかぶった黒い魔犬。真紅のたてがみから残り火がこぼれ、首輪の鎖が鳴る。',
+    how: '噛みつく（7）。6 秒ごとの「鎖噛み」で、12 m 先までの敵へ鎖を伸ばして飛びかかり（12）、動きを鈍らせる。',
+    passive: '攻撃力 +50%、鎖噛みの移動速度低下が 5 秒',
+    view: { parts: [{ key: 'hell_chain_hound', tex: 'hell_chain_hound', glow: 'hell_chain_hound_glow', bright: 'hell_chain_hound_bright' }] } },
+  { pic: 'fam_golden_horn_griffon', name: '金角のグリフォン', armor: '幻獣召喚士の装束', hp: '50',
+    desc: '金の一本角と空色の翼をもつグリフォン。はじめから主人になついていて、鞍がなくても背に乗せてくれる。',
+    how: '右クリックで乗れる。ジャンプのキーで飛び上がり、空では見ている方へ飛ぶ（ジャンプのキーで上昇、しゃがむと降りる）。爪で飛びかかり（12）、5 秒ごとに風の刃を 3 つ（8）。12 秒ごとの「角の光」で、主人と自分を 6 回復。',
+    passive: '攻撃力・魔法攻撃力 +40%、飛ぶ速さ +20%、出ているあいだ主人は落下ダメージを受けない',
+    view: { parts: [{ key: 'golden_horn_griffon', tex: 'golden_horn_griffon', glow: 'golden_horn_griffon_glow', bright: 'golden_horn_griffon_bright' }] } },
+  { pic: 'fam_five_color_spirit', name: '五色の精霊', armor: '精霊召喚士の装束', hp: '70',
+    desc: '真珠色の髪に光輪を背負った精霊。まわりを赤・青・緑・黄・紫の光の玉が巡っている。',
+    how: '宙に浮かび、1.5 秒ごとに赤・青・緑・黄・紫の弾を順に撃つ（14。赤は小さな爆発で 22、青は移動速度低下、緑は主人を 2 回復、黄は近くの敵 2 体へ雷、紫は魔法防御力低下）。60 秒ごとの「精霊の結界」で、30 秒のあいだ中にいる仲間に力・耐性・移動速度上昇・再生・知恵の灯を配る。',
+    passive: '魔法攻撃力 +40%、精霊の結界の時間 +50%',
+    view: { parts: [{ key: 'five_color_spirit', tex: 'five_color_spirit', glow: 'five_color_spirit_glow', bright: 'five_color_spirit_bright' }] } },
+];
+function openCompanion(c) {
+  openInfo({
+    name: c.name, kind: '召喚士の専用使い魔', desc: c.desc, view: c.view,
+    stats: [['呼び方', c.armor + 'を 4 部位着る'], ['体力', c.hp], ['能力', c.how], ['ランク 10 のパッシブ', c.passive]],
+  });
+}
+const companionGrid = document.getElementById('companion-grid');
+if (companionGrid) for (const c of COMPANIONS) companionGrid.append(tile(portrait(c.pic, c.name, 44), c.name, () => openCompanion(c)));
 
 /* ---------- ダンジョン ---------- */
 const PLACES = [
