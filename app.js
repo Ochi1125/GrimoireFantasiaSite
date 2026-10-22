@@ -804,6 +804,257 @@ const DATA = {
    "effect": "自分と同じ姿の影を 3 体呼ぶ ⇔ もう一度で消す。呼ぶたびに耐久 1",
    "desc": "己の存在理由を問う禁書。頁を開けば、持ち主と同じ姿をした影が目を覚ます。"
   },
+ {
+  "kind": "grimoire",
+  "id": "frost_water_grimoire",
+  "name": "凍水の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "70",
+  "effect": "凍水の塊を撃つ（30m）。半径 2m に 6 ダメージと凍結 2 秒（ボスは凍らない）",
+  "desc": "水の魔導書に氷とブルーコアを混ぜたもの。放った水は、触れたとたんに凍りつく。",
+  "recipe": [
+   [
+    "water_grimoire",
+    "ice_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "venom_arrow_grimoire",
+  "name": "毒矢の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "40",
+  "effect": "毒の魔法の矢を 1 本撃つ。物理 8 ダメージと毒 II（8 秒）",
+  "desc": "射矢の魔導書の矢じりに毒を塗りこめたもの。かすっただけでも、毒はしっかり回る。",
+  "recipe": [
+   [
+    "arrow_grimoire",
+    "poison_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "corrosive_gale_grimoire",
+  "name": "蝕風の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "35",
+  "dur": "55",
+  "effect": "前方 10m の敵を吹き飛ばして 4 ダメージ、防御力低下 II（15 秒）",
+  "desc": "風の魔導書に腐食の力を乗せたもの。吹き抜けた風のあとには、さびた匂いが残る。",
+  "recipe": [
+   [
+    "corrosion_grimoire",
+    "wind_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "holy_water_grimoire",
+  "name": "聖水の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "60",
+  "effect": "聖水の塊を撃つ（30m）。半径 3m の敵に 6 ダメージ（アンデッドには 3 倍）、敵以外は体力 4 回復",
+  "desc": "水の魔導書に灯の光とイエローコアを溶かしたもの。仲間には癒しを、不死の者には痛みを与える。",
+  "recipe": [
+   [
+    "light_grimoire",
+    "water_grimoire"
+   ],
+   "yellow_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "ore_vein_grimoire",
+  "name": "鉱脈の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "40",
+  "dur": "120",
+  "effect": "見ている鉱石とつながった同じ鉱石を、最大 16 個まとめて掘る",
+  "desc": "整地と鉱石の魔導書をひとつにまとめたもの。ひとつ見つければ、地中の鉱脈ごと掘り出せる。",
+  "recipe": [
+   [
+    "excavation_grimoire",
+    "ore_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "blessed_rain_grimoire",
+  "name": "慈雨の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "100",
+  "effect": "見ている所（32m）に雲を呼び、半径 5m に 5 秒雨。範囲の植物に毎秒骨粉と同じ効果",
+  "desc": "水と成長の魔導書を合わせたもの。この雨を浴びた畑は、見る間に実っていく。",
+  "recipe": [
+   [
+    "water_grimoire",
+    "growth_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "deep_sea_grimoire",
+  "name": "深海の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "40",
+  "dur": "60",
+  "effect": "自分にコンジットパワー・イルカの好意・暗視を 5 分",
+  "desc": "海洋の魔導書に暗視の目を添えたもの。光の届かない海の底まで、はっきり見える。",
+  "recipe": [
+   [
+    "ocean_grimoire",
+    "night_vision_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "shadow_veil_grimoire",
+  "name": "隠形の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "自分を 1 分完全に透明にし、移動速度上昇 II。ボス以外の敵は狙いを外す",
+  "desc": "透明と加速の魔導書を合わせたもの。気配ごと消えて、風のように駆け抜ける。",
+  "recipe": [
+   [
+    "invisibility_grimoire",
+    "haste_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "thunderstorm_grimoire",
+  "name": "雷雨の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "はじけた所の上に半径 8m の雨雲を 8 秒。1 秒ごとに雲の下の敵 1 体へ雷 15、移動速度低下 II",
+  "desc": "雷の魔導書に水とブルーコアを注いだもの。呼び出した雨雲は、雨と一緒に雷を落とす。",
+  "recipe": [
+   [
+    "lightning_grimoire",
+    "water_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "blood_chain_grimoire",
+  "name": "血鎖の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "50",
+  "effect": "見ている敵 1 体（20m）を鎖で 4 秒縛る（ボスは 1 秒）。毎秒 12 ダメージ、与えた分だけ回復",
+  "desc": "束縛と吸命の魔導書を合わせたもの。深紅の鎖は、縛った相手の命を少しずつ吸い上げる。",
+  "recipe": [
+   [
+    "binding_grimoire",
+    "life_drain_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "ice_prison_grimoire",
+  "name": "氷獄の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "見ている敵 1 体（20m）を氷の檻に 4 秒閉じこめる（ボスは 1 秒）。毎秒 5、割れるとき半径 3m に 50 ダメージ",
+  "desc": "晶壁と氷晶の魔導書を合わせたもの。結晶の壁を氷で組み直し、相手を中に閉じこめる。",
+  "recipe": [
+   [
+    "crystal_wall_grimoire",
+    "ice_shard_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "star_pull_grimoire",
+  "name": "星引の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "80",
+  "dur": "60",
+  "effect": "見ている所（32m）の半径 8m の敵を 3 秒引き寄せ、流れ星を 8 個落とす",
+  "desc": "重力と星降の魔導書を合わせたもの。敵を一か所に集め、そこへ星を落とす。",
+  "recipe": [
+   [
+    "gravity_grimoire",
+    "starfall_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "starmoon_grimoire",
+  "name": "星月の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "200",
+  "dur": "60",
+  "effect": "夜だけ。まわり 24m に 15 秒、0.5 秒ごとにランダムな敵へ流れ星（15 ダメージ・半径 3m）",
+  "desc": "星降と落月の魔導書を、月の力で結んだもの。月が出ている夜にしか、星は応えない。",
+  "recipe": [
+   [
+    "starfall_grimoire",
+    "moonset_grimoire"
+   ],
+   "moon_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "glacies",
+  "name": "グラキエス",
+  "rarity": "unique",
+  "source": "synthesis",
+  "mana": "150",
+  "dur": "70",
+  "effect": "見ている所（32m）に半径 12m の大吹雪を 8 秒。敵を引き寄せて凍らせ、毎秒 15 ダメージ（ボスにも）",
+  "desc": "吹雪の魔導書にブルーコアの冷気を限界まで注ぎ込んだ、最上位の氷の魔法。吹き荒れる雪は、息をすることさえ許さない。",
+  "recipe": [
+   [
+    "blizzard_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
   {
    "kind": "wand",
    "id": "light_wand",
@@ -1439,7 +1690,175 @@ const DATA = {
    "effect": "3 秒ためないと撃てない（光ったら合図）。レゾフレアと同じ大爆発で、直撃 200 ＋ 爆発 150〜40、燻炎 20 秒",
    "desc": "レゾフレアを魔法の杖に宿し、その炎の枷を解き放ったもの。太陽のごとく燃え上がる火球は、ひとたび放たれれば何もかもを灰に還す。",
    "from": "resoflare"
-  }
+  },
+ {
+  "kind": "wand",
+  "id": "frost_water_wand",
+  "name": "凍水の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "300",
+  "effect": "凍水の塊を撃つ（60m）。半径 6m に 12 ダメージと凍結 4 秒",
+  "desc": "凍水の魔導書を杖に宿したもの。はじけた冷気が、まわりをまとめて氷漬けにする。",
+  "from": "frost_water_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "venom_arrow_wand",
+  "name": "毒矢の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "40",
+  "dur": "400",
+  "effect": "毒の矢を扇形に 5 本。1 本 物理 8 ダメージと毒 II（6 秒）",
+  "desc": "毒矢の魔導書を杖に宿したもの。扇のように広がる毒の矢が、群れごと蝕む。",
+  "from": "venom_arrow_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "corrosive_gale_wand",
+  "name": "蝕風の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "40",
+  "dur": "280",
+  "effect": "前方 15m の敵を高く吹き飛ばして 8 ダメージ、防御力低下 III と魔法防御力低下 III（20 秒）",
+  "desc": "蝕風の魔導書を杖に宿したもの。鎧も魔法の守りも、風がまとめて削り取る。",
+  "from": "corrosive_gale_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "holy_water_wand",
+  "name": "聖水の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "80",
+  "dur": "250",
+  "effect": "はじけた所に半径 8m の聖水の泉を 10 秒。中の敵に毎秒 4（アンデッドには 3 倍）、敵以外は毎秒 2 回復",
+  "desc": "聖水の魔導書を杖に宿したもの。はじけた聖水は泉となり、しばらく地に留まる。",
+  "from": "holy_water_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "ore_vein_wand",
+  "name": "鉱脈の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "800",
+  "effect": "つながった同じ鉱石を最大 64 個まとめて掘る。幸運 III と同じだけ増える",
+  "desc": "鉱脈の魔導書を杖に宿したもの。掘り出した鉱石が、なぜか少し多い。",
+  "from": "ore_vein_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "blessed_rain_wand",
+  "name": "慈雨の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "100",
+  "dur": "500",
+  "effect": "見ている所（32m）に雲を呼び、半径 10m に 10 秒雨。範囲の植物に毎秒骨粉と同じ効果",
+  "desc": "慈雨の魔導書を杖に宿したもの。広い畑ひとつ分を、雨がまるごと包む。",
+  "from": "blessed_rain_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "deep_sea_wand",
+  "name": "深海の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "200",
+  "effect": "自分とまわり 20m の敵以外すべてに、コンジットパワー・イルカの好意・暗視を 20 分",
+  "desc": "深海の魔導書を杖に宿したもの。仲間をつれて、海の底を歩いて回れる。",
+  "from": "deep_sea_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "shadow_veil_wand",
+  "name": "隠形の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "100",
+  "dur": "200",
+  "effect": "自分を 3 分完全に透明にし、移動速度上昇 III と跳躍力上昇 II",
+  "desc": "隠形の魔導書を杖に宿したもの。足音ひとつ残さず、敵の真横をすり抜けられる。",
+  "from": "shadow_veil_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "thunderstorm_wand",
+  "name": "雷雨の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "150",
+  "effect": "半径 14m の雨雲を 15 秒。0.5 秒ごとに敵 1 体へ雷 20、移動速度低下 IV",
+  "desc": "雷雨の魔導書を杖に宿したもの。空を覆う黒雲の下では、動くものから順に雷に打たれる。",
+  "from": "thunderstorm_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "blood_chain_wand",
+  "name": "血鎖の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "200",
+  "effect": "見えている敵 最大 3 体（30m）を鎖で 6 秒縛る。毎秒 10、締まるとき 30。与えた半分を回復",
+  "desc": "血鎖の魔導書を杖に宿したもの。何本もの鎖が伸び、群れの命をまとめて啜る。",
+  "from": "blood_chain_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "ice_prison_wand",
+  "name": "氷獄の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "200",
+  "effect": "見えている敵 最大 5 体（30m）を氷の檻に 6 秒。毎秒 8、割れるとき半径 4m に 60 ダメージ",
+  "desc": "氷獄の魔導書を杖に宿したもの。檻の数だけ、敵の動きが止まる。",
+  "from": "ice_prison_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "star_pull_wand",
+  "name": "星引の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "200",
+  "dur": "200",
+  "effect": "半径 14m の敵を 4 秒引き寄せ、流れ星 20 個と大きな星（60）を落とす",
+  "desc": "星引の魔導書を杖に宿したもの。集めた敵の上へ、星の雨と大きな星をひとつ落とす。",
+  "from": "star_pull_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "starmoon_wand",
+  "name": "星月の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "300",
+  "dur": "500",
+  "effect": "夜だけ。まわり 32m に 20 秒、0.25 秒ごとに流れ星（20 ダメージ・半径 4m）。最後に月光の柱 100",
+  "desc": "星月の魔導書を杖に宿したもの。星が降りやむと、最後に月の光が地を貫く。",
+  "from": "starmoon_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "glacies_enarte",
+  "name": "グラキエス＝エナルテ",
+  "rarity": "legendary",
+  "source": "craft",
+  "mana": "300",
+  "dur": "500",
+  "effect": "3 秒ためないと撃てない。半径 20m の大吹雪を 10 秒、毎秒 20。最後に氷が砕けて 100（ボスにも）",
+  "desc": "グラキエスを魔法の杖に宿したもの。吹雪が止んだとき、凍りついたすべてが一度に砕け散る。",
+  "from": "glacies"
+ }
  ],
  "names": {
   "manasteel_ingot": "マナスチールインゴット",
@@ -1729,6 +2148,7 @@ const DATA = {
 
 /* ---------- アニメーションするテクスチャ（コマ数, 1 コマの tick 数） ---------- */
 const ANIM = {
+  starmoon_grimoire: [24, 2], glacies: [24, 2], shadow_veil_wand: [24, 2], thunderstorm_wand: [24, 2], blood_chain_wand: [24, 2], ice_prison_wand: [24, 2], star_pull_wand: [24, 2], starmoon_wand: [24, 2], glacies_enarte: [24, 2],
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
   gungnir: [24, 2], nordensia: [24, 2],
   magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4],
@@ -1808,9 +2228,9 @@ function el(tag, cls, text) {
 function nameOf(id) {
   return DATA.names[id] || (byId[id] && byId[id].name) || id;
 }
-/** 杖の作業台の材料（レゾフレア＝アンリーシュと異界の杖は魔法の杖、ほかは壊れた杖）。 */
+/** 杖の作業台の材料（レゾフレア＝アンリーシュ・異界の杖・グラキエス＝エナルテは魔法の杖、ほかは壊れた杖）。 */
 function wandBase(wand) {
-  return wand === 'resoflare_unleash' || wand === 'otherworld_wand' ? 'magic_wand' : 'broken_wand';
+  return wand === 'resoflare_unleash' || wand === 'otherworld_wand' || wand === 'glacies_enarte' ? 'magic_wand' : 'broken_wand';
 }
 
 /* ---------- ボスのドロップ品の、攻略での役目（必要性）。ボスのカードと説明の窓に出す ---------- */
@@ -2113,6 +2533,7 @@ const CORES = [
   ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ ホロウ・ローブ 3% ／ シェルクラブ 5% ／ ボス 2 体（20%・50%）'],
   ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ クリスタルゴーレム 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ ボス 2 体（20%・50%）'],
   ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ グリモア・ミミック 3% ／ 鎖の亡者 3% ／ 深淵の者 3% ／ ダークスピリット 5% ／ ボス 2 体（20%・50%）'],
+  ['moon_core', 'ムーンコア', '？？？'],
 ];
 const coreList = document.getElementById('core-list');
 for (const [id, name, from] of CORES) {
@@ -2135,7 +2556,7 @@ document.querySelectorAll('.js-recipe-count').forEach(e => { e.textContent = DAT
 /* ---------- 合成の流れ図（recipe を持つ項目から自動で作る） ---------- */
 /** コアの色（線と丸のふち）。新しいコアを足したらここにも足す。 */
 const CORE_COLORS = {
-  red_core: '#ff6a4a', green_core: '#5fe08a', blue_core: '#5fb8ff', yellow_core: '#ffd84a', purple_core: '#c27bff',
+  red_core: '#ff6a4a', green_core: '#5fe08a', blue_core: '#5fb8ff', yellow_core: '#ffd84a', purple_core: '#c27bff', moon_core: '#cfe4ff',
 };
 function buildSynthesisFlow() {
   const box = document.getElementById('synthesis-flow');
@@ -2458,7 +2879,7 @@ const MOBS = [
     drops: [['mana_drain_grimoire', '1%'], ['purple_core', '3%']],
     view: { parts: [{ key: 'abyss_dweller', tex: 'abyss_dweller', glow: 'abyss_dweller_glow' }] } },
   { name: 'ルナスピリット', icon: ['pic', 'mob_luna_spirit'], type: '敵', hp: '400', where: 'クリスタルの平原（満月と新月の夜だけ）',
-    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [['moon_core', '5%']] },
+    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [], dropNote: '？？？' },
 ];
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
@@ -2790,7 +3211,7 @@ const MATERIALS = [
     ['blue_core', 'ブルーメイジ・アイスメイジ・ホロウ・ローブ・シェルクラブと、ボス。', '合成台、召喚陣'],
     ['yellow_core', 'イエローメイジ・ライトメイジ・クリスタルゴーレム・サンダーエレメント・ホーリースピリットと、ボス。', '合成台、召喚陣'],
     ['purple_core', 'パープルメイジ・ダークメイジ・グリモア・ミミック・鎖の亡者・深淵の者・ダークスピリットと、ボス。', '合成台、召喚陣'],
-    ['moon_core', 'ルナスピリットが 5% で落とす。ほかにも、月の夜に関わる何かが落とすらしい……。', 'まだ使い道は見つかっていない'],
+    ['moon_core', '？？？', '合成台'],
   ] },
   { title: '生き物と植物から', lead: '', items: [
     ['unicorn_horn', 'クリスタルの平原にまれに現れるユニコーンが 30% で落とす（ドロップ増加で増える）。', 'ウィザードポーチ'],
