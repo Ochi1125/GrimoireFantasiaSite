@@ -491,7 +491,7 @@ const DATA = {
    "source": "drop",
    "mana": "60",
    "dur": "50",
-   "effect": "20m 以内の見ている敵 1 体を闇の鎖で 4 秒動けなくする（毎秒 3 ダメージ。ボスは 1 秒）",
+   "effect": "20m 以内の見ている敵 1 体を闇の鎖で 4 秒、動きも攻撃も封じる（毎秒 3 ダメージ。ボスは 1 秒）",
    "desc": "鎖の亡者が引きずっていた魔導書。闇の鎖が、狙った獲物をその場に縫いとめる。"
   },
   {
@@ -1014,7 +1014,7 @@ const DATA = {
   "source": "synthesis",
   "mana": "60",
   "dur": "50",
-  "effect": "見ている敵 1 体（20m）を鎖で 4 秒縛る（ボスは 1 秒）。毎秒 12 ダメージ、与えた分だけ回復",
+  "effect": "見ている敵 1 体（20m）を鎖で 4 秒縛り、動きも攻撃も封じる（ボスは 1 秒）。毎秒 12 ダメージ、与えた分だけ回復",
   "desc": "束縛と吸命の魔導書を合わせたもの。深紅の鎖は、縛った相手の命を少しずつ吸い上げる。",
   "recipe": [
    [
@@ -1583,7 +1583,7 @@ const DATA = {
    "source": "craft",
    "mana": "120",
    "dur": "200",
-   "effect": "30m 以内の敵、最大 5 体を闇の鎖で 6 秒動けなくする（毎秒 6、終わるときに 20 ダメージ。ボスは 2 秒）",
+   "effect": "30m 以内の敵、最大 5 体を闇の鎖で 6 秒、動きも攻撃も封じる（毎秒 6、終わるときに 20 ダメージ。ボスは 2 秒）",
    "desc": "束縛の魔導書を杖に宿したもの。何本もの闇の鎖が、群れごと縛りあげる。",
    "from": "binding_grimoire"
   },
@@ -1883,7 +1883,7 @@ const DATA = {
   "source": "craft",
   "mana": "150",
   "dur": "200",
-  "effect": "見えている敵 最大 3 体（30m）を鎖で 6 秒縛る。毎秒 10、締まるとき 30。与えた半分を回復",
+  "effect": "見えている敵 最大 3 体（30m）を鎖で 6 秒縛り、動きも攻撃も封じる。毎秒 10、締まるとき 30。与えた半分を回復",
   "desc": "血鎖の魔導書を杖に宿したもの。何本もの鎖が伸び、群れの命をまとめて啜る。",
   "from": "blood_chain_grimoire"
  },
@@ -2236,7 +2236,7 @@ const ANIM = {
   chasing_fire_wand: [24, 2],
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
   gungnir: [24, 2], nordensia: [24, 2],
-  magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4],
+  magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4], crystal: [16, 3], mana_crystal: [24, 2],
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2], moon_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
   mana_diamond: [16, 2], manalite_ingot: [16, 2],
