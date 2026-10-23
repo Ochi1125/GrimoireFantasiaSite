@@ -67,6 +67,17 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "detect_grimoire",
+   "name": "検知の魔導書",
+   "rarity": "uncommon",
+   "source": "chest",
+   "mana": "30",
+   "dur": "100",
+   "effect": "まわり 16m の敵を 15 秒光らせる（壁ごしに見える）",
+   "desc": "潜んでいる敵のありかを暴く。光を浴びた敵は、壁の向こうにいても輪郭が浮かぶ。"
+  },
+  {
+   "kind": "grimoire",
    "id": "attraction_grimoire",
    "name": "引寄の魔導書",
    "rarity": "uncommon",
@@ -240,6 +251,17 @@ const DATA = {
    "dur": "60",
    "effect": "目の前 3m に幅 5 × 高さ 3 の結晶の壁を 10 秒。矢・弾・爆発を止め、壊されない",
    "desc": "クリスタルゴーレムの胸の奥にあった魔導書。マナの結晶が、壊れない壁となって立ちはだかる。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "decoy_grimoire",
+   "name": "身代の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "100",
+   "dur": "60",
+   "effect": "見ている所（10m まで）に自分の姿のデコイを 10 秒呼ぶ。まわり 20m のボス以外の敵が、デコイを襲う（デコイの体力 20）",
+   "desc": "自分そっくりの青白い影を置いて、敵の目をそらす。"
   },
   {
    "kind": "grimoire",
@@ -532,6 +554,24 @@ const DATA = {
      "fire_grimoire"
     ],
     "yellow_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
+   "id": "chasing_fire_grimoire",
+   "name": "追火の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "50",
+   "dur": "60",
+   "effect": "敵を追う火の球を 3 発、扇形に撃つ（1 発 魔法 12・炎上 5 秒。追う範囲 20m）",
+   "desc": "火と灯を合わせた魔導書。放った火は、逃げる敵をどこまでも追う。",
+   "recipe": [
+    [
+     "fire_grimoire",
+     "light_grimoire"
+    ],
+    "red_core"
    ]
   },
   {
@@ -1117,6 +1157,18 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "detect_wand",
+   "name": "検知の杖",
+   "rarity": "rare",
+   "source": "craft",
+   "mana": "50",
+   "dur": "500",
+   "effect": "まわり 32m の敵を 30 秒光らせる",
+   "desc": "検知の魔導書を杖に宿したもの。範囲も時間も広く、群れの位置をまとめて見渡せる。",
+   "from": "detect_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "attraction_wand",
    "name": "引寄の杖",
    "rarity": "rare",
@@ -1306,6 +1358,18 @@ const DATA = {
    "effect": "幅 9 × 高さ 4 の壁を 20 秒。しゃがんで使うと自分を囲む半球の壁（半径 4）を 15 秒",
    "desc": "晶壁の魔導書を杖に宿したもの。身を包む結晶のドームさえ作り出す。",
    "from": "crystal_wall_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "decoy_wand",
+   "name": "身代の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "150",
+   "dur": "200",
+   "effect": "見ている所に、体力 80 のデコイを 20 秒呼ぶ。まわり 32m のボス以外の敵が襲う",
+   "desc": "身代の魔導書を杖に宿したもの。長く持ちこたえる頑丈な分身を置ける。",
+   "from": "decoy_grimoire"
   },
   {
    "kind": "wand",
@@ -1582,6 +1646,18 @@ const DATA = {
    "effect": "半径 32m の近い敵 5 体の足もとに聖火（毎秒 20）",
    "desc": "聖なる光を閉じ込めた炎。消えることのない聖火が宿っている。",
    "from": "holy_fire_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "chasing_fire_wand",
+   "name": "追火の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "100",
+   "dur": "250",
+   "effect": "敵を追う火の球を 7 発、扇形に撃つ（1 発 魔法 20・炎上 8 秒。追う範囲 40m）",
+   "desc": "追火の魔導書を杖に宿したもの。七つの火が獲物を取り囲む。",
+   "from": "chasing_fire_grimoire"
   },
   {
    "kind": "wand",
@@ -1937,6 +2013,7 @@ const DATA = {
   "watching_eye": "監視する魔眼",
   "five_swords_legend": "五剣の伝承",
   "unmelting_ice": "溶けない氷",
+  "unicorn_reins": "ユニコーンの手綱",
   "wolf_dagger": "狼の短剣",
   "discarded_doll": "廃棄された人形",
   "magic_soul": "マジックソウル",
@@ -1956,6 +2033,9 @@ const DATA = {
   "chain_explosion_grimoire": "爆迅の魔導書",
   "hellfire_grimoire": "業火の魔導書",
   "holy_fire_grimoire": "聖火の魔導書",
+  "detect_grimoire": "検知の魔導書",
+  "decoy_grimoire": "身代の魔導書",
+  "chasing_fire_grimoire": "追火の魔導書",
   "miasma_grimoire": "瘴爆の魔導書",
   "rampage_grimoire": "暴爆の魔導書",
   "black_thunder_grimoire": "黒雷の魔導書",
@@ -1975,6 +2055,9 @@ const DATA = {
   "chain_explosion_wand": "爆迅の杖",
   "hellfire_wand": "業火の杖",
   "holy_fire_wand": "聖火の杖",
+  "detect_wand": "検知の杖",
+  "decoy_wand": "身代の杖",
+  "chasing_fire_wand": "追火の杖",
   "miasma_wand": "瘴爆の杖",
   "rampage_wand": "暴爆の杖",
   "black_thunder_wand": "黒雷の杖",
@@ -2086,6 +2169,7 @@ const DATA = {
   "watching_eye": "まぶたのない目玉を封じた魔具。どこにしまっておいても、なぜか視線を感じる。",
   "five_swords_legend": "光輪を背負った五振りの剣の伝説を記した巻物。一巻に一振りの剣が宿るという。",
   "unmelting_ice": "氷の塔に眠っていた、決して溶けない氷のかけら。中で小さな羽がきらめいている。",
+  "unicorn_reins": "茶色い革を編んだ手綱。握ると、ユニコーンが駆けてくる。",
   "wolf_dagger": "銀の狼の紋が彫られた短剣。柄の房に、青白く光る獣の毛が一本からまっている。",
   "discarded_doll": "つぎはぎだらけの小さな人形。切れたはずの糸が、ひとりでに指へからみついてくる。",
   "magic_soul": "淡い紫色に燃え揺れる、半透明の人魂。取り込むと肉体になじみ、扱えるマナの器そのものを押し広げる。",
@@ -2149,6 +2233,7 @@ const DATA = {
 /* ---------- アニメーションするテクスチャ（コマ数, 1 コマの tick 数） ---------- */
 const ANIM = {
   starmoon_grimoire: [24, 2], glacies: [24, 2], shadow_veil_wand: [24, 2], thunderstorm_wand: [24, 2], blood_chain_wand: [24, 2], ice_prison_wand: [24, 2], star_pull_wand: [24, 2], starmoon_wand: [24, 2], glacies_enarte: [24, 2],
+  chasing_fire_wand: [24, 2],
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
   gungnir: [24, 2], nordensia: [24, 2],
   magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4],
@@ -2831,7 +2916,7 @@ const MOBS = [
     drops: [] },
   { name: 'ユニコーン', icon: ['pic', 'mob_unicorn'], type: '友好', hp: '30〜40', where: 'クリスタルの平原（まれ）',
     text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。なついた 2 頭にクリスタルを 1 個ずつあげると、子どもが生まれる。子どもの強さは両親から受け継ぐ。',
-    drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）']], dropNote: '革 0〜2',
+    drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）'], ['unicorn_reins', '20%（ドロップ増加で 1 レベルにつき +5%）']], dropNote: '革 0〜2',
     view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow',
       hide: ['saddle', 'head_saddle', 'mouth_saddle_wrap', 'left_saddle_mouth', 'right_saddle_mouth', 'left_saddle_line', 'right_saddle_line',
         'left_front_baby_leg', 'right_front_baby_leg', 'left_hind_baby_leg', 'right_hind_baby_leg'] }] } },
@@ -3036,6 +3121,8 @@ const FAMS = [
     view: { parts: [{ key: 'halo_sword', tex: 'halo_sword', glow: 'halo_sword_glow', bright: 'halo_sword_bright' }] } },
   { item: 'unmelting_ice', passive: '魔法攻撃力 +40%、20% で相手を 1 秒凍結', name: '氷結晶の妖精', count: '最大 2 体', hp: '18', how: '氷の結晶（9）を撃ち、8 秒ごとに相手のまわりへ「冷気の輪」（8・移動速度低下）。', buff: '出ているあいだ 凍結しない', odds: '氷の塔（最上階 20%・ほかの宝箱 10%）',
     view: { parts: [{ key: 'ice_fairy', tex: 'ice_fairy', glow: 'ice_fairy_glow', bright: 'ice_fairy_bright' }] } },
+  { item: 'unicorn_reins', name: 'ユニコーン', count: '最大 1 体', hp: '80', how: '近接（15）。右クリックで乗れる。水の上を歩き、2 マスまでの段差は自動で登る。', buff: 'なし', odds: 'ユニコーンをプレイヤーが倒すと 20%（ドロップ増加で 1 レベルにつき +5%）',
+    view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow', hide: ['left_front_baby_leg', 'right_front_baby_leg', 'left_hind_baby_leg', 'right_hind_baby_leg'] }] } },
   { item: 'holy_beast_egg', passive: '攻撃が当たるたびに召喚者のマナを 5 回復、スキルクールタイム −10%', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
     view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit', glow: 'holy_rabbit_glow', bright: 'holy_rabbit_bright' }] } },
   { item: 'miasma_stone', passive: '攻撃力・魔法攻撃力 +30%、羽が当たると移動速度低下', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
