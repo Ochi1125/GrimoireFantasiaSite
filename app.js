@@ -3148,7 +3148,7 @@ const FAMS = [
     view: { parts: [{ key: 'library_owl', tex: 'library_owl', glow: 'library_owl_glow', bright: 'library_owl_bright' }] } },
   { item: 'watching_eye', passive: '魔法攻撃力 +40%、弱体化の時間 +50%', name: 'ウォッチャーアイ', count: '最大 2 体', hp: '12', how: '機械仕掛けの目。細い光線（6）で相手を光らせる。10 秒ごとの「呪縛の凝視」で移動速度低下 II と魔法防御力低下 I。', buff: '出ているあいだ 近くの敵が光って見える', odds: '宝箱 1.7%',
     view: { parts: [{ key: 'watcher_eye', tex: 'watcher_eye', glow: 'watcher_eye_glow', bright: 'watcher_eye_bright' }] } },
-  { item: 'five_swords_legend', passive: '攻撃力 +50%、飛ぶ速さ +30%', name: '光輪の剣', count: '最大 5 本（1 巻で 1 本）', hp: '10', how: '呼んでから 3 秒はその場に浮かび、そのあと主人の背中に扇形に並ぶ。敵を見つけると一瞬で飛んでいって斬る（4）。斬ったあとは相手のまわりを回りながら突き続け、倒したら次の敵へ。敵がいなくなってから背中へ戻る。5 本そろうと背中に扇が完成する。', buff: '5 本そろっているあいだ 力 I', odds: '宝箱 1.7%',
+  { item: 'five_swords_legend', passive: '攻撃力 +50%、飛ぶ速さ +30%', name: '光輪の剣', count: '最大 5 本（1 巻で 1 本）', hp: '10', how: '呼んだときに近くに敵がいなければ 2 秒その場に浮かび、そのあと主人の背中に扇形に並ぶ。敵を見つけると一瞬で飛んでいって斬る（4）。斬ったあとは相手のまわりを回りながら突き続け、倒したら次の敵へ。敵がいなくなってから背中へ戻る。5 本そろうと背中に扇が完成する。', buff: '5 本そろっているあいだ 力 I', odds: '宝箱 1.7%',
     view: { parts: [{ key: 'halo_sword', tex: 'halo_sword', glow: 'halo_sword_glow', bright: 'halo_sword_bright' }] } },
   { item: 'unmelting_ice', passive: '魔法攻撃力 +40%、20% で相手を 1 秒凍結', name: '氷結晶の妖精', count: '最大 2 体', hp: '18', how: '氷の結晶（9）を撃ち、8 秒ごとに相手のまわりへ「冷気の輪」（8・移動速度低下）。', buff: '出ているあいだ 凍結しない', odds: '氷の塔（最上階 20%・ほかの宝箱 10%）',
     view: { parts: [{ key: 'ice_fairy', tex: 'ice_fairy', glow: 'ice_fairy_glow', bright: 'ice_fairy_bright' }] } },
