@@ -276,6 +276,24 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "blessed_rain_grimoire",
+   "name": "慈雨の魔導書",
+   "rarity": "rare",
+   "source": "synthesis",
+   "mana": "60",
+   "dur": "100",
+   "effect": "見ている所（32m）に雲を呼び、半径 5m に 5 秒雨。雨の下の敵以外の体力を毎秒 2 回復",
+   "desc": "回復と水の魔導書を合わせたもの。やわらかな雨が、浴びた者の傷を洗い流していく。",
+   "recipe": [
+    [
+     "healing_grimoire",
+     "water_grimoire"
+    ],
+    "blue_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
    "id": "fire_grimoire",
    "name": "火の魔導書",
    "rarity": "rare",
@@ -936,8 +954,8 @@ const DATA = {
  },
  {
   "kind": "grimoire",
-  "id": "blessed_rain_grimoire",
-  "name": "慈雨の魔導書",
+  "id": "bountiful_rain_grimoire",
+  "name": "恵雨の魔導書",
   "rarity": "rare",
   "source": "synthesis",
   "mana": "60",
@@ -1385,6 +1403,18 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "blessed_rain_wand",
+   "name": "慈雨の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "100",
+   "dur": "500",
+   "effect": "見ている所（32m）に雲を呼び、半径 8m に 10 秒雨。雨の下の敵以外の体力を毎秒 2 回復",
+   "desc": "慈雨の魔導書を杖に宿したもの。雨は広く、長く降りつづく。",
+   "from": "blessed_rain_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "fire_wand",
    "name": "火の杖",
    "rarity": "epic",
@@ -1829,15 +1859,15 @@ const DATA = {
  },
  {
   "kind": "wand",
-  "id": "blessed_rain_wand",
-  "name": "慈雨の杖",
+  "id": "bountiful_rain_wand",
+  "name": "恵雨の杖",
   "rarity": "epic",
   "source": "craft",
   "mana": "100",
   "dur": "500",
   "effect": "見ている所（32m）に雲を呼び、半径 10m に 10 秒雨。範囲の植物に毎秒骨粉と同じ効果",
-  "desc": "慈雨の魔導書を杖に宿したもの。広い畑ひとつ分を、雨がまるごと包む。",
-  "from": "blessed_rain_grimoire"
+  "desc": "恵雨の魔導書を杖に宿したもの。広い畑ひとつ分を、雨がまるごと包む。",
+  "from": "bountiful_rain_grimoire"
  },
  {
   "kind": "wand",
