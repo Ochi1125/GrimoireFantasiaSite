@@ -67,6 +67,17 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "detect_grimoire",
+   "name": "検知の魔導書",
+   "rarity": "uncommon",
+   "source": "chest",
+   "mana": "30",
+   "dur": "100",
+   "effect": "まわり 16m の敵を 15 秒光らせる（壁ごしに見える）",
+   "desc": "潜んでいる敵のありかを暴く。光を浴びた敵は、壁の向こうにいても輪郭が浮かぶ。"
+  },
+  {
+   "kind": "grimoire",
    "id": "attraction_grimoire",
    "name": "引寄の魔導書",
    "rarity": "uncommon",
@@ -243,6 +254,17 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "decoy_grimoire",
+   "name": "身代の魔導書",
+   "rarity": "rare",
+   "source": "chest",
+   "mana": "100",
+   "dur": "60",
+   "effect": "見ている所（10m まで）に自分の姿のデコイを 10 秒呼ぶ。まわり 20m のボス以外の敵が、デコイを襲う（デコイの体力 20）",
+   "desc": "自分そっくりの青白い影を置いて、敵の目をそらす。"
+  },
+  {
+   "kind": "grimoire",
    "id": "healing_grimoire",
    "name": "回復の魔導書",
    "rarity": "rare",
@@ -251,6 +273,24 @@ const DATA = {
    "dur": "30",
    "effect": "体力を 6 回復（回復した量に応じてマナを使う）",
    "desc": "使用者の体力を回復する魔導書。回復系の魔法は希少であるため、高値で取引される。"
+  },
+  {
+   "kind": "grimoire",
+   "id": "blessed_rain_grimoire",
+   "name": "慈雨の魔導書",
+   "rarity": "rare",
+   "source": "synthesis",
+   "mana": "60",
+   "dur": "100",
+   "effect": "見ている所（32m）に雲を呼び、半径 5m に 5 秒雨。雨の下の敵以外の体力を毎秒 2 回復",
+   "desc": "回復と水の魔導書を合わせたもの。やわらかな雨が、浴びた者の傷を洗い流していく。",
+   "recipe": [
+    [
+     "healing_grimoire",
+     "water_grimoire"
+    ],
+    "blue_core"
+   ]
   },
   {
    "kind": "grimoire",
@@ -469,7 +509,7 @@ const DATA = {
    "source": "drop",
    "mana": "60",
    "dur": "50",
-   "effect": "20m 以内の見ている敵 1 体を闇の鎖で 4 秒動けなくする（毎秒 3 ダメージ。ボスは 1 秒）",
+   "effect": "20m 以内の見ている敵 1 体を闇の鎖で 4 秒、動きも攻撃も封じる（毎秒 3 ダメージ。ボスは 1 秒）",
    "desc": "鎖の亡者が引きずっていた魔導書。闇の鎖が、狙った獲物をその場に縫いとめる。"
   },
   {
@@ -536,13 +576,31 @@ const DATA = {
   },
   {
    "kind": "grimoire",
+   "id": "chasing_fire_grimoire",
+   "name": "追火の魔導書",
+   "rarity": "epic",
+   "source": "synthesis",
+   "mana": "50",
+   "dur": "60",
+   "effect": "敵を追う火の球を 3 発、扇形に撃つ（1 発 魔法 12・炎上 5 秒。追う範囲 20m）",
+   "desc": "火と灯を合わせた魔導書。放った火は、逃げる敵をどこまでも追う。",
+   "recipe": [
+    [
+     "fire_grimoire",
+     "light_grimoire"
+    ],
+    "red_core"
+   ]
+  },
+  {
+   "kind": "grimoire",
    "id": "blizzard_grimoire",
    "name": "吹雪の魔導書",
    "rarity": "epic",
    "source": "synthesis",
    "mana": "50",
    "dur": "70",
-   "effect": "吹雪の渦が半径 10m の敵を 5 秒引き寄せ、鈍足 IV・毎秒 10",
+   "effect": "吹雪の渦が半径 5m の敵を 5 秒引き寄せ、鈍足 IV・毎秒 10",
    "desc": "吹雪を思わせる凍てつく魔法。ページをめくると細かな雪が舞い上がる。",
    "recipe": [
     [
@@ -595,7 +653,7 @@ const DATA = {
    "source": "synthesis",
    "mana": "45",
    "dur": "128",
-   "effect": "32m 先に威力 5 の爆発。地形を壊さず 0.5 秒ごとに撃てる",
+   "effect": "32m 先に威力 5 の爆発（真ん中で 25 ダメージ）。地形を壊さず 0.5 秒ごとに撃てる",
    "desc": "爆発と風、ふたつの魔導書を束ねて作られた魔導書。一撃は控えめだが、間を置かずに何度でも撃てる。",
    "recipe": [
     [
@@ -804,6 +862,257 @@ const DATA = {
    "effect": "自分と同じ姿の影を 3 体呼ぶ ⇔ もう一度で消す。呼ぶたびに耐久 1",
    "desc": "己の存在理由を問う禁書。頁を開けば、持ち主と同じ姿をした影が目を覚ます。"
   },
+ {
+  "kind": "grimoire",
+  "id": "frost_water_grimoire",
+  "name": "凍水の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "70",
+  "effect": "凍水の塊を撃つ（30m）。半径 2m に 6 ダメージと凍結 2 秒（ボスは凍らない）",
+  "desc": "水の魔導書に氷とブルーコアを混ぜたもの。放った水は、触れたとたんに凍りつく。",
+  "recipe": [
+   [
+    "water_grimoire",
+    "ice_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "venom_arrow_grimoire",
+  "name": "毒矢の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "40",
+  "effect": "毒の魔法の矢を 1 本撃つ。物理 8 ダメージと毒 II（8 秒）",
+  "desc": "射矢の魔導書の矢じりに毒を塗りこめたもの。かすっただけでも、毒はしっかり回る。",
+  "recipe": [
+   [
+    "arrow_grimoire",
+    "poison_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "corrosive_gale_grimoire",
+  "name": "蝕風の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "35",
+  "dur": "55",
+  "effect": "前方 10m の敵を吹き飛ばして 4 ダメージ、防御力低下 II（15 秒）",
+  "desc": "風の魔導書に腐食の力を乗せたもの。吹き抜けた風のあとには、さびた匂いが残る。",
+  "recipe": [
+   [
+    "corrosion_grimoire",
+    "wind_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "holy_water_grimoire",
+  "name": "聖水の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "30",
+  "dur": "60",
+  "effect": "聖水の塊を撃つ（30m）。半径 3m の敵に 6 ダメージ（アンデッドには 3 倍）、敵以外は体力 4 回復",
+  "desc": "水の魔導書に灯の光とイエローコアを溶かしたもの。仲間には癒しを、不死の者には痛みを与える。",
+  "recipe": [
+   [
+    "light_grimoire",
+    "water_grimoire"
+   ],
+   "yellow_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "ore_vein_grimoire",
+  "name": "鉱脈の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "40",
+  "dur": "120",
+  "effect": "見ている鉱石とつながった同じ鉱石を、最大 16 個まとめて掘る",
+  "desc": "整地と鉱石の魔導書をひとつにまとめたもの。ひとつ見つければ、地中の鉱脈ごと掘り出せる。",
+  "recipe": [
+   [
+    "excavation_grimoire",
+    "ore_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "bountiful_rain_grimoire",
+  "name": "恵雨の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "100",
+  "effect": "見ている所（32m）に雲を呼び、半径 5m に 5 秒雨。範囲の植物に毎秒骨粉と同じ効果",
+  "desc": "水と成長の魔導書を合わせたもの。この雨を浴びた畑は、見る間に実っていく。",
+  "recipe": [
+   [
+    "water_grimoire",
+    "growth_grimoire"
+   ],
+   "green_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "deep_sea_grimoire",
+  "name": "深海の魔導書",
+  "rarity": "rare",
+  "source": "synthesis",
+  "mana": "40",
+  "dur": "60",
+  "effect": "自分にコンジットパワー・イルカの好意・暗視を 5 分",
+  "desc": "海洋の魔導書に暗視の目を添えたもの。光の届かない海の底まで、はっきり見える。",
+  "recipe": [
+   [
+    "ocean_grimoire",
+    "night_vision_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "shadow_veil_grimoire",
+  "name": "隠形の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "自分を 1 分完全に透明にし、移動速度上昇 II。ボス以外の敵は狙いを外す",
+  "desc": "透明と加速の魔導書を合わせたもの。気配ごと消えて、風のように駆け抜ける。",
+  "recipe": [
+   [
+    "invisibility_grimoire",
+    "haste_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "thunderstorm_grimoire",
+  "name": "雷雨の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "はじけた所の上に半径 8m の雨雲を 8 秒。1 秒ごとに雲の下の敵 1 体へ雷 15、移動速度低下 II",
+  "desc": "雷の魔導書に水とブルーコアを注いだもの。呼び出した雨雲は、雨と一緒に雷を落とす。",
+  "recipe": [
+   [
+    "lightning_grimoire",
+    "water_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "blood_chain_grimoire",
+  "name": "血鎖の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "50",
+  "effect": "見ている敵 1 体（20m）を鎖で 4 秒縛り、動きも攻撃も封じる（ボスは 1 秒）。毎秒 12 ダメージ、与えた分だけ回復",
+  "desc": "束縛と吸命の魔導書を合わせたもの。深紅の鎖は、縛った相手の命を少しずつ吸い上げる。",
+  "recipe": [
+   [
+    "binding_grimoire",
+    "life_drain_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "ice_prison_grimoire",
+  "name": "氷獄の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "60",
+  "dur": "60",
+  "effect": "見ている敵 1 体（20m）を氷の檻に 4 秒閉じこめる（ボスは 1 秒）。毎秒 5、割れるとき半径 3m に 50 ダメージ",
+  "desc": "晶壁と氷晶の魔導書を合わせたもの。結晶の壁を氷で組み直し、相手を中に閉じこめる。",
+  "recipe": [
+   [
+    "crystal_wall_grimoire",
+    "ice_shard_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "star_pull_grimoire",
+  "name": "星引の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "80",
+  "dur": "60",
+  "effect": "見ている所（32m）の半径 8m の敵を 3 秒引き寄せ、流れ星を 8 個落とす",
+  "desc": "重力と星降の魔導書を合わせたもの。敵を一か所に集め、そこへ星を落とす。",
+  "recipe": [
+   [
+    "gravity_grimoire",
+    "starfall_grimoire"
+   ],
+   "purple_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "starmoon_grimoire",
+  "name": "星月の魔導書",
+  "rarity": "epic",
+  "source": "synthesis",
+  "mana": "200",
+  "dur": "60",
+  "effect": "夜だけ。まわり 24m に 15 秒、0.5 秒ごとにランダムな敵へ流れ星（15 ダメージ・半径 3m）",
+  "desc": "星降と落月の魔導書を、月の力で結んだもの。月が出ている夜にしか、星は応えない。",
+  "recipe": [
+   [
+    "starfall_grimoire",
+    "moonset_grimoire"
+   ],
+   "moon_core"
+  ]
+ },
+ {
+  "kind": "grimoire",
+  "id": "glacies",
+  "name": "グラキエス",
+  "rarity": "unique",
+  "source": "synthesis",
+  "mana": "150",
+  "dur": "70",
+  "effect": "見ている所（32m）に半径 12m の大吹雪を 8 秒。敵を引き寄せて凍らせ、毎秒 15 ダメージ（ボスにも）",
+  "desc": "吹雪の魔導書にブルーコアの冷気を限界まで注ぎ込んだ、最上位の氷の魔法。吹き荒れる雪は、息をすることさえ許さない。",
+  "recipe": [
+   [
+    "blizzard_grimoire"
+   ],
+   "blue_core"
+  ]
+ },
   {
    "kind": "wand",
    "id": "light_wand",
@@ -863,6 +1172,18 @@ const DATA = {
    "effect": "まわり 30m の鉱石の輪郭を、鉱石ごとの色で 20 秒光らせる",
    "desc": "鉱石の魔導書を杖に宿したもの。岩の奥で眠る鉱石が、それぞれの色で浮かび上がる。",
    "from": "ore_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "detect_wand",
+   "name": "検知の杖",
+   "rarity": "rare",
+   "source": "craft",
+   "mana": "50",
+   "dur": "500",
+   "effect": "まわり 32m の敵を 30 秒光らせる",
+   "desc": "検知の魔導書を杖に宿したもの。範囲も時間も広く、群れの位置をまとめて見渡せる。",
+   "from": "detect_grimoire"
   },
   {
    "kind": "wand",
@@ -1058,6 +1379,18 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "decoy_wand",
+   "name": "身代の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "150",
+   "dur": "200",
+   "effect": "見ている所に、体力 80 のデコイを 20 秒呼ぶ。まわり 32m のボス以外の敵が襲う",
+   "desc": "身代の魔導書を杖に宿したもの。長く持ちこたえる頑丈な分身を置ける。",
+   "from": "decoy_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "healing_wand",
    "name": "回復の杖",
    "rarity": "epic",
@@ -1067,6 +1400,18 @@ const DATA = {
    "effect": "体力を 10 回復",
    "desc": "使用者の体力を回復する杖。回復系の杖はなかなか手に入らない高価な代物とされる。",
    "from": "healing_grimoire"
+  },
+  {
+   "kind": "wand",
+   "id": "blessed_rain_wand",
+   "name": "慈雨の杖",
+   "rarity": "epic",
+   "source": "craft",
+   "mana": "100",
+   "dur": "500",
+   "effect": "見ている所（32m）に雲を呼び、半径 8m に 10 秒雨。雨の下の敵以外の体力を毎秒 2 回復",
+   "desc": "慈雨の魔導書を杖に宿したもの。雨は広く、長く降りつづく。",
+   "from": "blessed_rain_grimoire"
   },
   {
    "kind": "wand",
@@ -1268,7 +1613,7 @@ const DATA = {
    "source": "craft",
    "mana": "120",
    "dur": "200",
-   "effect": "30m 以内の敵、最大 5 体を闇の鎖で 6 秒動けなくする（毎秒 6、終わるときに 20 ダメージ。ボスは 2 秒）",
+   "effect": "30m 以内の敵、最大 5 体を闇の鎖で 6 秒、動きも攻撃も封じる（毎秒 6、終わるときに 20 ダメージ。ボスは 2 秒）",
    "desc": "束縛の魔導書を杖に宿したもの。何本もの闇の鎖が、群れごと縛りあげる。",
    "from": "binding_grimoire"
   },
@@ -1334,13 +1679,25 @@ const DATA = {
   },
   {
    "kind": "wand",
+   "id": "chasing_fire_wand",
+   "name": "追火の杖",
+   "rarity": "unique",
+   "source": "craft",
+   "mana": "100",
+   "dur": "250",
+   "effect": "敵を追う火の球を 7 発、扇形に撃つ（1 発 魔法 20・炎上 8 秒。追う範囲 40m）",
+   "desc": "追火の魔導書を杖に宿したもの。七つの火が獲物を取り囲む。",
+   "from": "chasing_fire_grimoire"
+  },
+  {
+   "kind": "wand",
    "id": "blizzard_wand",
    "name": "吹雪の杖",
    "rarity": "unique",
    "source": "craft",
    "mana": "80",
    "dur": "340",
-   "effect": "吹雪の渦が半径 20m の敵を 10 秒引き寄せて凍らせる",
+   "effect": "吹雪の渦が半径 8m の敵を 10 秒引き寄せて凍らせる",
    "desc": "小さな吹雪がいつも渦を巻いている杖。鋭い氷が嵐となって襲い掛かる時、それは命をも容易に奪う矛となる。",
    "from": "blizzard_grimoire"
   },
@@ -1376,7 +1733,7 @@ const DATA = {
    "source": "craft",
    "mana": "80",
    "dur": "1024",
-   "effect": "64m 先に威力 10 の爆発を 0.5 秒ごと。地形を壊さない",
+   "effect": "64m 先に威力 10 の爆発（真ん中で 50 ダメージ）を 0.5 秒ごと。地形を壊さない",
    "desc": "爆迅の魔導書をさらに研ぎ澄ませた杖。威力の高い爆発を間髪入れずに喰らわせるが、魔力の高い者でなければ使いこなすのは難しい。",
    "from": "chain_explosion_grimoire"
   },
@@ -1439,7 +1796,175 @@ const DATA = {
    "effect": "3 秒ためないと撃てない（光ったら合図）。レゾフレアと同じ大爆発で、直撃 200 ＋ 爆発 150〜40、燻炎 20 秒",
    "desc": "レゾフレアを魔法の杖に宿し、その炎の枷を解き放ったもの。太陽のごとく燃え上がる火球は、ひとたび放たれれば何もかもを灰に還す。",
    "from": "resoflare"
-  }
+  },
+ {
+  "kind": "wand",
+  "id": "frost_water_wand",
+  "name": "凍水の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "300",
+  "effect": "凍水の塊を撃つ（60m）。半径 6m に 12 ダメージと凍結 4 秒",
+  "desc": "凍水の魔導書を杖に宿したもの。はじけた冷気が、まわりをまとめて氷漬けにする。",
+  "from": "frost_water_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "venom_arrow_wand",
+  "name": "毒矢の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "40",
+  "dur": "400",
+  "effect": "毒の矢を扇形に 5 本。1 本 物理 8 ダメージと毒 II（6 秒）",
+  "desc": "毒矢の魔導書を杖に宿したもの。扇のように広がる毒の矢が、群れごと蝕む。",
+  "from": "venom_arrow_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "corrosive_gale_wand",
+  "name": "蝕風の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "40",
+  "dur": "280",
+  "effect": "前方 15m の敵を高く吹き飛ばして 8 ダメージ、防御力低下 III と魔法防御力低下 III（20 秒）",
+  "desc": "蝕風の魔導書を杖に宿したもの。鎧も魔法の守りも、風がまとめて削り取る。",
+  "from": "corrosive_gale_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "holy_water_wand",
+  "name": "聖水の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "80",
+  "dur": "250",
+  "effect": "はじけた所に半径 8m の聖水の泉を 10 秒。中の敵に毎秒 4（アンデッドには 3 倍）、敵以外は毎秒 2 回復",
+  "desc": "聖水の魔導書を杖に宿したもの。はじけた聖水は泉となり、しばらく地に留まる。",
+  "from": "holy_water_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "ore_vein_wand",
+  "name": "鉱脈の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "800",
+  "effect": "つながった同じ鉱石を最大 64 個まとめて掘る。幸運 III と同じだけ増える",
+  "desc": "鉱脈の魔導書を杖に宿したもの。掘り出した鉱石が、なぜか少し多い。",
+  "from": "ore_vein_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "bountiful_rain_wand",
+  "name": "恵雨の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "100",
+  "dur": "500",
+  "effect": "見ている所（32m）に雲を呼び、半径 10m に 10 秒雨。範囲の植物に毎秒骨粉と同じ効果",
+  "desc": "恵雨の魔導書を杖に宿したもの。広い畑ひとつ分を、雨がまるごと包む。",
+  "from": "bountiful_rain_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "deep_sea_wand",
+  "name": "深海の杖",
+  "rarity": "epic",
+  "source": "craft",
+  "mana": "60",
+  "dur": "200",
+  "effect": "自分とまわり 20m の敵以外すべてに、コンジットパワー・イルカの好意・暗視を 20 分",
+  "desc": "深海の魔導書を杖に宿したもの。仲間をつれて、海の底を歩いて回れる。",
+  "from": "deep_sea_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "shadow_veil_wand",
+  "name": "隠形の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "100",
+  "dur": "200",
+  "effect": "自分を 3 分完全に透明にし、移動速度上昇 III と跳躍力上昇 II",
+  "desc": "隠形の魔導書を杖に宿したもの。足音ひとつ残さず、敵の真横をすり抜けられる。",
+  "from": "shadow_veil_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "thunderstorm_wand",
+  "name": "雷雨の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "150",
+  "effect": "半径 14m の雨雲を 15 秒。0.5 秒ごとに敵 1 体へ雷 20、移動速度低下 IV",
+  "desc": "雷雨の魔導書を杖に宿したもの。空を覆う黒雲の下では、動くものから順に雷に打たれる。",
+  "from": "thunderstorm_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "blood_chain_wand",
+  "name": "血鎖の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "200",
+  "effect": "見えている敵 最大 3 体（30m）を鎖で 6 秒縛り、動きも攻撃も封じる。毎秒 10、締まるとき 30。与えた半分を回復",
+  "desc": "血鎖の魔導書を杖に宿したもの。何本もの鎖が伸び、群れの命をまとめて啜る。",
+  "from": "blood_chain_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "ice_prison_wand",
+  "name": "氷獄の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "150",
+  "dur": "200",
+  "effect": "見えている敵 最大 5 体（30m）を氷の檻に 6 秒。毎秒 8、割れるとき半径 4m に 60 ダメージ",
+  "desc": "氷獄の魔導書を杖に宿したもの。檻の数だけ、敵の動きが止まる。",
+  "from": "ice_prison_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "star_pull_wand",
+  "name": "星引の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "200",
+  "dur": "200",
+  "effect": "半径 14m の敵を 4 秒引き寄せ、流れ星 20 個と大きな星（60）を落とす",
+  "desc": "星引の魔導書を杖に宿したもの。集めた敵の上へ、星の雨と大きな星をひとつ落とす。",
+  "from": "star_pull_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "starmoon_wand",
+  "name": "星月の杖",
+  "rarity": "unique",
+  "source": "craft",
+  "mana": "300",
+  "dur": "500",
+  "effect": "夜だけ。まわり 32m に 20 秒、0.25 秒ごとに流れ星（20 ダメージ・半径 4m）。最後に月光の柱 100",
+  "desc": "星月の魔導書を杖に宿したもの。星が降りやむと、最後に月の光が地を貫く。",
+  "from": "starmoon_grimoire"
+ },
+ {
+  "kind": "wand",
+  "id": "glacies_enarte",
+  "name": "グラキエス＝エナルテ",
+  "rarity": "legendary",
+  "source": "craft",
+  "mana": "300",
+  "dur": "500",
+  "effect": "3 秒ためないと撃てない。半径 20m の大吹雪を 10 秒、毎秒 20。最後に氷が砕けて 100（ボスにも）",
+  "desc": "グラキエスを魔法の杖に宿したもの。吹雪が止んだとき、凍りついたすべてが一度に砕け散る。",
+  "from": "glacies"
+ }
  ],
  "names": {
   "manasteel_ingot": "マナスチールインゴット",
@@ -1462,6 +1987,31 @@ const DATA = {
   "manalite_chestplate": "マナライトのチェストプレート",
   "manalite_leggings": "マナライトのレギンス",
   "manalite_boots": "マナライトのブーツ",
+  "apprentice_summoner_hood": "見習い召喚士のフード",
+  "apprentice_summoner_robe_top": "見習い召喚士のローブ(上)",
+  "apprentice_summoner_robe_bottom": "見習い召喚士のローブ(下)",
+  "apprentice_summoner_boots": "見習い召喚士のブーツ",
+  "summoner_hood": "召喚士のフード",
+  "summoner_robe_top": "召喚士のローブ(上)",
+  "summoner_robe_bottom": "召喚士のローブ(下)",
+  "summoner_boots": "召喚士のブーツ",
+  "monster_summoner_hood": "魔物召喚士のフード",
+  "monster_summoner_robe_top": "魔物召喚士のローブ(上)",
+  "monster_summoner_robe_bottom": "魔物召喚士のローブ(下)",
+  "monster_summoner_boots": "魔物召喚士のブーツ",
+  "beast_summoner_hood": "幻獣召喚士のフード",
+  "beast_summoner_robe_top": "幻獣召喚士のローブ(上)",
+  "beast_summoner_robe_bottom": "幻獣召喚士のローブ(下)",
+  "beast_summoner_boots": "幻獣召喚士のブーツ",
+  "spirit_summoner_hood": "精霊召喚士のフード",
+  "spirit_summoner_robe_top": "精霊召喚士のローブ(上)",
+  "spirit_summoner_robe_bottom": "精霊召喚士のローブ(下)",
+  "spirit_summoner_boots": "精霊召喚士のブーツ",
+  "tanned_leather": "なめし革",
+  "summoner_leather": "召喚士の革",
+  "monster_summoner_leather": "魔物召喚士の革",
+  "beast_summoner_leather": "幻獣召喚士の革",
+  "spirit_summoner_leather": "精霊召喚士の革",
   "tesseros_summon_circle": "テセロスの召喚陣",
   "glaioria_summon_circle": "グライオリアの召喚陣",
   "regius_summon_circle": "レギウスの召喚陣",
@@ -1488,6 +2038,14 @@ const DATA = {
   "black_feather": "黒い羽根",
   "frayed_yarn": "ほつれた毛糸",
   "small_hat": "小さな帽子",
+  "foul_blood": "不潔な血",
+  "sorcery_tome": "魔導図書",
+  "watching_eye": "監視する魔眼",
+  "five_swords_legend": "五剣の伝承",
+  "unmelting_ice": "溶けない氷",
+  "unicorn_reins": "ユニコーンの手綱",
+  "wolf_dagger": "狼の短剣",
+  "discarded_doll": "廃棄された人形",
   "magic_soul": "マジックソウル",
   "oblivion_residue": "忘却の残滓",
   "wizard_notes": "魔法使いの手記",
@@ -1505,6 +2063,9 @@ const DATA = {
   "chain_explosion_grimoire": "爆迅の魔導書",
   "hellfire_grimoire": "業火の魔導書",
   "holy_fire_grimoire": "聖火の魔導書",
+  "detect_grimoire": "検知の魔導書",
+  "decoy_grimoire": "身代の魔導書",
+  "chasing_fire_grimoire": "追火の魔導書",
   "miasma_grimoire": "瘴爆の魔導書",
   "rampage_grimoire": "暴爆の魔導書",
   "black_thunder_grimoire": "黒雷の魔導書",
@@ -1524,6 +2085,9 @@ const DATA = {
   "chain_explosion_wand": "爆迅の杖",
   "hellfire_wand": "業火の杖",
   "holy_fire_wand": "聖火の杖",
+  "detect_wand": "検知の杖",
+  "decoy_wand": "身代の杖",
+  "chasing_fire_wand": "追火の杖",
   "miasma_wand": "瘴爆の杖",
   "rampage_wand": "暴爆の杖",
   "black_thunder_wand": "黒雷の杖",
@@ -1630,6 +2194,14 @@ const DATA = {
   "black_feather": "濡れたように艶のある黒い羽根。光にかざすと、ふちが金色に透ける。",
   "frayed_yarn": "さんざん転がされて、端がほつれた白い毛糸玉。ふわふわの毛が何本も絡まっている。",
   "small_hat": "猫の頭にちょうど乗るくらいの、とんがり帽子。ときどき、中からにやにや笑いだけが覗く。",
+  "foul_blood": "濁って黒ずんだ血の入った小瓶。栓をゆるめると、どこからか小さな羽音が集まってくる。",
+  "sorcery_tome": "魔導図書館の書架から持ち出された古い魔導書。ページをめくると、ホウと低い声がする。",
+  "watching_eye": "まぶたのない目玉を封じた魔具。どこにしまっておいても、なぜか視線を感じる。",
+  "five_swords_legend": "光輪を背負った五振りの剣の伝説を記した巻物。一巻に一振りの剣が宿るという。",
+  "unmelting_ice": "氷の塔に眠っていた、決して溶けない氷のかけら。中で小さな羽がきらめいている。",
+  "unicorn_reins": "白い革を編んだ手綱。金のはみを握ると、ユニコーンが駆けてくる。",
+  "wolf_dagger": "銀の狼の紋が彫られた短剣。柄の房に、青白く光る獣の毛が一本からまっている。",
+  "discarded_doll": "つぎはぎだらけの小さな人形。切れたはずの糸が、ひとりでに指へからみついてくる。",
   "magic_soul": "淡い紫色に燃え揺れる、半透明の人魂。取り込むと肉体になじみ、扱えるマナの器そのものを押し広げる。",
   "oblivion_residue": "記憶がほどけて灰になったような、灰色の霞のかたまり。\n触れたものから、覚えたことを静かに奪い去る。\n持って使い魔を右クリックで、割り振ったポイントがすべて戻る。",
   "wizard_notes": "",
@@ -1643,7 +2215,7 @@ const DATA = {
   "mana_energy_3": "ガラスの器に満ちた紫のマナ。霊脈装置に入れると、霊脈を掘り出して襲撃を呼び寄せる。\n器の体力 150。ウェーブが進むほど強い敵が増える。\n守り抜くと：マナストーン 32〜64 個。\n入手：ダンジョンや遺跡の宝箱に、まれに入っている（5%）",
   "mana_energy_4": "ガラスの器に満ちた紫のマナ。霊脈装置に入れると、霊脈を掘り出して襲撃を呼び寄せる。\n器の体力 200。ウェーブが進むほど強い敵が増える。\n守り抜くと：魔力の結晶 32〜64 個。\n入手：上位のダンジョンの宝箱に、まれに入っている（5%）",
   "mana_energy_5": "ガラスの器に満ちた紫のマナ。霊脈装置に入れると、霊脈を掘り出して襲撃を呼び寄せる。\n器の体力 250。ウェーブが進むほど強い敵が増える。\n守り抜くと：魔力の結晶 64〜128 個。\n入手：上位のダンジョンの宝箱に、まれに入っている（5%）",
-  "transfer_circle": "床に描く、3×3 マスに広がる魔法陣。ゆっくりと明滅しながら光る（明るさ 7）。当たり判定はない。\n右クリックで画面を開き、名前・ネットワークネーム・色（16 色）を決められる。同じネットワークネームの魔法陣どうしで転送でき（マナ 500・ディメンションもまたげる）、ネットワークネームを知らない人は入れない。\n作り方：マジックソウルを真ん中に、マナストーンを上下左右、マナクリスタルを四隅",
+  "transfer_circle": "床に描く、3×3 マスに広がる魔法陣。ゆっくりと明滅しながら光る（明るさ 7）。当たり判定はない。\n右クリックで画面を開き、名前・ネットワークネーム・色（16 色）を決められる。同じネットワークネームの魔法陣どうしで転送でき（マナ 500・ディメンションもまたげる）、ネットワークネームを知らない人は入れない。\n置いた人は、自分だけが使える魔法陣にしたり、ほかの人に設定を変えさせないようにしたりできる。\nはじめの設定では、置いた人と OP しか壊せず、爆発でも壊れない。\n作り方：マジックソウルを真ん中に、マナストーンを上下左右、マナクリスタルを四隅",
   "magic_pouch": "魔法の布で縫った、魔導書だけをしまっておけるポーチ。27 冊まで入り、壊しても中身はそのまま残る。\n作り方：魔法の布 3・革 5",
   "wizard_pouch": "魔導士の布で縫ったポーチ。魔導書のほか、杖や使い魔の召喚アイテムも 27 個まで入る。\n作り方：マジックポーチ・魔導士の布 2・ユニコーンの角・革 5（中身は引き継ぐ）",
   "sage_pouch": "賢者の布で縫ったポーチ。魔導書・杖・使い魔の召喚アイテムが 54 個まで入る。\n作り方：ウィザードポーチ・賢者の布 2・マナストーン・革 5（中身は引き継ぐ）",
@@ -1651,6 +2223,11 @@ const DATA = {
   "mage_cloth": "マナクリスタルの粉を織り込んだ、深い青の布。銀の縁取りが淡く光を返す。\n作り方：布をマナクリスタル 8 個で囲む。下位のダンジョン（氷の塔・浮島もふくむ）のいい宝箱に 25%、上位のダンジョンのいい宝箱に 50% で入っている。",
   "sage_cloth": "古い賢者たちが纏ったという、緑と金の布。胸元のルーンが静かに脈打っている。\n作り方：布をマナストーン 8 個で囲む。上位のダンジョン（5 か所）のいい宝箱に 25% で入っている。",
   "archmage_cloth": "魔力の結晶を砕いて染ませた、深い紫の布。糸の一本一本に濃いマナが流れている。\n作り方：布を魔力の結晶 8 個で囲む。宝箱からは出ない。",
+  "tanned_leather": "革を四枚、丁寧になめして一枚にまとめたもの。やわらかく、マナをよく吸う。\n作り方：革 4 つを 2×2 に並べる。",
+  "summoner_leather": "マナのかけらを揉みこんだなめし革。触れると、小さな生き物の気配がする。\n作り方：なめし革をマナのかけら 8 個で囲む。下位のダンジョンのいい宝箱に 50% で入っている。",
+  "monster_summoner_leather": "マナクリスタルの粉で染めた、黒ずんだ赤の革。魔物の唸り声を吸いこんでいるという。\n作り方：なめし革をマナクリスタル 8 個で囲む。下位のダンジョンのいい宝箱に 25%、上位のダンジョンのいい宝箱に 50% で入っている。",
+  "beast_summoner_leather": "マナストーンを溶かして染めた空色の革。伝説の獣たちが好む匂いがする。\n作り方：なめし革をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱に 25% で入っている。",
+  "spirit_summoner_leather": "魔力の結晶をすりこんだ、真珠のように白い革。精霊たちがそっと寄ってくる。\n作り方：なめし革を魔力の結晶 8 個で囲む。宝箱からは出ない。",
   "magic_crystal": "紫色の魔力が閉じ込められた結晶。\n強大な魔の者の体内で、長い年月をかけて凝り固まったものだという。\n後半のボスだけが落とし、先のボスほど多い（ドロップ増加は効かない）。大魔導士の布の材料。",
   "nordensia": "海王ノーデンスが携えていた三叉の槍。穂先から、いつも冷たい霧がこぼれている。\n攻撃力 45・壊れない。\n海王の威厳（持つだけ）：水中呼吸・イルカの好意。水の中でも地上と同じ速さで掘れて、動ける。\n右クリック：氷の槍（30 ダメージ・2 秒凍結）。\n水中で右クリック長押し【大渦潮】：半径 16 m の敵を前方 4 m へ引き寄せて縛る（最長 10 秒・0.5 秒ごとに 3 ダメージ。クールタイム 30 秒）。",
   "ancient_sword": "竜のねぐらに眠っていた古びた剣。刃は欠け、柄の飾りもすり減っているが、いまだに鋭い。\n攻撃力 16・壊れない。\n氷竜の牙：当てた相手を 2 秒凍結。\n白銀の竜巻：ダッシュ攻撃で相手の足もとに氷の竜巻。半径 3 m の敵に 24 ダメージと打ち上げ（クールタイム 5 秒）。",
@@ -1685,9 +2262,11 @@ const DATA = {
 
 /* ---------- アニメーションするテクスチャ（コマ数, 1 コマの tick 数） ---------- */
 const ANIM = {
+  starmoon_grimoire: [24, 2], glacies: [24, 2], shadow_veil_wand: [24, 2], thunderstorm_wand: [24, 2], blood_chain_wand: [24, 2], ice_prison_wand: [24, 2], star_pull_wand: [24, 2], starmoon_wand: [24, 2], glacies_enarte: [24, 2],
+  chasing_fire_wand: [24, 2],
   cynthia_prayer: [24, 2], raison_detre: [24, 2], tenkai_raibaku: [24, 2], mercy_light_grimoire: [8, 3],
   gungnir: [24, 2], nordensia: [24, 2],
-  magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4],
+  magic_soul: [16, 2], oblivion_residue: [16, 2], mana_shard: [8, 4], crystal: [16, 3], mana_crystal: [24, 2],
   red_core: [16, 2], green_core: [16, 2], blue_core: [16, 2], purple_core: [16, 2], yellow_core: [16, 2], moon_core: [16, 2],
   healing_wand: [8, 3], mercy_light_wand: [24, 2],
   mana_diamond: [16, 2], manalite_ingot: [16, 2],
@@ -1695,6 +2274,7 @@ const ANIM = {
   miasma_stone: [8, 3], ocean_drop: [8, 2], saint_soul: [24, 2], monster_soul: [24, 2],
   charged_orb: [8, 2], thunder_beast_cannon: [4, 3],
   earth_grace: [16, 2], demon_flame: [16, 2], demon_contract: [16, 2], holy_beast_egg: [16, 2],
+  wolf_dagger: [16, 2], discarded_doll: [16, 2],
   core_overload: [24, 2], ancient_emergency_device: [24, 2],
   resoflare: [16, 2], resoflare_unleash: [24, 2],
   mana_stone: [8, 3],
@@ -1764,9 +2344,9 @@ function el(tag, cls, text) {
 function nameOf(id) {
   return DATA.names[id] || (byId[id] && byId[id].name) || id;
 }
-/** 杖の作業台の材料（レゾフレア＝アンリーシュと異界の杖は魔法の杖、ほかは壊れた杖）。 */
+/** 杖の作業台の材料（レゾフレア＝アンリーシュ・異界の杖・グラキエス＝エナルテは魔法の杖、ほかは壊れた杖）。 */
 function wandBase(wand) {
-  return wand === 'resoflare_unleash' || wand === 'otherworld_wand' ? 'magic_wand' : 'broken_wand';
+  return wand === 'resoflare_unleash' || wand === 'otherworld_wand' || wand === 'glacies_enarte' ? 'magic_wand' : 'broken_wand';
 }
 
 /* ---------- ボスのドロップ品の、攻略での役目（必要性）。ボスのカードと説明の窓に出す ---------- */
@@ -2069,6 +2649,7 @@ const CORES = [
   ['blue_core', 'ブルーコア', 'ブルーメイジ 1% ／ アイスメイジ 3% ／ ホロウ・ローブ 3% ／ シェルクラブ 5% ／ ボス 2 体（20%・50%）'],
   ['yellow_core', 'イエローコア', 'イエローメイジ 1% ／ ライトメイジ 3% ／ クリスタルゴーレム 3% ／ サンダーエレメント 5% ／ ホーリースピリット 5% ／ ボス 2 体（20%・50%）'],
   ['purple_core', 'パープルコア', 'パープルメイジ 1% ／ ダークメイジ 3% ／ グリモア・ミミック 3% ／ 鎖の亡者 3% ／ 深淵の者 3% ／ ダークスピリット 5% ／ ボス 2 体（20%・50%）'],
+  ['moon_core', 'ムーンコア', '？？？'],
 ];
 const coreList = document.getElementById('core-list');
 for (const [id, name, from] of CORES) {
@@ -2091,7 +2672,7 @@ document.querySelectorAll('.js-recipe-count').forEach(e => { e.textContent = DAT
 /* ---------- 合成の流れ図（recipe を持つ項目から自動で作る） ---------- */
 /** コアの色（線と丸のふち）。新しいコアを足したらここにも足す。 */
 const CORE_COLORS = {
-  red_core: '#ff6a4a', green_core: '#5fe08a', blue_core: '#5fb8ff', yellow_core: '#ffd84a', purple_core: '#c27bff',
+  red_core: '#ff6a4a', green_core: '#5fe08a', blue_core: '#5fb8ff', yellow_core: '#ffd84a', purple_core: '#c27bff', moon_core: '#cfe4ff',
 };
 function buildSynthesisFlow() {
   const box = document.getElementById('synthesis-flow');
@@ -2224,7 +2805,7 @@ function buildSynthesisFlow() {
  * 数値は仕様書 7 章「防具」の表と同じ。 */
 const ARMORS = [
   { id: 'apprentice', group: 'robe', name: '見習いの装束', rarity: 'common', tex: 'apprentice_robe',
-    pieces: ['apprentice_hat', 'apprentice_robe', 'apprentice_leggings', 'apprentice_boots'],
+    pieces: ['apprentice_hat', 'apprentice_robe_top', 'apprentice_robe_bottom', 'apprentice_boots'],
     desc: '縄のベルトと継ぎ当ての、飾りのない一揃い。刃や牙への守りは控えめで、魔法の傷を防ぐ。',
     def: '0 / 1 / 1 / 0', mdef: '1 / 2 / 2 / 1（計 6）', dur: '6', tough: '0',
     effect: '4 部位でマナ回復速度 +10%', material: '布' },
@@ -2270,6 +2851,32 @@ const ARMORS = [
     def: '4 / 9 / 7 / 4', mdef: '4 / 5 / 4 / 3（計 16）', dur: '42', tough: '4',
     effect: '1 部位ごとにマナ回復速度 +100%\n4 部位で与える魔法ダメージ +100%\nノックバック耐性（1 部位 0.1）・燃えない',
     material: 'マナライトインゴット（ネザライトインゴット＋魔力の結晶 8 個）' },
+  { id: 'apprentice_summoner', group: 'summoner', name: '見習い召喚士の装束', rarity: 'common', tex: 'apprentice_summoner_robe',
+    pieces: ['apprentice_summoner_hood', 'apprentice_summoner_robe_top', 'apprentice_summoner_robe_bottom', 'apprentice_summoner_boots'],
+    desc: 'はじめて使い魔と契約した者が着る、なめし革のフードとケープ。',
+    def: '0 / 1 / 1 / 0', mdef: '1 / 2 / 2 / 1（計 6）', dur: '6', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +1.25%\n4 部位で呼べる使い魔の種類 +1', material: 'なめし革（革 4 つ）' },
+  { id: 'summoner', group: 'summoner', name: '召喚士の装束', rarity: 'uncommon', tex: 'summoner_robe',
+    pieces: ['summoner_hood', 'summoner_robe_top', 'summoner_robe_bottom', 'summoner_boots'],
+    desc: '背中に召喚陣を縫いこんだ、一人前の召喚士の装束。銅の鈴が使い魔を呼ぶ。',
+    def: '1 / 3 / 2 / 1', mdef: '2 / 4 / 3 / 2（計 11）', dur: '15', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +2.5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −5%', material: '召喚士の革（なめし革＋マナのかけら 8 個）' },
+  { id: 'monster_summoner', group: 'summoner', name: '魔物召喚士の装束', rarity: 'rare', tex: 'monster_summoner_robe',
+    pieces: ['monster_summoner_hood', 'monster_summoner_robe_top', 'monster_summoner_robe_bottom', 'monster_summoner_boots'],
+    desc: '骨の角と牙をあしらった魔物使いの装束。荒々しい使い魔ほど、よく懐く。',
+    def: '1 / 4 / 3 / 1', mdef: '3 / 6 / 5 / 3（計 17）', dur: '22', tough: '0',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +5%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −10%\n4 部位で専用の使い魔「獄鎖の魔犬」がそばにいる', material: '魔物召喚士の革（なめし革＋マナクリスタル 8 個）' },
+  { id: 'beast_summoner', group: 'summoner', name: '幻獣召喚士の装束', rarity: 'epic', tex: 'beast_summoner_robe',
+    pieces: ['beast_summoner_hood', 'beast_summoner_robe_top', 'beast_summoner_robe_bottom', 'beast_summoner_boots'],
+    desc: '一角の額飾りとたたんだ翼をもつ装束。幻獣たちが仲間とみなしてくれる。',
+    def: '2 / 4 / 4 / 2', mdef: '5 / 8 / 6 / 5（計 24）', dur: '30', tough: '1',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +8.75%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −15%、使い魔の体力 +20%\n4 部位で専用の使い魔「金角のグリフォン」がそばにいる', material: '幻獣召喚士の革（なめし革＋マナストーン 8 個）' },
+  { id: 'spirit_summoner', group: 'summoner', name: '精霊召喚士の装束', rarity: 'unique', tex: 'spirit_summoner_robe',
+    pieces: ['spirit_summoner_hood', 'spirit_summoner_robe_top', 'spirit_summoner_robe_bottom', 'spirit_summoner_boots'],
+    desc: '精霊たちに愛された者だけがまとう装束。まわりを五色の精霊が巡っている。',
+    def: '3 / 6 / 5 / 3', mdef: '6 / 10 / 8 / 6（計 30）', dur: '42', tough: '6',
+    effect: '1 部位ごとに使い魔の攻撃力・魔法攻撃力 +15%\n4 部位で呼べる使い魔の種類 +1、使い魔のスキルクールタイム −20%、使い魔の体力 +50%\n4 部位で専用の使い魔「五色の精霊」がそばにいる\nノックバック耐性（1 部位 0.1）・燃えない',
+    material: '精霊召喚士の革（なめし革＋魔力の結晶 8 個。魔力の結晶は後半のボスが落とす）' },
 ];
 RARITY.common = 'コモン';
 /** グレーの人型（プレイヤーと同じ形）に防具 4 部位を着せた 3D。脚の回転の中心はプレイヤーと同じ ±1.9。 */
@@ -2278,21 +2885,21 @@ function armorView(a) {
   const layer = slot => ({ key: `${a.id}_${slot}`, tex: a.tex, glow: a.tex + '_glow', bright: a.tex + '_bright', pose: legs });
   return {
     parts: [{ key: 'humanoid', tex: 'mannequin', hide: ['hat'] }, layer('Hat'), layer('Top'), layer('Bottom'), layer('Boots')],
-    toggles: [{ label: a.group === 'robe' ? '帽子' : 'ヘルメット', index: 1 }, { label: '上', index: 2 }, { label: '下', index: 3 }, { label: '靴', index: 4 }],
+    toggles: [{ label: { robe: '帽子', metal: 'ヘルメット', summoner: 'フード' }[a.group], index: 1 }, { label: '上', index: 2 }, { label: '下', index: 3 }, { label: '靴', index: 4 }],
   };
 }
 function openArmor(a) {
   const icons = el('div', 'feature-icons');
   a.pieces.forEach(p => icons.append(sprite(p, 32)));
   openInfo({
-    name: a.name, kind: `${a.group === 'robe' ? '魔法使いの装束' : '魔法金属の鎧'} ・ ${RARITY[a.rarity]}`, kindClass: 'r-' + a.rarity,
+    name: a.name, kind: `${{ robe: '魔法使いの装束', metal: '魔法金属の鎧', summoner: '召喚士の装束' }[a.group]} ・ ${RARITY[a.rarity]}`, kindClass: 'r-' + a.rarity,
     desc: a.desc, view: armorView(a),
     stats: [['部位', icons], ['レア度', RARITY[a.rarity]], ['防御', a.def + '（頭 / 胴 / 脚 / 足）'], ['魔法防御', a.mdef], ['防具強度', a.tough],
       ['耐久倍率', a.dur], ['効果', a.effect], ['素材', a.material]],
   });
 }
 for (const a of ARMORS) {
-  document.getElementById(a.group === 'robe' ? 'robe-grid' : 'metal-grid')
+  document.getElementById({ robe: 'robe-grid', metal: 'metal-grid', summoner: 'summoner-grid' }[a.group])
     .append(tile(sprite(a.pieces[1], 40), a.name, () => openArmor(a), 'r-' + a.rarity));
 }
 
@@ -2339,15 +2946,15 @@ const MOBS = [
     text: '村に合成台があると、村人のひとりが魔法使いになる。マナのかけら 5〜30 個とコンパス 1 個を渡すと、ダンジョンの地図と交換してくれる。レベルを上げるほど行ける場所が増える（新米：沼地の小屋・大きな浮島／見習い：火山・巨大樹／一人前：雷獣の渓谷・フレイムジグラート／熟練者：ルーンドーム・大海の塔／達人：聖なる遺跡・魔獣の遺跡）。',
     drops: [] },
   { name: 'ユニコーン', icon: ['pic', 'mob_unicorn'], type: '友好', hp: '30〜40', where: 'クリスタルの平原（まれ）',
-    text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。繁殖はできない。',
-    drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）']], dropNote: '革 0〜2',
+    text: '友好的な白い馬。ウマと同じく、何度か乗るうちになつき、鞍をつけて乗れる。足の速さもジャンプ力もウマより上。なついた 2 頭にクリスタルを 1 個ずつあげると、子どもが生まれる。子どもの強さは両親から受け継ぐ。',
+    drops: [['unicorn_horn', '30%（ドロップ増加で 1 レベルにつき +10%）'], ['unicorn_reins', '20%（ドロップ増加で 1 レベルにつき +5%）']], dropNote: '革 0〜2',
     view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow',
       hide: ['saddle', 'head_saddle', 'mouth_saddle_wrap', 'left_saddle_mouth', 'right_saddle_mouth', 'left_saddle_line', 'right_saddle_line',
         'left_front_baby_leg', 'right_front_baby_leg', 'left_hind_baby_leg', 'right_hind_baby_leg'] }] } },
   { name: 'シェルクラブ', icon: ['pic', 'mob_shell_crab'], type: '敵', hp: '100', where: '砂浜・石だらけの海岸・大海の塔',
     text: '青い甲羅のカニ。攻撃を受けると、ときどき殻にこもって守りを固める。', drops: [['blue_core', '5%']],
     view: { parts: [{ key: 'shell_crab', tex: 'shell_crab' }] } },
-  { name: 'ホロウ・ローブ', icon: ['pic', 'mob_hollow_robe'], type: '中立（浮く）', hp: '120', where: '図書館（最初から 2 体いて、館の中の暗い所でも湧く）',
+  { name: 'ホロウ・ローブ', icon: ['pic', 'mob_hollow_robe'], type: '中立（浮く）', hp: '120', where: '魔導図書館（最初から 2 体いて、館の中の暗い所でも湧く）',
     text: '中身のないローブだけが浮かぶ魔法使い。自分からは襲ってこないが、殴ると怒り、まわり 16m の仲間も一緒に怒る（見失って 20 秒で落ち着く）。相手と 6〜12m の間をとり、3 秒ごとに凍える魔弾（魔法 8 と鈍化 I・3 秒）を撃つ。魔導書を頭の上に掲げたら氷の詠唱の合図で、1 秒後に相手の足もとから氷柱が立つ（半径 1.5m・魔法 12 と凍結 2 秒）。近づかれると掌で突く（10）。矢などの飛び道具は半分しか効かず、攻撃を受けるとときどき 6〜10m 先へ消えて現れる。',
     drops: [['blue_core', '3%']],
     view: { parts: [{ key: 'hollow_robe', tex: 'hollow_robe', glow: 'hollow_robe_glow', bright: 'hollow_robe_bright' }] } },
@@ -2370,9 +2977,9 @@ const MOBS = [
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
   { name: 'クリスタルゴーレム', icon: ['pic', 'mob_crystal_golem'], type: '敵', hp: '600', where: 'マナの洞窟',
     text: '肩や背中からマナクリスタルが突き出た、見上げるほど大きな岩の人形（高さ 5 ブロック近く）。長い腕で殴り（28）、両腕を上げて地面を叩くと、半径 5m に結晶のトゲが生える（20 ダメージと打ち上げ）。足もとに光の輪が広がったら離れること。',
-    drops: [['crystal_wall_grimoire', '1%'], ['yellow_core', '3%']],
+    drops: [['mana_crystal', '2〜4 個'], ['crystal_wall_grimoire', '1%'], ['yellow_core', '3%']],
     view: { parts: [{ key: 'crystal_golem', tex: 'crystal_golem', glow: 'crystal_golem_glow' }] } },
-  { name: 'グリモア・ミミック', icon: ['pic', 'mob_grimoire_mimic'], type: '敵（飛ぶ）', hp: '50', where: 'ダンジョンの図書室・書庫・図書館（最初から本に化けて床に置かれている。図書館の中の暗い所でも湧く）',
+  { name: 'グリモア・ミミック', icon: ['pic', 'mob_grimoire_mimic'], type: '敵（飛ぶ）', hp: '50', where: 'ダンジョンの図書室・書庫・魔導図書館（最初から本に化けて床に置かれている。魔導図書館の中の暗い所でも湧く）',
     text: '床に置かれた魔導書のふりをした魔物。4m 以内に近づくか攻撃すると目を覚まし、宙に浮いて噛みつく（8。プレイヤーはマナも 5 吸われる）。6 秒ごとにページを 3 枚飛ばす（魔法 3）。相手を 10 秒見失うと、また床に降りて本のふりに戻る。',
     drops: [['purple_core', '3%']],
     view: { parts: [{ key: 'grimoire_mimic', tex: 'grimoire_mimic', glow: 'grimoire_mimic_glow', bright: 'grimoire_mimic_bright' }] } },
@@ -2388,7 +2995,7 @@ const MOBS = [
     drops: [['mana_drain_grimoire', '1%'], ['purple_core', '3%']],
     view: { parts: [{ key: 'abyss_dweller', tex: 'abyss_dweller', glow: 'abyss_dweller_glow' }] } },
   { name: 'ルナスピリット', icon: ['pic', 'mob_luna_spirit'], type: '敵', hp: '400', where: 'クリスタルの平原（満月と新月の夜だけ）',
-    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [['moon_core', '5%']] },
+    text: '満月と新月の夜にだけ、クリスタルの平原に現れる、青白く透きとおった精霊。近接攻撃（30）と月光のビーム（30）。足もとに光の輪が浮かんだら、2 秒のうちに離れること（月光の輪 45）。エンダーマンのように、ふっと消えては別の場所に現れる。\n月の満ち欠けと、まだ私たちには知りえない関わりがあるのかもしれない……。', drops: [], dropNote: '？？？' },
 ];
 /** 立体モデルの絵（img/mob_◯◯.png、160×160）。 */
 function portrait(file, name, size) {
@@ -2524,40 +3131,56 @@ function dropButton(id, p) {
   return d;
 }
 
-/* ---------- 使い魔（7 章の召喚アイテムの順） ----------
- * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 7 章・9 章の値。 */
+/* ---------- 使い魔（仕様書 8 章のクリエイティブタブと同じ順。宝箱から出るもの → ボスが落とすもの（進捗の順）） ----------
+ * view：3D の設定（models.js のキーとテクスチャ）。体力は仕様書 18 章の値。 */
 const FAMS = [
-  { item: 'blue_feather', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
+  { item: 'blue_feather', passive: '攻撃力 +50%、移動速度 +20%', name: '幸せの青い鳥', count: '最大 3 羽', hp: '10', how: 'つつく（2）。羽ばたいて飛び、主人のそばで止まると地面に降りる。', buff: '', odds: '宝箱 15%',
     view: { parts: [{ key: 'bird', tex: 'blue_bird', hide: ['middle_leg'] }] } },
-  { item: 'black_feather', name: '八咫烏', count: '最大 2 羽', hp: '30', how: '鋭いくちばし（8）。足が 3 本ある。', buff: '出ているあいだ 暗視', odds: '宝箱 5%',
+  { item: 'black_feather', passive: '攻撃力 +50%、つついた敵を 5 秒光らせる', name: '八咫烏', count: '最大 2 羽', hp: '30', how: '鋭いくちばし（8）。足が 3 本ある。', buff: '出ているあいだ 暗視', odds: '宝箱 3.3%',
     view: { parts: [{ key: 'bird', tex: 'yatagarasu' }] } },
-  { item: 'frayed_yarn', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 5%',
+  { item: 'frayed_yarn', passive: '魔法攻撃力 +50%、スキルクールタイム −10%', name: 'モフ猫', count: '1 匹', hp: '10', how: '魔法の弾（10）を 2 秒ごとに撃つ。', buff: '出ているあいだ 落下ダメージなし', odds: '宝箱 3.3%',
     view: { parts: [{ key: 'mofu_cat', tex: 'mofu_cat', pose: { left_hind_leg: { z: 2.5 }, right_hind_leg: { z: 2.5 } } }] } },
-  { item: 'sturdy_string', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
-    view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
-  { item: 'ice_dragon_egg', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
-    view: { parts: [{ key: 'baby_ice_dragon', tex: 'baby_ice_dragon', glow: 'baby_ice_dragon_glow', bright: 'baby_ice_dragon_bright' }] } },
-  { item: 'fire_dragon_egg', name: '幼い炎竜', count: '1 匹', hp: '50', how: '噛みつき・灼けつく息吹・炎の球。', buff: '出ているあいだ 火のダメージを受けない', odds: '炎竜レギウス 30%',
-    view: { parts: [{ key: 'baby_fire_dragon', tex: 'baby_fire_dragon', glow: 'baby_fire_dragon_glow', bright: 'baby_fire_dragon_bright' }] } },
-  { item: 'sapling_sprout', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
-    view: { parts: [{ key: 'tree_spirit', tex: 'tree_spirit', glow: 'tree_spirit_glow' }] } },
-  { item: 'small_hat', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 5%',
+  { item: 'foul_blood', passive: '攻撃力 +50%、吸う量 +50%', name: '血盟のコウモリ', count: '最大 3 匹', hp: '16', how: '噛みつく（6）。与えたダメージの半分を自分が回復する。', buff: '出ているあいだ 近接で与えたダメージの 5% を回復', odds: '宝箱 3.3%',
+    view: { parts: [{ key: 'blood_bat', tex: 'blood_bat', glow: 'blood_bat_glow', bright: 'blood_bat_bright' }] } },
+  { item: 'small_hat', passive: '魔法攻撃力 +50%、20% で攻撃をかわす', name: 'チェシャ猫', count: '1 匹', hp: '15', how: '宙に浮かんで強い魔法の弾（20）を撃つ。', buff: '', odds: '宝箱 1.7%',
     view: { parts: [{ key: 'cheshire_cat', tex: 'cheshire_cat' }] } },
-  { item: 'charged_orb', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
-    view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow', bright: 'thunder_element_bright' }] } },
-  { item: 'demon_contract', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
-    view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow', bright: 'demon_imp_bright' }] } },
-  { item: 'ocean_drop', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
-    view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin', glow: 'sea_dolphin_glow', bright: 'sea_dolphin_bright' }] } },
-  { item: 'holy_beast_egg', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
+  { item: 'sorcery_tome', passive: '魔法攻撃力 +40%、知恵の灯の時間 +50%', name: '魔導図書館のフクロウ', count: '1 羽', hp: '20', how: '主人のそばを飛び、魔法の頁（8）を 3 枚ずつ飛ばす。12 秒ごとの「知恵の灯」で主人のマナを 20 回復し、主人と近くの使い魔の魔法攻撃力を 8 秒 +20%。', buff: '出ているあいだ マナ回復速度 +25%', odds: '魔導図書館（書庫の宝箱 10%・館長の宝箱 20%）',
+    view: { parts: [{ key: 'library_owl', tex: 'library_owl', glow: 'library_owl_glow', bright: 'library_owl_bright' }] } },
+  { item: 'watching_eye', passive: '魔法攻撃力 +40%、弱体化の時間 +50%', name: 'ウォッチャーアイ', count: '最大 2 体', hp: '12', how: '機械仕掛けの目。細い光線（6）で相手を光らせる。10 秒ごとの「呪縛の凝視」で移動速度低下 II と魔法防御力低下 I。', buff: '出ているあいだ 近くの敵が光って見える', odds: '宝箱 1.7%',
+    view: { parts: [{ key: 'watcher_eye', tex: 'watcher_eye', glow: 'watcher_eye_glow', bright: 'watcher_eye_bright' }] } },
+  { item: 'five_swords_legend', passive: '攻撃力 +50%、飛ぶ速さ +30%', name: '光輪の剣', count: '最大 5 本（1 巻で 1 本）', hp: '10', how: '呼んだときに近くに敵がいなければ 2 秒その場に浮かび、そのあと主人の背中に扇形に並ぶ。敵を見つけると一瞬で飛んでいって斬る（4）。斬ったあとは相手のまわりを回りながら突き続け、倒したら次の敵へ。敵がいなくなってから背中へ戻る。5 本そろうと背中に扇が完成する。', buff: '5 本そろっているあいだ 力 I', odds: '宝箱 1.7%',
+    view: { parts: [{ key: 'halo_sword', tex: 'halo_sword', glow: 'halo_sword_glow', bright: 'halo_sword_bright' }] } },
+  { item: 'unmelting_ice', passive: '魔法攻撃力 +40%、20% で相手を 1 秒凍結', name: '氷結晶の妖精', count: '最大 2 体', hp: '18', how: '氷の結晶（9）を撃ち、8 秒ごとに相手のまわりへ「冷気の輪」（8・移動速度低下）。', buff: '出ているあいだ 凍結しない', odds: '氷の塔（最上階 20%・ほかの宝箱 10%）',
+    view: { parts: [{ key: 'ice_fairy', tex: 'ice_fairy', glow: 'ice_fairy_glow', bright: 'ice_fairy_bright' }] } },
+  { item: 'unicorn_reins', name: 'ユニコーン', count: '最大 1 体', hp: '80', how: '近接（15）。右クリックで乗れる。水の上を歩き、2 マスまでの段差は自動で登る。', buff: 'なし', odds: 'ユニコーンをプレイヤーが倒すと 20%（ドロップ増加で 1 レベルにつき +5%）',
+    view: { parts: [{ key: 'unicorn', tex: 'unicorn', glow: 'unicorn_glow', hide: ['left_front_baby_leg', 'right_front_baby_leg', 'left_hind_baby_leg', 'right_hind_baby_leg'] }] } },
+  { item: 'holy_beast_egg', passive: '攻撃が当たるたびに召喚者のマナを 5 回復、スキルクールタイム −10%', name: '聖なるウサギ', count: '最大 2 体', hp: '50', how: '噛みつく（8）。頭の上に金の光輪。', buff: '出ているあいだ マナ回復速度 +50%', odds: '聖なる遺跡の宝物庫 20%',
     view: { parts: [{ key: 'holy_rabbit', tex: 'holy_rabbit', glow: 'holy_rabbit_glow', bright: 'holy_rabbit_bright' }] } },
-  { item: 'miasma_stone', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
+  { item: 'miasma_stone', passive: '攻撃力・魔法攻撃力 +30%、羽が当たると移動速度低下', name: '瘴気の鷹', count: '1 羽', hp: '25', how: '追尾する羽と闇の槍。', buff: '', odds: '魔獣の遺跡の宝物庫 20%',
     view: { parts: [{ key: 'miasma_hawk', tex: 'miasma_hawk', glow: 'miasma_hawk_glow', bright: 'miasma_hawk_bright' }] } },
-  { item: 'ancient_emergency_device', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
+  { item: 'wolf_dagger', passive: '攻撃力 +40%、20% で会心（1.5 倍）', name: '幻想の狼王', count: '1 頭', hp: '120', how: '大剣の柄をくわえた大きな狼。走り寄って大剣で斬る（36）。5 秒ごとに相手を駆け抜ける「影走り」（80）、12 秒ごとに半透明の狼を 2 匹呼ぶ「幻狼」（噛みつき 15）。', buff: '出ているあいだ 移動速度 +10%', odds: '上位ダンジョンのいい宝箱 5%',
+    view: { parts: [{ key: 'phantom_wolf', tex: 'phantom_wolf', glow: 'phantom_wolf_glow', bright: 'phantom_wolf_bright' }] } },
+  { item: 'discarded_doll', passive: '体力 +30%、操り糸で操る数 +2', name: 'スクラップドール', count: '1 体', hp: '100', how: '糸に操られて歩き、糸で斬る（18・4m まで届く）。8 秒ごとの「操り糸」で近くの敵 3 体に糸をつなぎ、8 秒のあいだ操ってほかの敵を襲わせる。糸をつないだ敵は防御力と魔法防御力も下がる。', buff: '出ているあいだ 受けるダメージの 15% を人形が肩代わり', odds: '上位ダンジョンのいい宝箱 5%',
+    view: { parts: [{ key: 'scrap_doll', tex: 'scrap_doll', glow: 'scrap_doll_glow', bright: 'scrap_doll_bright' }] } },
+  { item: 'sturdy_string', passive: '攻撃力 +30%、攻撃した相手に魔法攻撃力低下 II・魔法防御力低下 II', name: '実験体S', count: '1 匹', hp: '40', how: '噛みつきと、動きを鈍らせる蜘蛛糸。', buff: '', odds: '魔導士テセロス 30%',
+    view: { parts: [{ key: 'spider', tex: 'subject_s', glow: 'subject_s_eyes' }] } },
+  { item: 'ice_dragon_egg', passive: '魔法攻撃力 +40%、凍結している敵へのダメージ +40%', name: '幼い氷竜', count: '1 匹', hp: '50', how: '噛みつき・凍てつく息吹・氷のつぶて。', buff: '出ているあいだ 落下ダメージなし・凍結しない', odds: '氷竜グライオリア 30%',
+    view: { parts: [{ key: 'baby_ice_dragon', tex: 'baby_ice_dragon', glow: 'baby_ice_dragon_glow', bright: 'baby_ice_dragon_bright' }] } },
+  { item: 'fire_dragon_egg', passive: '魔法攻撃力 +40%、燃えている敵へのダメージ +30%', name: '幼い炎竜', count: '1 匹', hp: '50', how: '噛みつき・灼けつく息吹・炎の球。', buff: '出ているあいだ 火のダメージを受けない', odds: '炎竜レギウス 30%',
+    view: { parts: [{ key: 'baby_fire_dragon', tex: 'baby_fire_dragon', glow: 'baby_fire_dragon_glow', bright: 'baby_fire_dragon_bright' }] } },
+  { item: 'sapling_sprout', passive: '回復量 +50%、回復のクールタイム −20%', name: '樹の精霊', count: '1 体', hp: '30', how: '小さな杖で殴り、5 秒ごとに半径 20m の仲間を 5 回復。', buff: '', odds: '森羅の守護者 30%',
+    view: { parts: [{ key: 'tree_spirit', tex: 'tree_spirit', glow: 'tree_spirit_glow' }] } },
+  { item: 'charged_orb', passive: '魔法攻撃力 +40%、移動速度 +20%', name: 'サンダーエレメント', count: '最大 3 体', hp: '40', how: '雷のビーム（毎秒 10）。当たった相手から 15m 以内の敵にも感電する。', buff: '', odds: '雷獣フルガリオン 30%',
+    view: { parts: [{ key: 'thunder_element', tex: 'thunder_element', glow: 'thunder_element_glow', bright: 'thunder_element_bright' }] } },
+  { item: 'demon_contract', passive: '攻撃力・魔法攻撃力 +30%、体力 +30%', name: '炎の悪魔', count: '最大 2 体', hp: '80', how: '近接の爪と炎の弾（どちらも 50）で燃やす。', buff: '出ているあいだ 火のダメージを受けない', odds: '焔魔イグニード 30%',
+    view: { parts: [{ key: 'demon_imp', tex: 'demon_imp', glow: 'demon_imp_glow', bright: 'demon_imp_bright' }] } },
+  { item: 'ancient_emergency_device', passive: '防御力 +10、魔法防御力 +10', name: 'ルーンの戦兵', count: '最大 2 体', hp: '300', how: '近接の拳（アイアンゴーレムと同じ強さ）。', buff: '出ているあいだ 耐性（1 体で I・2 体で II）', odds: 'ルーンの神兵 30%',
     view: { parts: [{ key: 'rune_soldier', tex: 'rune_soldier', glow: 'rune_soldier_glow' }] } },
-  { item: 'saint_soul', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
+  { item: 'ocean_drop', passive: '魔法攻撃力 +40%、体力 +30%', name: '大海のイルカ', count: '最大 2 頭', hp: '35', how: '宙を泳いで水のビームと水の斬撃。', buff: '出ているあいだ 水中呼吸・イルカの好意', odds: '海王ノーデンス 30%',
+    view: { parts: [{ key: 'sea_dolphin', tex: 'sea_dolphin', glow: 'sea_dolphin_glow', bright: 'sea_dolphin_bright' }] } },
+  { item: 'saint_soul', passive: '回復量 +50%、体力 +50%', name: 'ホーリースピリット', count: '1 体', hp: '300', how: '近接 20・光のビーム 30。半径 30m の自分とプレイヤーの傷を、祈ってから 20 癒す。必殺技「聖域」：半径 15m の光の輪を 10 秒張り、中の仲間は受けるダメージ半分・毎秒 4 回復（45 秒に 1 回）。', buff: '', odds: '聖騎士シンシア 10%',
     view: { parts: [{ key: 'holy_spirit', tex: 'holy_spirit', glow: 'holy_spirit_glow', bright: 'holy_spirit_bright' }] } },
-  { item: 'monster_soul', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
+  { item: 'monster_soul', passive: '魔法攻撃力 +50%、与えたダメージの 10% を回復', name: 'ダークスピリット', count: '1 体', hp: '200', how: '近接 40・闇のビーム 80・体力を吸い取る魔法（5 × 10 回）。必殺技「魂喰らい」：4 秒の溜めのあと、半径 30m のボス以外の敵の命を体力に関係なく奪う（45 秒に 1 回）。', buff: '', odds: '魔獣グリムノウル 10%',
     view: { parts: [{ key: 'dark_spirit', tex: 'dark_spirit', glow: 'dark_spirit_glow', bright: 'dark_spirit_bright' }] } },
 ];
 function openFam(f) {
@@ -2565,11 +3188,38 @@ function openFam(f) {
   item.append(dropButton(f.item, ''));
   openInfo({
     name: f.name, kind: '使い魔', desc: DATA.descs[f.item] || '', view: f.view,
-    stats: [['召喚アイテム', item], ['数', f.count], ['体力', f.hp], ['能力', f.how], ['主人への効果', f.buff || 'なし'], ['入手', f.odds]],
+    stats: [['召喚アイテム', item], ['数', f.count], ['体力', f.hp], ['能力', f.how], ['主人への効果', f.buff || 'なし'], ['ランク 10 のパッシブ', f.passive || 'なし'], ['入手', f.odds]],
   });
 }
 const famGrid = document.getElementById('fam-grid');
 for (const f of FAMS) famGrid.append(secretTile(f.item, sprite(f.item, 40), f.name, () => openFam(f)));
+
+/* ---------- 召喚士の専用使い魔（仕様書 18 章「召喚士の専用使い魔」）。絵は img/fam_◯◯.png ---------- */
+const COMPANIONS = [
+  { pic: 'fam_hell_chain_hound', name: '獄鎖の魔犬', armor: '魔物召喚士の装束', hp: '35',
+    desc: '骨の仮面をかぶった黒い魔犬。真紅のたてがみから残り火がこぼれ、首輪の鎖が鳴る。',
+    how: '噛みつく（7）。6 秒ごとの「鎖噛み」で、12 m 先までの敵へ鎖を伸ばして飛びかかり（12）、動きを鈍らせる。',
+    passive: '攻撃力 +50%、鎖噛みの移動速度低下が 5 秒',
+    view: { parts: [{ key: 'hell_chain_hound', tex: 'hell_chain_hound', glow: 'hell_chain_hound_glow', bright: 'hell_chain_hound_bright' }] } },
+  { pic: 'fam_golden_horn_griffon', name: '金角のグリフォン', armor: '幻獣召喚士の装束', hp: '50',
+    desc: '金の一本角と空色の翼をもつグリフォン。はじめから主人になついていて、鞍がなくても背に乗せてくれる。',
+    how: '右クリックで乗れる。ジャンプのキーで飛び上がり、空では見ている方へ飛ぶ（ジャンプのキーで上昇、しゃがむと降りる）。爪で飛びかかり（12）、5 秒ごとに風の刃を 3 つ（8）。12 秒ごとの「角の光」で、主人と自分を 6 回復。',
+    passive: '攻撃力・魔法攻撃力 +40%、飛ぶ速さ +20%、出ているあいだ主人は落下ダメージを受けない',
+    view: { parts: [{ key: 'golden_horn_griffon', tex: 'golden_horn_griffon', glow: 'golden_horn_griffon_glow', bright: 'golden_horn_griffon_bright' }] } },
+  { pic: 'fam_five_color_spirit', name: '五色の精霊', armor: '精霊召喚士の装束', hp: '70',
+    desc: '真珠色の髪に光輪を背負った精霊。まわりを赤・青・緑・黄・紫の光の玉が巡っている。',
+    how: '宙に浮かび、1.5 秒ごとに赤・青・緑・黄・紫の弾を順に撃つ（14。赤は小さな爆発で 22、青は移動速度低下、緑は主人を 2 回復、黄は近くの敵 2 体へ雷、紫は魔法防御力低下）。60 秒ごとの「精霊の結界」で、30 秒のあいだ中にいる仲間に力・耐性・移動速度上昇・再生・知恵の灯を配る。',
+    passive: '魔法攻撃力 +40%、精霊の結界の時間 +50%',
+    view: { parts: [{ key: 'five_color_spirit', tex: 'five_color_spirit', glow: 'five_color_spirit_glow', bright: 'five_color_spirit_bright' }] } },
+];
+function openCompanion(c) {
+  openInfo({
+    name: c.name, kind: '召喚士の専用使い魔', desc: c.desc, view: c.view,
+    stats: [['呼び方', c.armor + 'を 4 部位着る'], ['体力', c.hp], ['能力', c.how], ['ランク 10 のパッシブ', c.passive]],
+  });
+}
+const companionGrid = document.getElementById('companion-grid');
+if (companionGrid) for (const c of COMPANIONS) companionGrid.append(tile(portrait(c.pic, c.name, 44), c.name, () => openCompanion(c)));
 
 /* ---------- ダンジョン ---------- */
 const PLACES = [
@@ -2579,9 +3229,9 @@ const PLACES = [
   ['森林の小屋', '森・花の森', '#8fcf6a',
    'メイジがひとりで住む、レンガと木の小さな家。暖炉と本棚のある部屋に宝箱が 1 つ。まわりの暗がりにはメイジや魔物が出る。',
    ['宝箱の魔導書 約 42%']],
-  ['図書館', '森・花の森（森林の小屋よりずっと珍しい）', '#a38bd6',
+  ['魔導図書館', '森・花の森（森林の小屋よりずっと珍しい）', '#a38bd6',
    'うち捨てられた 2 階建ての石と木の館。本棚の並ぶ吹き抜けのホールをホロウ・ローブがさまよい、床の本にはグリモア・ミミックが化けている。明かりが消えていて暗い。',
-   ['書庫の宝箱 2 つ（1 階と 2 階の回廊）', '奥の館長の部屋にいい宝箱（マジックソウル 20%・忘却の残滓 20%・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', '館の中の暗い所では、ホロウ・ローブとグリモア・ミミックが湧く']],
+   ['書庫の宝箱 2 つ（1 階と 2 階の回廊。魔導図書 10%）', '奥の館長の部屋にいい宝箱（魔導図書 20%・マジックソウル 20%・忘却の残滓 20%・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', '館の中の暗い所では、ホロウ・ローブとグリモア・ミミックが湧く']],
   ['沼地の小屋', '沼・マングローブの沼', '#b16bd8',
    'パープルメイジに囲まれた古びた小屋。暖炉の下には宝箱が隠されている。',
    ['暖炉の下に隠しチェスト（浮遊の魔導書が必ず 1 冊・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', '小屋ひとつで魔導書 1 冊以上 100%', '母屋に入ると、小屋の主の魔導士テセロスが現れる']],
@@ -2593,10 +3243,10 @@ const PLACES = [
    ['祭壇と同じ宝箱 1（魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）・浮島の宝箱 2', '石柱の輪に入ると、ねぐらの主が舞い降りる']],
   ['氷の塔', '雪原・樹氷・雪のタイガ・林・雪の斜面', '#8fd3ff',
    '6 階建ての氷の塔。各階にブルーメイジ。粉雪の落とし穴と、糸に触れると薬や矢が飛んでくる罠の部屋がある。',
-   ['最上階：マジックソウル 20%・忘却の残滓 20%・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%', '書庫の階にはグリモア・ミミックが本に化けている']],
+   ['最上階：溶けない氷 20%・マジックソウル 20%・忘却の残滓 20%・魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%', 'ほかの階の宝箱にも溶けない氷 10%', '書庫の階にはグリモア・ミミックが本に化けている']],
   ['大海の塔', '深い海', '#4fb8d8',
    '海底から空までそびえる、21 階建ての珊瑚の城塔。各階の階段は部屋の反対側にあり、アイスメイジ（上位）やシェルクラブのいる部屋を通り抜けて上る。書庫の床にはグリモア・ミミックが本に化けている。',
-   ['まれに宝物庫（魔導書 1 冊が必ず・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最上階の海王の間で、塔の主が目を覚ます']],
+   ['まれに宝物庫（魔導書 1 冊が必ず・狼の短剣 5%・廃棄された人形 5%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最上階の海王の間で、塔の主が目を覚ます']],
   ['火山', '山岳（切り立った山頂・草地・雪の斜面など）', '#e0582a',
    '山岳にそびえる、ふもとの半径 110 ほどの大きな火山。黒い岩の斜面を冷えた溶岩の流れが下り、火口からは煙が上がる。火口のまん中の穴は、地の底の灼熱の大広間まで一直線に続いている。',
    ['火口の底は y190 ほど、大広間は y0 付近（降りる道はない）', '大広間の奥の壇に宝箱が 3 つ（まん中の金の台の上がいい宝箱。魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', '大広間に入ると、地の底の主が目を覚ます']],
@@ -2608,10 +3258,10 @@ const PLACES = [
    ['行き止まりや広場に宝箱とスポナー、各層に仕掛け線の罠の部屋', '2 層目に宝物の部屋（いい宝箱。魔法の布 50%・魔導士の布 25%・マナのかけら 50%・マナクリスタル 25%）', 'いちばん奥の円い寝床で、谷の主が目を覚ます（奥の壇に宝箱が 3 つ）']],
   ['フレイムジグラート', '砂漠', '#ff7a3a',
    '砂漠にそびえる 6 段の黒い階段ピラミッド。悪魔を崇める教団の神殿で、北の大階段の上には頂上の神殿がある。南の角の門をくぐると、ピラミッドの中の拝殿。悪魔の偶像の祭壇の前から地下へ下りると、地下 2 層に部屋が広がる。部屋の並びと種類は場所ごとに変わる（礼拝堂・生贄の間・牢獄・納骨堂・召喚の間・禁書庫・祭司の部屋・聖火の間・スポナー部屋・罠の部屋）。フレイムメイジ（上位）と炎の悪魔が見張る。1 層の奥のらせん階段で 2 層へ。2 層の前室の大扉の先が焔の大聖堂（ボス部屋）。',
-   ['建物の中にフレイムメイジ（上位）と炎の悪魔が同じくらい湧く', '2 層の宝物庫と大聖堂の壇にいい宝箱（魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '焔の大聖堂に入ると、神殿の主が現れる']],
+   ['建物の中にフレイムメイジ（上位）と炎の悪魔が同じくらい湧く', '2 層の宝物庫と大聖堂の壇にいい宝箱（狼の短剣 5%・廃棄された人形 5%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '焔の大聖堂に入ると、神殿の主が現れる']],
   ['ルーンドーム', 'ジャングル・竹のジャングル・まばらなジャングル', '#5cffa8',
    '地面に半分うまった巨大なガラスのドーム（半径 34）が入口の古代の研究施設。ドームの中の明るいホールから北の大階段を下りると、地下 2 層に部屋が広がる。部屋の並びと種類は場所ごとに変わる（図書室・実験室・標本室・動力室・工房・倉庫・宿舎・スポナー部屋・罠の部屋）。アースメイジ（上位）とルーン・センチネルが見張り、図書室ではグリモア・ミミックが本に化けている。1 層の奥のらせん階段で 2 層へ。2 層の前室の大扉の先が実験場（ボス部屋）。',
-   ['暗い通路や部屋にアースメイジ・ルーン・センチネル・ゾンビ・スケルトンなどが湧く', '2 層の宝物庫と実験場の東の壇にいい宝箱（魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '実験場に入ると、施設の番人が目を覚ます']],
+   ['暗い通路や部屋にアースメイジ・ルーン・センチネル・ゾンビ・スケルトンなどが湧く', '2 層の宝物庫と実験場の東の壇にいい宝箱（狼の短剣 5%・廃棄された人形 5%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '実験場に入ると、施設の番人が目を覚ます']],
   ['クリスタルの平原', '涼しく乾いた平原の奥（沼地より珍しいバイオーム）', '#f3a8cf',
    '白っぽい草原に、淡いピンクの結晶がとがって生える聖なる野。白い幹にピンクや水色の葉をつけた白晶樹が立ち、水は神秘的な藤色。空中には小さな光の粒がただよう。',
    ['クリスタルブロック（壊すとクリスタル 1〜2 個・幸運で増える）', '地下にマナの洞窟が眠っていることがある', '白晶樹（木材一式）・まれにクリスタルの芽やクリスタルローズ', 'ユニコーンがまれに現れる', '満月と新月の夜にだけ、ルナスピリットが姿を見せる']],
@@ -2620,10 +3270,10 @@ const PLACES = [
    ['マナクリスタルが手に入るのはここだけ（1 つの洞窟に結晶のブロックが 20〜28 個。ダイヤのツルハシ以上）', '幸運のツルハシで掘ると 2〜3 か所で魔導士の装備 4 部位ぶん', 'ダンジョンではないので宝箱はない', '暗がりにはクリスタルゴーレムが潜む']],
   ['聖なる遺跡', '平原・ヒマワリ平原', '#f0d060',
    '崩れた石の広場から、らせん階段で地下 8 層へ。暗く、死者やクモ、ライトメイジ（上位）、ホーリースピリットがさまよう。研究部屋の床にはグリモア・ミミックが本に化けている。仕掛け線の罠やスポナーの部屋に注意。',
-   ['チェストの魔導書は、出にくいかわりにレア・エピックが中心', '7〜8 層目に宝物庫（魔導書 1〜2 冊・聖獣の卵 20%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最深部の大広間で、何者かが眠っている']],
+   ['チェストの魔導書は、出にくいかわりにレア・エピックが中心', '7〜8 層目に宝物庫（魔導書 1〜2 冊・聖獣の卵 20%・狼の短剣 5%・廃棄された人形 5%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最深部の大広間で、何者かが眠っている']],
   ['魔獣の遺跡', 'ダークフォレスト', '#9b5bd6',
    '崩れた見張り塔の下に広がる、魔獣を閉じ込めておく地下 10 層の牢獄。牢屋・実験施設・拷問部屋・看守室が並び、ダークメイジ（上位）とダークスピリット、鎖の亡者が見張る。書庫にはグリモア・ミミックが本に化けている。明かりはほとんどない。',
-   ['チェストの魔導書はレア・エピックが中心で、聖なる遺跡より出やすい', '7〜10 層目に宝物庫（魔導書 1〜2 冊・瘴気の魔石 20%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最深部の大広間に、何かが封じられている']],
+   ['チェストの魔導書はレア・エピックが中心で、聖なる遺跡より出やすい', '7〜10 層目に宝物庫（魔導書 1〜2 冊・瘴気の魔石 20%・狼の短剣 5%・廃棄された人形 5%・魔導士の布 50%・賢者の布 25%・マナクリスタル 50%・マナストーン 25%）', '最深部の大広間に、何かが封じられている']],
 ];
 const placeGrid = document.getElementById('place-grid');
 for (const [name, biome, color, text, notes] of PLACES) {
@@ -2647,9 +3297,16 @@ const MATERIALS = [
     ['sage_cloth', '布をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱にも 25% で 1〜2 枚入っている。', '賢者の装束、セイジポーチ'],
     ['archmage_cloth', '布を魔力の結晶 8 個で囲む。宝箱からは出ない。', '大魔導士の装束、アークメイジポーチ'],
   ] },
+  { title: '革', lead: '召喚士の装束のもと。革をなめしたなめし革を、マナの素材 8 個で囲むと上の革になる。', items: [
+    ['tanned_leather', '作業台で革 4 つを 2×2 に並べる。', '見習い召喚士の装束、上の革のしん'],
+    ['summoner_leather', 'なめし革をマナのかけら 8 個で囲む。下位のダンジョンのいい宝箱にも 50% で 2〜4 枚入っている。', '召喚士の装束'],
+    ['monster_summoner_leather', 'なめし革をマナクリスタル 8 個で囲む。いい宝箱にも入っている（下位のダンジョンは 25% で 1〜2 枚、上位のダンジョンは 50% で 2〜4 枚）。', '魔物召喚士の装束'],
+    ['beast_summoner_leather', 'なめし革をマナストーン 8 個で囲む。上位のダンジョンのいい宝箱にも 25% で 1〜2 枚入っている。', '幻獣召喚士の装束'],
+    ['spirit_summoner_leather', 'なめし革を魔力の結晶 8 個で囲む。宝箱からは出ない。', '精霊召喚士の装束'],
+  ] },
   { title: 'マナの素材', lead: 'マナが固まってできた素材。布や魔法金属の材料になる。', items: [
     ['mana_shard', '沼やマングローブの沼に出るマナスライムの、いちばん小さいものが 1〜2 個落とす（ドロップ増加で増える）。下位のダンジョンのいい宝箱にも 50% で 3〜6 個入っている。', '魔法の布、合成台、マナスチールインゴット、マナダイヤモンド、魔法使いの村人との取引、使い魔のランク上げ（経験値 5）'],
-    ['mana_crystal', 'クリスタルの平原の地下にある、マナの洞窟の結晶のブロックを掘る（ダイヤモンドのツルハシ以上）。1 ブロックから 1〜2 個で、幸運で増える。いい宝箱にも入っている（下位のダンジョンは 25% で 1〜3 個、上位のダンジョンは 50% で 2〜4 個）。', '魔導士の布、マナオーラムインゴット、転送魔法陣、使い魔のランク上げ（経験値 20）'],
+    ['mana_crystal', 'クリスタルの平原の地下にある、マナの洞窟の結晶のブロックを掘る（ダイヤモンドのツルハシ以上）。1 ブロックから 1〜2 個で、幸運で増える。洞窟にいるクリスタルゴーレムも 2〜4 個落とす（ドロップ増加で増える）。いい宝箱にも入っている（下位のダンジョンは 25% で 1〜3 個、上位のダンジョンは 50% で 2〜4 個）。', '魔導士の布、マナオーラムインゴット、転送魔法陣、使い魔のランク上げ（経験値 20）'],
     ['mana_stone', '山岳やディープダークに埋まっているマナストーン鉱石を掘る。幸運で増える。上位のダンジョンのいい宝箱にも 25% で 1〜2 個入っている。', '賢者の布、セイジポーチ、転送魔法陣、使い魔のランク上げ（経験値 50）'],
     ['magic_crystal', '後半のボスだけが落とす。先のボスほどたくさん落とす。', '大魔導士の布、マナライトインゴット、使い魔のランク上げ（経験値 100）'],
     ['magic_soul', 'ダンジョンの宝箱に入っている。浮島の祭壇や氷の塔の最上階のような、いい宝箱ほど出やすい。', '右クリックで最大マナ +20（20 回まで）、転送魔法陣'],
@@ -2672,7 +3329,7 @@ const MATERIALS = [
     ['blue_core', 'ブルーメイジ・アイスメイジ・ホロウ・ローブ・シェルクラブと、ボス。', '合成台、召喚陣'],
     ['yellow_core', 'イエローメイジ・ライトメイジ・クリスタルゴーレム・サンダーエレメント・ホーリースピリットと、ボス。', '合成台、召喚陣'],
     ['purple_core', 'パープルメイジ・ダークメイジ・グリモア・ミミック・鎖の亡者・深淵の者・ダークスピリットと、ボス。', '合成台、召喚陣'],
-    ['moon_core', 'ルナスピリットが 5% で落とす。ほかにも、月の夜に関わる何かが落とすらしい……。', 'まだ使い道は見つかっていない'],
+    ['moon_core', '？？？', '合成台'],
   ] },
   { title: '生き物と植物から', lead: '', items: [
     ['unicorn_horn', 'クリスタルの平原にまれに現れるユニコーンが 30% で落とす（ドロップ増加で増える）。', 'ウィザードポーチ'],

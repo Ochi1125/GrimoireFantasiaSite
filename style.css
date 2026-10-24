@@ -704,3 +704,6 @@ details.spoiler summary span { color: var(--muted); font-weight: 400; font-size:
 details.spoiler[open] { border-color: var(--violet); }
 details.spoiler h3 { font-family: var(--serif), serif; color: var(--gold); font-size: 1.15rem; margin: 14px 0 6px; }
 details.spoiler p { margin: 6px 0 0; }
+
+/* ホームの隠し要素のひとこと */
+.secret-hint { margin-top: 20px; opacity: 0.85; letter-spacing: 0.02em; }
