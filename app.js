@@ -2775,7 +2775,7 @@ function buildSynthesisFlow() {
  * 数値は仕様書 7 章「防具」の表と同じ。 */
 const ARMORS = [
   { id: 'apprentice', group: 'robe', name: '見習いの装束', rarity: 'common', tex: 'apprentice_robe',
-    pieces: ['apprentice_hat', 'apprentice_robe', 'apprentice_leggings', 'apprentice_boots'],
+    pieces: ['apprentice_hat', 'apprentice_robe_top', 'apprentice_robe_bottom', 'apprentice_boots'],
     desc: '縄のベルトと継ぎ当ての、飾りのない一揃い。刃や牙への守りは控えめで、魔法の傷を防ぐ。',
     def: '0 / 1 / 1 / 0', mdef: '1 / 2 / 2 / 1（計 6）', dur: '6', tough: '0',
     effect: '4 部位でマナ回復速度 +10%', material: '布' },
